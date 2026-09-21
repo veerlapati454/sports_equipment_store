@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#0a0c10">
+  <title>About Us | APEX ATHLETICS</title>
+
+  <script>
+    (function () {
+      try { if ('scrollRestoration' in history) history.scrollRestoration = 'manual'; } catch (e) {}
+      window.scrollTo(0, 0);
+      document.addEventListener('DOMContentLoaded', function () { window.scrollTo(0, 0); });
+      window.addEventListener('load', function () { window.scrollTo(0, 0); });
+    })();
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Teko:wght@500;700&family=Work+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Same stylesheet as the rest of the site, then the About-page extras -->
+  <link rel="stylesheet" href="../css/styles.css">
+  <link rel="stylesheet" href="../css/aboutus.css">
+
+</head>
+<body>
+
+  <!-- HEADER (no preloader on this page — content renders immediately) -->
+  <header>
+    <div class="header-container">
+      <a href="../index.html" class="logo-placeholder">
+        <img src="../assets/logo.webp" alt="Apex Athletics logo" class="logo-img">
+      </a>
+
+      <nav class="nav-links" id="primary-nav">
+        <a href="../index.html">Home</a>
+        <a href="./categories.html">Categories</a>
+        <a href="./products.html">Products</a>
+        <a href="./whyus.html">Why Us</a>
+        <a href="./about.html" class="active-link">About Us</a>
+        <a href="./contact.html">Contact</a>
+        <a href="./login.html" class="login-link">Login</a>
+      </nav>
+
+      <button class="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="primary-nav">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+    </div>
+  </header>
+
+  <!-- ==========================================================
+       SECTION 1: ABOUT HERO
+       ========================================================== -->
+  <section id="about-hero" class="about-hero">
+    <div class="about-hero-bg" aria-hidden="true">
+      <img src="../assets/img28.webp" alt="">
+    </div>
+    <div class="about-hero-field" aria-hidden="true"></div>
+    <div class="about-hero-container">
+      <span class="about-hero-tag"><i class="fa-solid fa-circle-nodes"></i> Est. 2014 · Nairobi to the world</span>
+      <h1>Built By Athletes, <span>For Athletes</span></h1>
+      <p>Apex Athletics started with a single frustration — gear that couldn't keep pace with modern training. Twelve years later, we still design every piece the same way: tested on real bodies, under real load, before it ever ships.</p>
+
+      <div class="mission-strip reveal">
+        <div class="strip-item"><i class="fa-solid fa-bullseye"></i><span><strong>Mission</strong> — remove the gap between elite-lab research and everyday training gear</span></div>
+        <div class="strip-item"><i class="fa-solid fa-scale-balanced"></i><span><strong>Values</strong> — evidence over hype, durability over disposability</span></div>
+        <div class="strip-item"><i class="fa-solid fa-earth-americas"></i><span><strong>Reach</strong> — 500,000+ athletes, 45+ countries, one standard</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================
+       SECTION 2: OUR STORY
+       (reuses .about-container / .about-image-column / .about-content-column
+       so it inherits the existing GSAP flip-in from script.js)
+       ========================================================== -->
+  <section class="about-us">
+    <div class="about-container">
+      <div class="about-image-column reveal">
+        <img src="../assets/img29.webp" alt="Apex Athletics founding team in the early workshop" class="about-main-img">
+        <div class="about-badge">
+          <span class="badge-num">2014</span>
+          <span class="badge-text">Where it started</span>
+        </div>
+      </div>
+      <div class="about-content-column reveal">
+        <div class="section-title">
+          <h2>Our <span>Story</span></h2>
+          <p>From a spare-room workshop to a global performance brand</p>
+        </div>
+        <p class="about-lead">Apex Athletics was founded by a small group of sports biomechanists and former professional athletes who were tired of gear that looked good in a store but broke down under real training loads.</p>
+        <p class="about-text">The first product — a hand-built compression sleeve — was tested on a local marathon club before it ever had a name. That habit never left us: every material, sole, and stitch still goes through the same cycle of lab testing and athlete feedback before it reaches a shelf.</p>
+
+        <div class="about-stats">
+          <div class="stat-item"><h3>12+</h3><p>Years Building</p></div>
+          <div class="stat-item"><h3>3</h3><p>R&D Labs</p></div>
+          <div class="stat-item"><h3>7</h3><p>Founding Athletes</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================
+       SECTION 3: WHAT WE STAND FOR
+       (reuses .benefits-grid / .benefit-card door-flip animation)
+       ========================================================== -->
+  <section id="values" class="sports-benefits">
+    <div class="section-title reveal">
+      <h2>What We <span>Stand For</span></h2>
+      <p>The four commitments that shape every product decision we make</p>
+    </div>
+
+    <div class="benefits-grid">
+      <div class="benefit-card reveal">
+        <div class="benefit-header">
+          <div class="benefit-icon"><i class="fa-solid fa-flask-vial"></i></div>
+          <span class="benefit-number">01</span>
+        </div>
+        <h3>Evidence First</h3>
+        <p>No product ships on a hunch. Every claim we make — energy return, moisture control, grip — is measured in a lab before it's printed on a box.</p>
+        <div class="gear-connection">
+          <i class="fa-solid fa-bolt"></i>
+          <span><strong>In practice:</strong> our Carbon-Kinetix sole's 87% energy-return figure is independently re-verified every production run.</span>
+        </div>
+      </div>
+
+      <div class="benefit-card reveal">
+        <div class="benefit-header">
+          <div class="benefit-icon"><i class="fa-solid fa-people-carry-box"></i></div>
+          <span class="benefit-number">02</span>
+        </div>
+        <h3>Athlete-Led Design</h3>
+        <p>We co-design with the coaches, physios, and competitors who use the gear daily — not just marketing teams guessing what looks fast.</p>
+        <div class="gear-connection">
+          <i class="fa-solid fa-bolt"></i>
+          <span><strong>In practice:</strong> 320+ clubs and academies feed us seasonal wear-and-tear reports we build into the next iteration.</span>
+        </div>
+      </div>
+
+      <div class="benefit-card reveal">
+        <div class="benefit-header">
+          <div class="benefit-icon"><i class="fa-solid fa-leaf"></i></div>
+          <span class="benefit-number">03</span>
+        </div>
+        <h3>Responsible Materials</h3>
+        <p>Performance and sustainability aren't a trade-off to us — recycled fibers and low-impact polymers now run through most of our line.</p>
+        <div class="gear-connection">
+          <i class="fa-solid fa-bolt"></i>
+          <span><strong>In practice:</strong> 85% of our current lineup uses recycled textile fiber and zero-plastic packaging.</span>
+        </div>
+      </div>
+
+      <div class="benefit-card reveal">
+        <div class="benefit-header">
+          <div class="benefit-icon"><i class="fa-solid fa-handshake"></i></div>
+          <span class="benefit-number">04</span>
+        </div>
+        <h3>Stand Behind It</h3>
+        <p>If gear doesn't hold up to real training, that's on us to fix — not the athlete's problem to work around.</p>
+        <div class="gear-connection">
+          <i class="fa-solid fa-bolt"></i>
+          <span><strong>In practice:</strong> every order carries our 30-day performance guarantee, no fine print.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================
+       SECTION 4: MILESTONES
+       (reuses .tech-grid / .tech-card animation from the Tech Hub)
+       ========================================================== -->
+  <section class="milestones">
+    <div class="tech-hub-container">
+      <div class="section-title reveal">
+        <h2>Twelve Years, <span>In Brief</span></h2>
+        <p>Key milestones on the way from a workshop to a global brand</p>
+      </div>
+
+      <div class="tech-grid">
+        <div class="tech-card reveal">
+          <div class="tech-header">
+            <span class="tech-tag">Founded</span>
+            <div class="milestone-year">2014</div>
+            <h3>First Prototype Ships</h3>
+          </div>
+          <p>Seven founding athletes and biomechanists hand-build the first compression sleeve and test it through a full marathon training block before naming the company.</p>
+          <ul class="tech-list">
+            <li><i class="fa-solid fa-check"></i> Nairobi workshop opens</li>
+            <li><i class="fa-solid fa-check"></i> First 100 units hand-sewn</li>
+            <li><i class="fa-solid fa-check"></i> Local marathon club as first testers</li>
+          </ul>
+        </div>
+
+        <div class="tech-card reveal">
+          <div class="tech-header">
+            <span class="tech-tag">Scale</span>
+            <div class="milestone-year">2018</div>
+            <h3>Carbon-Kinetix™ Launches</h3>
+          </div>
+          <p>Our flagship footwear line debuts after two years of sole R&D, pushing verified energy return past 85% for the first time in the company's history.</p>
+          <ul class="tech-list">
+            <li><i class="fa-solid fa-check"></i> Second R&D lab opens</li>
+            <li><i class="fa-solid fa-check"></i> 100,000th athlete outfitted</li>
+            <li><i class="fa-solid fa-check"></i> First international distribution hub</li>
+          </ul>
+        </div>
+
+        <div class="tech-card reveal">
+          <div class="tech-header">
+            <span class="tech-tag">Today</span>
+            <div class="milestone-year">2026</div>
+            <h3>Global, Athlete-Verified</h3>
+          </div>
+          <p>Apex now supplies over 500,000 athletes across 45 countries, with sustainable materials in 85% of the lineup and a 4.8/5 rating across 12,400 reviews.</p>
+          <ul class="tech-list">
+            <li><i class="fa-solid fa-check"></i> Three continents, 24-hr dispatch</li>
+            <li><i class="fa-solid fa-check"></i> 320+ clubs and academies supplied</li>
+            <li><i class="fa-solid fa-check"></i> 99.4% satisfaction rate</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================
+       SECTION 5: LEADERSHIP TEAM
+       (reuses .category-grid / .category-card side-flip animation)
+       ========================================================== -->
+  <section class="leadership">
+    <div class="section-title reveal">
+      <h2>The People <span>Behind Apex</span></h2>
+      <p>Sports scientists and former competitors leading product and performance</p>
+    </div>
+
+    <div class="category-grid">
+      <div class="category-card leader-card reveal">
+        <img src="../assets/img30.webp" alt="Founder and CEO portrait">
+        <div class="leader-overlay">
+          <h3>Amara Osei</h3>
+          <span>Co-Founder & CEO</span>
+        </div>
+      </div>
+      <div class="category-card leader-card reveal">
+        <img src="../assets/img31.webp" alt="Head of biomechanics portrait">
+        <div class="leader-overlay">
+          <h3>Marcus Lindqvist</h3>
+          <span>Head of Biomechanics</span>
+        </div>
+      </div>
+      <div class="category-card leader-card reveal">
+        <img src="../assets/img32.webp" alt="Head of materials engineering portrait">
+        <div class="leader-overlay">
+          <h3>Priya Nair</h3>
+          <span>Head of Materials Engineering</span>
+        </div>
+      </div>
+      <div class="category-card leader-card reveal">
+        <img src="../assets/img33.webp" alt="Head of athlete relations portrait">
+        <div class="leader-overlay">
+          <h3>Diego Fuentes</h3>
+          <span>Head of Athlete Relations</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================
+       SECTION 6: BY THE NUMBERS
+       (reuses .stat-item so the existing GSAP count-up triggers)
+       ========================================================== -->
+  <section class="impact-numbers">
+    <div class="section-title reveal">
+      <h2>Our Impact, <span>By The Numbers</span></h2>
+      <p>What twelve years of athlete-first design adds up to</p>
+    </div>
+    <div class="impact-grid">
+      <div class="stat-item reveal"><h3>500K+</h3><p>Active Athletes</p></div>
+      <div class="stat-item reveal"><h3>45+</h3><p>Countries Served</p></div>
+      <div class="stat-item reveal"><h3>320+</h3><p>Clubs & Academies</p></div>
+      <div class="stat-item reveal"><h3>99.4%</h3><p>Satisfaction Rate</p></div>
+    </div>
+  </section>
+
+  <!-- ==========================================================
+       SECTION 7: SUSTAINABILITY & RESEARCH COMMITMENT
+       (reuses .why-us-grid / .why-card icon-flip animation)
+       ========================================================== -->
+  <section class="why-us">
+    <div class="section-title reveal">
+      <h2>Commitments We <span>Hold Ourselves To</span></h2>
+      <p>The standards that sit behind every Apex product, not just the marketing</p>
+    </div>
+    <div class="why-us-grid">
+      <div class="why-card reveal">
+        <div class="why-icon-box"><i class="fa-solid fa-recycle"></i></div>
+        <h3>Sustainable Materials</h3>
+        <p>85% of our current lineup uses recycled synthetic polymers and zero-plastic packaging, with a target of full-line coverage by 2028.</p>
+      </div>
+      <div class="why-card reveal">
+        <div class="why-icon-box"><i class="fa-solid fa-microscope"></i></div>
+        <h3>Independent Verification</h3>
+        <p>Performance claims like our 87% energy-return sole are re-tested by third-party sports science labs every production cycle, not just at launch.</p>
+      </div>
+      <div class="why-card reveal">
+        <div class="why-icon-box"><i class="fa-solid fa-users-viewfinder"></i></div>
+        <h3>Athlete Advisory Panel</h3>
+        <p>A rotating panel of coaches, physios, and competitive athletes reviews every product before it moves from prototype to production.</p>
+      </div>
+    </div>
+  </section>
+
+ 
+
+  <!-- FOOTER (same layout as index.html: compact single row on desktop) -->
+  <footer>
+    <div class="footer-container">
+      <div class="footer-col footer-intro">
+        <a href="../index.html" class="logo-placeholder">
+          <img src="../assets/logo.webp" alt="Apex Athletics footer logo" class="logo-img">
+        </a>
+        <p>Apex Athletics is your ultimate destination for professional sports equipment, high-performance training gear, and modern activewear.</p>
+      </div>
+
+      <div class="footer-col">
+        <h4>Navigation</h4>
+        <ul class="footer-links">
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="./categories.html">Categories</a></li>
+          <li><a href="./products.html">Products</a></li>
+          <li><a href="./whyus.html">Why Us</a></li>
+          <li><a href="./about.html">About Us</a></li>
+          <li><a href="./contact.html">Contact Us</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Support</h4>
+        <ul class="footer-links">
+          <li><a href="./contact.html">Contact Support</a></li>
+          <li><a href="./login.html">Account Login</a></li>
+          <li><a href="./whyus.html">Quality Guarantee</a></li>
+        </ul>
+      </div>
+
+      <!-- Store address -->
+      <div class="footer-col">
+        <h4>Visit Us</h4>
+        <ul class="footer-address">
+          <li>
+            <i class="fa-solid fa-location-dot"></i>
+            <address>
+              MMR Complex, Periyakollappatty <br>
+              Chinna Thirupathi, Salem,<br>
+              Tamil Nadu 636008.
+              <span class="footer-hours">Open daily, 10:00 AM – 9:00 PM</span>
+            </address>
+          </li>
+          <li>
+            <i class="fa-solid fa-phone"></i>
+            <a href="./404.html">+91 40 6677 8899</a>
+          </li>
+          <li>
+            <i class="fa-solid fa-envelope"></i>
+            <a href="./404.html">support@stackly.com</a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Follow Us</h4>
+        <!-- Hidden by CSS (.social-intro) to keep the footer compact -->
+        <p class="social-intro">Connect with Apex Athletics on social media:</p>
+        <div class="social-auth-btns">
+          <a href="./404.html" rel="noopener noreferrer" class="social-btn instagram">
+            <i class="fa-brands fa-instagram"></i> Instagram
+          </a>
+          <a href="./404.html" rel="noopener noreferrer" class="social-btn facebook">
+            <i class="fa-brands fa-facebook-f"></i> Facebook
+          </a>
+          <a href="./404.html" rel="noopener noreferrer" class="social-btn x-twitter">
+            <i class="fa-brands fa-x-twitter"></i> X (Twitter)
+          </a>
+          <a href="./404.html" rel="noopener noreferrer" class="social-btn youtube">
+            <i class="fa-brands fa-youtube"></i> YouTube
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+            <p>&copy; 2026 Stackly Athletics Inc. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- 404 OVERLAY (kept for the Login link, same as the rest of the site) -->
+  <div id="page-404">
+    <h1>404</h1>
+    <h2>Authentication Service Unavailable</h2>
+    <p>The login endpoint you are trying to reach is currently undergoing scheduled maintenance.</p>
+    <button class="btn btn-primary" id="close404Btn"><i class="fa-solid fa-arrow-left"></i> Return To Home</button>
+  </div>
+
+  <!-- External JS: same GSAP stack, then the shared script.js (unchanged). -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js"></script>
+  <script src="../js/script.js"></script>
+</body>
+</html>

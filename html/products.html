@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shop All Gear | APEX ATHLETICS</title>
+
+  <!-- Always start at the top on reload -->
+  <script>if ('scrollRestoration' in history) history.scrollRestoration = 'manual';</script>
+
+  <!-- Google Fonts & Font Awesome Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Teko:wght@500;700&family=Work+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- External CSS -->
+  <link rel="stylesheet" href="../css/styles.css">
+  <link rel="stylesheet" href="../css/products.css">
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="header-container">
+      <a href="../index.html" class="logo-placeholder">
+        <img src="../assets/logo.webp" alt="Logo Placeholder" class="logo-img">
+      </a>
+
+      <nav class="nav-links">
+        <a href="../index.html">Home</a>
+        <a href="./categories.html">Categories</a>
+        <a href="./products.html" class="active-link">Products</a>
+        <a href="./whyus.html">Why Us</a>
+        <a href="./about.html">About Us</a>
+        <a href="./contact.html">Contact</a>
+        <a href="./login.html" class="login-link">Login</a>
+      </nav>
+
+      <div class="menu-toggle"><i class="fa-solid fa-bars"></i></div>
+    </div>
+  </header>
+
+  <!-- SECTION 1: PRODUCTS HERO / BREADCRUMB -->
+  <section class="products-hero">
+    <div class="products-hero-inner">
+      <div class="breadcrumb reveal">
+        <a href="../index.html">Home</a>
+        <i class="fa-solid fa-chevron-right"></i>
+        <span>Products</span>
+      </div>
+      <h1 class="reveal">Shop The <span>Full Lineup</span></h1>
+      <p class="reveal">Every shoe, ball, and training accessory we make, in one place — filtered by discipline, sorted by what matters to you.</p>
+      <div class="products-hero-meta">
+        <div class="reveal"><i class="fa-solid fa-box-open"></i> 42 Products</div>
+        <div class="reveal"><i class="fa-solid fa-truck-fast"></i> 24hr Dispatch</div>
+        <div class="reveal"><i class="fa-solid fa-arrows-rotate"></i> 30-Day Returns</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 2: FILTER & SORT TOOLBAR -->
+  <section class="catalog-toolbar">
+    <div class="catalog-toolbar-inner">
+      <div class="filter-chips">
+        <button class="filter-chip active" data-filter="all">All</button>
+        <button class="filter-chip" data-filter="footwear">Footwear</button>
+        <button class="filter-chip" data-filter="basketball">Basketball</button>
+        <button class="filter-chip" data-filter="fitness">Gym &amp; Fitness</button>
+        <button class="filter-chip" data-filter="racquet">Racquet Sports</button>
+        <button class="filter-chip" data-filter="wearables">Wearables</button>
+      </div>
+      <div class="toolbar-right">
+        <span class="result-count" id="resultCount">42 products</span>
+        <select class="sort-select" id="sortSelect">
+          <option value="featured">Sort: Featured</option>
+          <option value="price-asc">Price: Low to High</option>
+          <option value="price-desc">Price: High to Low</option>
+          <option value="rating">Rating: Highest</option>
+          <option value="name">Name: A–Z</option>
+        </select>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 3: FULL CATALOG GRID -->
+  <section id="catalog" class="catalog">
+    <div class="catalog-grid">
+
+      <div class="product-card reveal" data-category="footwear" data-price="189.99" data-rating="4.9" data-name="Apex Carbon Flyer Shoes">
+        <span class="product-badge">Best Seller</span>
+        <span class="stock-flag">In Stock</span>
+        <img src="../assets/img34.webp" class="product-img" alt="Apex Carbon Flyer running shoe">
+        <div class="product-info">
+          <span class="product-cat">Footwear</span>
+          <h3>Apex Carbon Flyer Shoes</h3>
+          <div class="product-rating"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i> (124)</div>
+        </div>
+        <div class="product-bottom"><div class="product-price">$189.99</div></div>
+      </div>
+
+      <div class="product-card reveal" data-category="basketball" data-price="59.99" data-rating="4.6" data-name="Pro Grip Official Basketball">
+        <span class="product-badge">New</span>
+        <span class="stock-flag">In Stock</span>
+        <img src="../assets/img35.webp" class="product-img" alt="Pro Grip official basketball">
+        <div class="product-info">
+          <span class="product-cat">Basketball</span>
+          <h3>Pro Grip Official Basketball</h3>
+          <div class="product-rating"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i> (89)</div>
+        </div>
+        <div class="product-bottom"><div class="product-price">$59.99</div></div>
+      </div>
+
+      <div class="product-card reveal" data-category="fitness" data-price="129.99" data-rating="4.8" data-name="Hex Dumbbell Set 20kg">
+        <span class="product-badge">Hot</span>
+        <span class="stock-flag low">Low Stock</span>
+        <img src="../assets/img52.webp" class="product-img" alt="Hex dumbbell set">
+        <div class="product-info">
+          <span class="product-cat">Gym &amp; Fitness</span>
+          <h3>Hex Dumbbell Set (20kg)</h3>
+          <div class="product-rating"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i> (210)</div>
+        </div>
+        <div class="product-bottom"><div class="product-price">$129.99</div></div>
+      </div>
+
+      <div class="product-card reveal" data-category="wearables" data-price="249.99" data-rating="4.2" data-name="AeroTrack GPS Fitness Watch">
+        <span class="product-badge">Sale</span>
+        <span class="stock-flag">In Stock</span>
+        <img src="../assets/img37.webp" class="product-img" alt="AeroTrack GPS fitness watch">
+        <div class="product-info">
+          <span class="product-cat">Wearables</span>
+          <h3>AeroTrack GPS Fitness Watch</h3>
+          <div class="product-rating"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-regular fa-star"></i> (64)</div>
+        </div>
+        <div class="product-bottom"><div class="product-old-price">$289.99</div><div class="product-price">$249.99</div></div>
+      </div>
+
+      <div class="product-card reveal" data-category="racquet" data-price="94.99" data-rating="4.5" data-name="Vortex Graphite Tennis Racquet">
+        <span class="stock-flag">In Stock</span>
+        <img src="../assets/img38.webp" class="product-img" alt="Vortex graphite tennis racquet">
+        <div class="product-info">
+          <span class="product-cat">Racquet Sports</span>
+          <h3>Vortex Graphite Racquet</h3>
+          <div class="product-rating"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-regular fa-star"></i> (57)</div>
+        </div>
+        <div class="product-bottom"><div class="product-price">$94.99</div></div>
+      </div>
+
+      <div class="product-card reveal" data-category="footwear" data-price="159.99" data-rating="4.7" data-name="HydroGrip Trail Runners">
+        <span class="stock-flag">In Stock</span>
+        <img src="../assets/img39.webp" class="product-img" alt="HydroGrip trail running shoe">
+        <div class="product-info">
+          <span class="product-cat">Footwear</span>
+          <h3>HydroGrip Trail Runners</h3>
+          <div class="product-rating"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i> (142)</div>
+        </div>
+        <div class="product-bottom"><div class="product-price">$159.99</div></div>
+      </div>
+
+      <div class="product-card reveal" data-category="fitness" data-price="39.99" data-rating="4.4" data-name="ProGrip-X Resistance Bands">
+        <span class="stock-flag">In Stock</span>
+        <img src="../assets/img40.webp" class="product-img" alt="Resistance bands set">
+        <div class="product-info">
+          <span class="product-cat">Gym &amp; Fitness</span>
+          <h3>ProGrip-X Resistance Bands</h3>
+          <div class="product-rating"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-regular fa-star"></i> (98)</div>
+        </div>
+        <div class="product-bottom"><div class="product-price">$39.99</div></div>
+      </div>
+
+      <div class="product-card reveal" data-category="basketball" data-price="79.99" data-rating="4.6" data-name="Apex Highlight Basketball Shoes">
+        <span class="product-badge">Sale</span>
+        <span class="stock-flag low">Low Stock</span>
+        <img src="../assets/img41.webp" class="product-img" alt="Apex Highlight basketball shoes">
+        <div class="product-info">
+          <span class="product-cat">Basketball</span>
+          <h3>Apex Highlight Court Shoes</h3>
+          <div class="product-rating"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-regular fa-star"></i> (76)</div>
+        </div>
+        <div class="product-bottom"><div class="product-old-price">$219.99</div><div class="product-price">$179.99</div></div>
+      </div>
+
+      <!-- Extra batch — revealed by "Load More" -->
+      <div class="product-card extra-batch hidden-item" data-category="racquet" data-price="34.99" data-rating="4.3" data-name="ProGrip-X Overgrip 3-Pack">
+        <span class="stock-flag">In Stock</span>
+        <img src="../assets/img42.webp" class="product-img" alt="Overgrip 3-pack">
+        <div class="product-info">
+          <span class="product-cat">Racquet Sports</span>
+          <h3>ProGrip-X Overgrip 3-Pack</h3>
+          <div class="product-rating"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-regular fa-star"></i> (41)</div>
+        </div>
+        <div class="product-bottom"><div class="product-price">$34.99</div></div>
+      </div>
+
+      <div class="product-card extra-batch hidden-item" data-category="fitness" data-price="89.99" data-rating="4.5" data-name="ThermoVent Training Tee">
+        <span class="stock-flag">In Stock</span>
+        <img src="../assets/img43.webp" class="product-img" alt="ThermoVent training tee">
+        <div class="product-info">
+          <span class="product-cat">Gym &amp; Fitness</span>
+          <h3>ThermoVent Training Tee</h3>
+          <div class="product-rating"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-regular fa-star"></i> (112)</div>
+        </div>
+        <div class="product-bottom"><div class="product-price">$89.99</div></div>
+      </div>
+
+      <div class="product-card extra-batch hidden-item" data-category="wearables" data-price="119.99" data-rating="4.1" data-name="PulseBand Heart Rate Monitor">
+        <span class="stock-flag">In Stock</span>
+        <img src="../assets/img44.webp" class="product-img" alt="PulseBand heart rate monitor">
+        <div class="product-info">
+          <span class="product-cat">Wearables</span>
+          <h3>PulseBand HR Monitor</h3>
+          <div class="product-rating"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i> (33)</div>
+        </div>
+        <div class="product-bottom"><div class="product-price">$119.99</div></div>
+      </div>
+
+      <div class="product-card extra-batch hidden-item" data-category="footwear" data-price="174.99" data-rating="4.8" data-name="Carbon Flyer Racer 2">
+        <span class="product-badge">New</span>
+        <span class="stock-flag">In Stock</span>
+        <img src="../assets/img45.webp" class="product-img" alt="Carbon Flyer Racer 2 shoe">
+        <div class="product-info">
+          <span class="product-cat">Footwear</span>
+          <h3>Carbon Flyer Racer 2</h3>
+          <div class="product-rating"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i> (58)</div>
+        </div>
+        <div class="product-bottom"><div class="product-price">$174.99</div></div>
+      </div>
+
+    </div>
+
+    <div class="load-more-wrap">
+      <button class="btn btn-outline" id="loadMoreBtn"><i class="fa-solid fa-plus"></i> Load More Gear</button>
+    </div>
+  </section>
+
+  <!-- SECTION 4: BUNDLE / DEAL BANNER -->
+  <section class="bundle-banner">
+    <div class="bundle-banner-inner">
+      <div class="bundle-copy">
+        <span class="bundle-tag reveal"><i class="fa-solid fa-fire"></i> Kit Deal</span>
+        <h2 class="reveal">Complete The <span>Runner's Kit</span></h2>
+        <p class="reveal">Carbon Flyer shoes, AeroTrack GPS watch, and a ThermoVent tee — bundled together and priced below buying each piece alone.</p>
+        <div class="bundle-timer reveal" id="bundleTimer">
+          <div><strong data-unit="h">26</strong><span>Hours</span></div>
+          <div><strong data-unit="m">41</strong><span>Minutes</span></div>
+          <div><strong data-unit="s">00</strong><span>Seconds</span></div>
+        </div>
+        <a href="#catalog" class="btn btn-primary"><i class="fa-solid fa-bag-shopping"></i> Shop The Bundle</a>
+      </div>
+      <div class="bundle-visual">
+        <ul>
+          <li><span>Apex Carbon Flyer Shoes</span><span>$189.99</span></li>
+          <li><span>AeroTrack GPS Fitness Watch</span><span>$249.99</span></li>
+          <li><span>ThermoVent Training Tee</span><span>$89.99</span></li>
+        </ul>
+        <div class="bundle-total">
+          <span class="label">Bundle price</span>
+          <span><span class="price">$399</span><span class="strike">$529.97</span></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 5: BEST SELLERS SPOTLIGHT -->
+   <section class="spotlight">
+    <div class="section-title reveal">
+      <h2>Top <span>Sellers</span> This Month</h2>
+      <p>Ranked by what athletes are actually buying, updated weekly</p>
+    </div>
+    <div class="spotlight-wrap">
+      <button class="spotlight-arrow spotlight-arrow-left" id="spotlightPrev" aria-label="Previous"><i class="fa-solid fa-chevron-left"></i></button>
+      <button class="spotlight-arrow spotlight-arrow-right" id="spotlightNext" aria-label="Next"><i class="fa-solid fa-chevron-right"></i></button>
+      <div class="spotlight-track" id="spotlightTrack">
+      <div class="spotlight-card reveal">
+        <div class="spotlight-rank">1</div>
+        <img src="../assets/img46.webp" alt="Apex Carbon Flyer Shoes">
+        <h4>Apex Carbon Flyer Shoes</h4>
+        <div class="sold-count">2,340 sold this month</div>
+        <div class="product-price">$189.99</div>
+      </div>
+      <div class="spotlight-card reveal">
+        <div class="spotlight-rank">2</div>
+        <img src="../assets/img47.webp" alt="Hex Dumbbell Set">
+        <h4>Hex Dumbbell Set (20kg)</h4>
+        <div class="sold-count">1,890 sold this month</div>
+        <div class="product-price">$129.99</div>
+      </div>
+      <div class="spotlight-card reveal">
+        <div class="spotlight-rank">3</div>
+        <img src="../assets/img48.webp" alt="Pro Grip Official Basketball">
+        <h4>Pro Grip Official Basketball</h4>
+        <div class="sold-count">1,512 sold this month</div>
+        <div class="product-price">$59.99</div>
+      </div>
+      <div class="spotlight-card reveal">
+        <div class="spotlight-rank">4</div>
+        <img src="../assets/img49.webp" alt="Carbon Flyer Racer 2">
+        <h4>Carbon Flyer Racer 2</h4>
+        <div class="sold-count">1,204 sold this month</div>
+        <div class="product-price">$174.99</div>
+      </div>
+      <div class="spotlight-card reveal">
+        <div class="spotlight-rank">5</div>
+        <img src="../assets/img50.webp" alt="AeroTrack GPS Fitness Watch">
+        <h4>AeroTrack GPS Fitness Watch</h4>
+        <div class="sold-count">987 sold this month</div>
+        <div class="product-price">$249.99</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 6: COMPARISON TABLE -->
+  <section class="compare">
+    <div class="section-title reveal">
+      <h2>Compare <span>Flagship Shoes</span></h2>
+      <p>Not sure which pair fits your training? Line them up side by side</p>
+    </div>
+    <div class="compare-wrap reveal">
+      <table class="compare-table">
+        <thead>
+          <tr>
+            <th>&nbsp;</th>
+            <th>
+              Apex Carbon Flyer
+              <span class="th-price">$189.99</span>
+              <a href="./404.html"><span class="pick-btn">Select</span></a>
+            </th>
+            <th>
+              Carbon Flyer Racer 2
+              <span class="th-price">$174.99</span>
+              <a href="./404.html"><span class="pick-btn">Select</span></a>
+            </th>
+            <th>
+              HydroGrip Trail Runners
+              <span class="th-price">$159.99</span>
+              <a href="./404.html"><span class="pick-btn">Select</span></a>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="row-label">Best for</td>
+            <td>Road marathons</td>
+            <td>Track &amp; tempo runs</td>
+            <td>Trail &amp; off-road</td>
+          </tr>
+          <tr>
+            <td class="row-label">Carbon plate</td>
+            <td><i class="fa-solid fa-check"></i> Full-length</td>
+            <td><i class="fa-solid fa-check"></i> Full-length</td>
+            <td><i class="fa-solid fa-xmark"></i></td>
+          </tr>
+          <tr>
+            <td class="row-label">Energy return</td>
+            <td>87%</td>
+            <td>84%</td>
+            <td>71%</td>
+          </tr>
+          <tr>
+            <td class="row-label">Weight</td>
+            <td>140g</td>
+            <td>132g</td>
+            <td>210g</td>
+          </tr>
+          <tr>
+            <td class="row-label">HydroGrip outsole</td>
+            <td><i class="fa-solid fa-check"></i></td>
+            <td><i class="fa-solid fa-check"></i></td>
+            <td><i class="fa-solid fa-check"></i></td>
+          </tr>
+          <tr>
+            <td class="row-label">Rating</td>
+            <td>4.9 / 5</td>
+            <td>4.8 / 5</td>
+            <td>4.7 / 5</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- SECTION 7: TRUST / GUARANTEE STRIP -->
+  <section class="trust-strip">
+    <div class="trust-strip-inner">
+      <div class="trust-item reveal">
+        <div class="trust-icon"><i class="fa-solid fa-truck-fast"></i></div>
+        <div><h4>24hr Dispatch</h4><p>Every order ships same or next day</p></div>
+      </div>
+      <div class="trust-item reveal">
+        <div class="trust-icon"><i class="fa-solid fa-arrows-rotate"></i></div>
+        <div><h4>30-Day Returns</h4><p>Train in it, then decide</p></div>
+      </div>
+      <div class="trust-item reveal">
+        <div class="trust-icon"><i class="fa-solid fa-lock"></i></div>
+        <div><h4>Secure Checkout</h4><p>Encrypted payment, every order</p></div>
+      </div>
+      <div class="trust-item reveal">
+        <div class="trust-icon"><i class="fa-solid fa-user-shield"></i></div>
+        <div><h4>Coach-Backed Support</h4><p>Real trainers answer your questions</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 8: BUYER'S GUIDE -->
+  <section class="buyers-guide">
+    <div class="buyers-guide-inner">
+      <div class="section-title reveal">
+        <h2>Gear Up <span>The Smart Way</span></h2>
+        <p>A quick guide to choosing equipment that fits your sport, your body, and your budget</p>
+      </div>
+
+      <div class="guide-grid">
+        <article class="guide-card reveal">
+          <div class="guide-icon"><i class="fa-solid fa-ruler-combined"></i></div>
+          <h3>Get The Fit Right</h3>
+          <p>Shoes should leave a thumb's width of space at the toe and hold your heel without slipping. Try them late in the day, wearing the socks you train in.</p>
+        </article>
+        <article class="guide-card reveal">
+          <div class="guide-icon"><i class="fa-solid fa-mountain-sun"></i></div>
+          <h3>Match Gear To Surface</h3>
+          <p>Road, trail, court, and gym floors all demand different grip and cushioning. The right shoe for your surface cuts injury risk and feels better every session.</p>
+        </article>
+        <article class="guide-card reveal">
+          <div class="guide-icon"><i class="fa-solid fa-layer-group"></i></div>
+          <h3>Build Your Kit Gradually</h3>
+          <p>Start with the essentials for your sport, then add wearables and accessories as your training grows. Our bundles help you save along the way.</p>
+        </article>
+        <article class="guide-card reveal">
+          <div class="guide-icon"><i class="fa-solid fa-chart-line"></i></div>
+          <h3>Track Your Progress</h3>
+          <p>A GPS watch or heart-rate monitor turns effort into data, so you can see what's working and train smarter instead of just harder.</p>
+        </article>
+      </div>
+
+      
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-container">
+      <div class="footer-col footer-intro">
+        <a href="../index.html" class="logo-placeholder">
+          <img src="../assets/logo.webp" alt="Apex Athletics" class="logo-img">
+        </a>
+        <p>Apex Athletics is your ultimate destination for professional sports equipment, high-performance training gear, and modern activewear.</p>
+      </div>
+
+      <div class="footer-col">
+        <h4>Navigation</h4>
+        <ul class="footer-links">
+          <li><a href="#hero">Home</a></li>
+          <li><a href="./html/categories.html">Categories</a></li>
+          <li><a href="./html/products.html">Products</a></li>
+          <li><a href="./html/whyus.html">Why Us</a></li>
+          <li><a href="./html/about.html">About Us</a></li>
+          <li><a href="./html/contact.html">Contact Us</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Support</h4>
+        <ul class="footer-links">
+          <li><a href="./contact.html">Contact Support</a></li>
+          <li><a href="./login.html" >Account Login</a></li>
+          <li><a href="./whyus.html">Quality Guarantee</a></li>
+        </ul>
+      </div>
+
+      <!-- Store address -->
+      <div class="footer-col">
+        <h4>Visit Us</h4>
+        <ul class="footer-address">
+          <li>
+            <i class="fa-solid fa-location-dot"></i>
+            <address>
+              MMR Complex, Periyakollappatty <br>
+              Chinna Thirupathi, Salem,<br>
+              Tamil Nadu 636008.
+              <span class="footer-hours">Open daily, 10:00 AM – 9:00 PM</span>
+            </address>
+          </li>
+          <li>
+            <i class="fa-solid fa-phone"></i>
+            <a href="./404.html">+91 40 6677 8899</a>
+          </li>
+          <li>
+            <i class="fa-solid fa-envelope"></i>
+            <a href="./404.html">support@stackly.com</a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Follow Us</h4>
+        <!-- Hidden by CSS (.social-intro) to keep the footer compact -->
+        <p class="social-intro">Connect with Apex Athletics on social media:</p>
+        <div class="social-auth-btns">
+          <a href="./404.html"  rel="noopener noreferrer" class="social-btn instagram">
+            <i class="fa-brands fa-instagram"></i> Instagram
+          </a>
+          <a href="./404.html"  rel="noopener noreferrer" class="social-btn facebook">
+            <i class="fa-brands fa-facebook-f"></i> Facebook
+          </a>
+          <a href="./404.html"  rel="noopener noreferrer" class="social-btn x-twitter">
+            <i class="fa-brands fa-x-twitter"></i> X (Twitter)
+          </a>
+          <a href="./404.html"  rel="noopener noreferrer" class="social-btn youtube">
+            <i class="fa-brands fa-youtube"></i> YouTube
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>&copy; 2026 Stackly Athletics Inc. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- 404 OVERLAY -->
+  <div id="page-404">
+    <h1>404</h1>
+    <h2>Authentication Service Unavailable</h2>
+    <p>The login endpoint you are trying to reach is currently undergoing scheduled maintenance.</p>
+    <button class="btn btn-primary" id="close404Btn"><i class="fa-solid fa-arrow-left"></i> Return To Home</button>
+  </div>
+
+  <!-- External JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js"></script>
+  <script src="../js/script.js"></script>
+  <script src="../js/product.js"></script>
+</body>
+</html>

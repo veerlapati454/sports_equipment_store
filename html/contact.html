@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact | APEX ATHLETICS</title>
+
+  <script>
+    (function () {
+      try { if ('scrollRestoration' in history) history.scrollRestoration = 'manual'; } catch (e) {}
+      window.scrollTo(0, 0);
+      document.addEventListener('DOMContentLoaded', function () { window.scrollTo(0, 0); });
+      window.addEventListener('load', function () { window.scrollTo(0, 0); });
+    })();
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Teko:wght@500;700&family=Work+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Shared site styles + this page's styles -->
+  <link rel="stylesheet" href="../css/styles.css">
+  <link rel="stylesheet" href="../css/contact.css">
+
+  <!-- Form validation messages (you can move this into contact.css) -->
+  <style>
+    .field-error {
+      display: block;
+      margin-top: 6px;
+      font-size: 0.8rem;
+      line-height: 1.3;
+      color: #d92d20;
+    }
+    .field input.is-invalid,
+    .field select.is-invalid,
+    .field textarea.is-invalid {
+      border-color: #d92d20 !important;
+    }
+    .form-success {
+      margin-top: 16px;
+      padding: 12px 14px;
+      border-left: 3px solid #16a34a;
+      border-radius: 6px;
+      background: rgba(22, 163, 74, 0.1);
+      color: #166534;
+      font-size: 0.9rem;
+      line-height: 1.4;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- No preloader on this page: the contact page is usually reached from
+       another page, so the site shell is already cached and a second
+       loading screen just delays the form. script.js handles a missing
+       #preloader on its own. -->
+
+  <!-- HEADER -->
+  <header>
+    <div class="header-container">
+      <a href="../index.html" class="logo-placeholder">
+        <img src="../assets/logo.webp" alt="Apex Athletics" class="logo-img">
+      </a>
+
+      <nav class="nav-links">
+        <a href="../index.html">Home</a>
+        <a href="./categories.html">Categories</a>
+        <a href="./products.html">Products</a>
+        <a href="./whyus.html">Why Us</a>
+        <a href="./about.html">About Us</a>
+        <a href="./contact.html" class="active-link">Contact</a>
+        <a href="./login.html" class="login-link">Login</a>
+      </nav>
+
+      <div class="menu-toggle"><i class="fa-solid fa-bars"></i></div>
+    </div>
+  </header>
+
+  <!-- ==========================================================
+       SECTION 1: CONTACT HERO
+       ========================================================== -->
+  <section class="contact-hero">
+    <div class="contact-hero-field" aria-hidden="true"></div>
+    <div class="contact-hero-inner">
+      <span class="crumb"><a href="../index.html">Home</a> <i class="fa-solid fa-angle-right"></i> Contact</span>
+      <h1>Talk To The <span>Gear Desk</span></h1>
+      <p>Sizing advice, team orders, warranty claims or a replacement part — one team handles all of it, and a real person reads every message.</p>
+
+      <div class="hero-reach">
+        <a class="reach-item" href="./404.html">
+          <i class="fa-solid fa-phone"></i>
+          <span class="reach-label">Call the desk</span>
+          <span class="reach-value">+91 427 270 0100</span>
+        </a>
+        <a class="reach-item" href="./404.html">
+          <i class="fa-solid fa-envelope"></i>
+          <span class="reach-label">Email us</span>
+          <span class="reach-value">support@apexathletics.in</span>
+        </a>
+        <div class="reach-item">
+          <i class="fa-solid fa-clock"></i>
+          <span class="reach-label">Reply window</span>
+          <span class="reach-value">Under 6 working hours</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================
+       SECTION 2: WHO TO REACH
+       ========================================================== -->
+  <section class="contact-desks">
+    <div class="section-title reveal">
+      <h2>Reach The Right <span>Desk</span></h2>
+      <p>Pick the line that matches your question and skip the queue</p>
+    </div>
+
+    <div class="desk-grid">
+      <div class="desk-card reveal">
+        <div class="desk-icon"><i class="fa-solid fa-box-open"></i></div>
+        <h3>Orders &amp; Delivery</h3>
+        <p>Tracking, address changes, missing items or a dispatch that stalled somewhere between hubs.</p>
+        <a href="./404.html" class="desk-link">orders@stacklyathletics.in <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+
+      <div class="desk-card reveal">
+        <div class="desk-icon"><i class="fa-solid fa-people-group"></i></div>
+        <h3>Clubs &amp; Bulk Kits</h3>
+        <p>Squad sizing runs, season contracts and academy pricing for orders above 15 units.</p>
+        <a href="./404.html" class="desk-link">teams@stacklyathletics.in <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+
+      <div class="desk-card reveal">
+        <div class="desk-icon"><i class="fa-solid fa-screwdriver-wrench"></i></div>
+        <h3>Warranty &amp; Repairs</h3>
+        <p>30-day performance returns, sole separation, grip wear and spare part requests.</p>
+        <a href="./404.html" class="desk-link">care@stacklyathletics.in <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+
+      <div class="desk-card reveal">
+        <div class="desk-icon"><i class="fa-solid fa-dumbbell"></i></div>
+        <h3>Gear Fitting Advice</h3>
+        <p>Certified coaches on staff will match footwear, load and apparel to your training block.</p>
+        <a href="./404.html" class="desk-link">coach@stacklyathletics.in <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================
+       SECTION 3: ENQUIRY FORM + OFFICE PANEL
+       ========================================================== -->
+  <section class="contact-form-section" id="enquiry">
+    <div class="form-shell">
+
+      <!-- Left: dark info column -->
+      <div class="form-aside reveal">
+        <span class="aside-eyebrow">Connects with</span>
+        <div class="aside-socials">
+          <a href="./404.html" class="round-btn" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+          <a href="./404.html" class="round-btn" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+          <a href="./404.html" class="round-btn" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        </div>
+
+        <div class="aside-panel">
+          <div class="aside-block">
+            <h4>Office hours</h4>
+            <p>Monday – Friday<br>10:00 AM – 6:00 PM</p>
+            <p class="aside-sub">Saturday walk-ins by appointment</p>
+          </div>
+          <div class="aside-block">
+            <h4>Office location</h4>
+            <p>MMR Complex,<br>Periyakollappatty,<br>Chinna Thirupathi, Salem,<br>Tamil Nadu 636008</p>
+          </div>
+        </div>
+
+        <p class="aside-note">Bringing gear in for a warranty check? Message us first so the right technician is on the floor when you arrive.</p>
+      </div>
+
+      <!-- Right: light form card -->
+      <div class="form-card reveal">
+        <span class="form-eyebrow">Contact us</span>
+        <h2>Let's start<br>the conversation</h2>
+
+        <form id="contactForm" novalidate>
+          <div class="field">
+            <label for="cf-name">Your name*</label>
+            <input type="text" id="cf-name" name="name" required maxlength="60" autocomplete="name">
+          </div>
+
+          <div class="field">
+            <label for="cf-email">Email* (Gmail only)</label>
+            <input type="email" id="cf-email" name="email" required autocomplete="email" placeholder="yourname@gmail.com">
+          </div>
+
+          <div class="field">
+            <label for="cf-phone">Contact number*</label>
+            <input type="tel" id="cf-phone" name="phone" required autocomplete="tel">
+          </div>
+
+          <div class="field">
+            <label for="cf-topic">What is this about?</label>
+            <select id="cf-topic" name="topic">
+              <option>An existing order</option>
+              <option>Club or bulk kit enquiry</option>
+              <option>Warranty, return or repair</option>
+              <option>Gear fitting advice</option>
+              <option>Something else</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="cf-message">Message* (tell us what you need)</label>
+            <textarea id="cf-message" name="message" rows="3" required minlength="3" maxlength="1000"></textarea>
+          </div>
+
+          <p class="form-hint">Please fill in all required (*) fields</p>
+
+          <button type="submit" class="submit-pill">Send enquiry <i class="fa-solid fa-arrow-right"></i></button>
+        </form>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==========================================================
+       SECTION 4: MAP
+       ========================================================== -->
+  <section class="contact-map" id="map">
+    <div class="section-title reveal">
+      <h2>Find The <span>Salem Hub</span></h2>
+      <p>Showroom, fitting bay and service counter under one roof</p>
+    </div>
+
+    <div class="map-frame reveal">
+      <a class="map-open"
+         href="https://www.google.com/maps/search/?api=1&query=MMR+Complex,+Periyakollappatty,+Chinna+Thirupathi,+Salem,+Tamil+Nadu+636008"
+         target="_blank" rel="noopener noreferrer">
+        Open in Maps <i class="fa-solid fa-arrow-up-right-from-square"></i>
+      </a>
+
+      <iframe
+        title="Apex Athletics Salem hub — MMR Complex, Periyakollappatty, Chinna Thirupathi, Salem"
+        src="https://www.google.com/maps?q=MMR%20Complex%2C%20Periyakollappatty%2C%20Chinna%20Thirupathi%2C%20Salem%2C%20Tamil%20Nadu%20636008&z=14&output=embed"
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        allowfullscreen></iframe>
+    </div>
+
+    <div class="map-facts reveal">
+      <div class="map-fact">
+        <i class="fa-solid fa-location-dot"></i>
+        <div>
+          <h4>Address</h4>
+          <p>MMR Complex, Periyakollappatty, Chinna Thirupathi, Salem, Tamil Nadu 636008</p>
+        </div>
+      </div>
+      <div class="map-fact">
+        <i class="fa-solid fa-bus"></i>
+        <div>
+          <h4>Getting here</h4>
+          <p>7 km from Salem New Bus Stand, off Salai Road near Military Road junction.</p>
+        </div>
+      </div>
+      <div class="map-fact">
+        <i class="fa-solid fa-square-parking"></i>
+        <div>
+          <h4>Parking</h4>
+          <p>Free two-wheeler and car parking in the complex basement.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================
+       SECTION 5: COMMON QUESTIONS
+       ========================================================== -->
+  <section class="contact-faq">
+    <div class="section-title reveal">
+      <h2>Before You <span>Write In</span></h2>
+      <p>The five things the desk gets asked most</p>
+    </div>
+
+    <div class="faq-list reveal">
+      <details class="faq-item" open>
+        <summary>How long does dispatch take?<i class="fa-solid fa-plus"></i></summary>
+        <p>Orders placed before 4:00 PM IST leave the Salem hub the same working day. Domestic delivery runs 2–4 days, international 6–9 days with GPS tracking on every parcel.</p>
+      </details>
+
+      <details class="faq-item">
+        <summary>Can I return gear after training in it?<i class="fa-solid fa-plus"></i></summary>
+        <p>Yes. The 30-day performance guarantee covers used gear. Train in it, and if it doesn't improve your session, send it back — we cover return shipping within India.</p>
+      </details>
+
+      <details class="faq-item">
+        <summary>Do you size footwear differently for wide feet?<i class="fa-solid fa-plus"></i></summary>
+        <p>The Carbon Flyer runs true to length but narrow through the midfoot. Mail the gear desk your usual size and foot width and we'll tell you whether to go half a size up.</p>
+      </details>
+
+      <details class="faq-item">
+        <summary>What do club and academy orders need?<i class="fa-solid fa-plus"></i></summary>
+        <p>Send a squad list with sizes and your season start date. Orders above 15 units get tiered pricing, free name printing and a single consolidated dispatch.</p>
+      </details>
+
+      <details class="faq-item">
+        <summary>Can I test gear at the Salem hub?<i class="fa-solid fa-plus"></i></summary>
+        <p>The fitting bay has a treadmill, a lifting platform and a short grip lane. Book a slot through the form above and a coach will keep an hour free for you.</p>
+      </details>
+    </div>
+  </section>
+
+  <!-- ==========================================================
+       SECTION 6: TEAM ORDERS CTA
+       ========================================================== -->
+  <section class="contact-cta">
+    <div class="cta-box reveal">
+      <div class="cta-copy">
+        <h2>Kitting out a squad?</h2>
+        <p>Over 320 clubs and academies order through the team desk. Send a squad list and you'll get sizing sheets, tiered pricing and one dispatch date back within two working days.</p>
+      </div>
+      <div class="cta-actions">
+        <a href="#enquiry" class="btn btn-primary"><i class="fa-solid fa-bolt"></i> Start a team order</a>
+        <a href="tel:+914272700100" class="btn btn-outline">Call the desk</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-container">
+      <div class="footer-col footer-intro">
+        <a href="../index.html" class="logo-placeholder">
+          <img src="../assets/logo.webp" alt="Apex Athletics footer logo" class="logo-img">
+        </a>
+        <p>Apex Athletics is your ultimate destination for professional sports equipment, high-performance training gear, and modern activewear.</p>
+      </div>
+
+      <div class="footer-col">
+        <h4>Navigation</h4>
+        <ul class="footer-links">
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="./categories.html">Categories</a></li>
+          <li><a href="./products.html">Products</a></li>
+          <li><a href="./whyus.html">Why Us</a></li>
+          <li><a href="./about.html">About Us</a></li>
+          <li><a href="./contact.html">Contact Us</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Support</h4>
+        <ul class="footer-links">
+          <li><a href="./contact.html">Contact Support</a></li>
+          <li><a href="./login.html" >Account Login</a></li>
+          <li><a href="./whyus.html">Quality Guarantee</a></li>
+        </ul>
+      </div>
+
+      <!-- Store address -->
+      <div class="footer-col">
+        <h4>Visit Us</h4>
+        <ul class="footer-address">
+          <li>
+            <i class="fa-solid fa-location-dot"></i>
+            <address>
+              MMR Complex, Periyakollappatty <br>
+              Chinna Thirupathi, Salem,<br>
+              Tamil Nadu 636008.
+              <span class="footer-hours">Open daily, 10:00 AM – 9:00 PM</span>
+            </address>
+          </li>
+          <li>
+            <i class="fa-solid fa-phone"></i>
+            <a href="./404.html">+91 40 6677 8899</a>
+          </li>
+          <li>
+            <i class="fa-solid fa-envelope"></i>
+            <a href="./404.html">support@stackly.com</a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Follow Us</h4>
+        <!-- Hidden by CSS (.social-intro) to keep the footer compact -->
+        <p class="social-intro">Connect with Apex Athletics on social media:</p>
+        <div class="social-auth-btns">
+          <a href="./404.html"  rel="noopener noreferrer" class="social-btn instagram">
+            <i class="fa-brands fa-instagram"></i> Instagram
+          </a>
+          <a href="./404.html"  rel="noopener noreferrer" class="social-btn facebook">
+            <i class="fa-brands fa-facebook-f"></i> Facebook
+          </a>
+          <a href="./404.html"  rel="noopener noreferrer" class="social-btn x-twitter">
+            <i class="fa-brands fa-x-twitter"></i> X (Twitter)
+          </a>
+          <a href="./404.html"  rel="noopener noreferrer" class="social-btn youtube">
+            <i class="fa-brands fa-youtube"></i> YouTube
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+            <p>&copy; 2026 Stackly Athletics Inc. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- 404 OVERLAY -->
+  <div id="page-404">
+    <h1>404</h1>
+    <h2>Authentication Service Unavailable</h2>
+    <p>The login endpoint you are trying to reach is currently undergoing scheduled maintenance.</p>
+    <button class="btn btn-primary" id="close404Btn"><i class="fa-solid fa-arrow-left"></i> Return To Home</button>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js"></script>
+  <script src="../js/script.js"></script>
+  <script src="../js/contact.js"></script>
+
+  <!-- Contact form validation
+       - Name: letters and spaces only
+       - Email: Gmail addresses only (@gmail.com)
+       - Message: at least 3 characters
+       Runs in the capture phase so an invalid form never reaches any other submit handler. -->
+  <script>
+    (function () {
+      'use strict';
+
+      var form = document.getElementById('contactForm');
+      if (!form) return;
+
+      function byId(id) { return document.getElementById(id); }
+
+      /* ---------- Rules: each returns an error message, or '' when valid ---------- */
+      var rules = {
+        'cf-name': function (v) {
+          v = v.trim();
+          if (!v) return 'Please enter your name.';
+          if (!/^[A-Za-z]+(?: [A-Za-z]+)*$/.test(v)) return 'Use letters only — no numbers or symbols.';
+          if (v.replace(/ /g, '').length < 2) return 'Name must have at least 2 letters.';
+          return '';
+        },
+        'cf-email': function (v) {
+          v = v.trim();
+          if (!v) return 'Please enter your email.';
+          if (!/^[^\s@]+@[^\s@]+$/.test(v)) return 'Enter a valid email address.';
+          if (!/^[A-Za-z0-9._%+-]+@gmail\.com$/i.test(v)) return 'Only Gmail addresses are accepted (name@gmail.com).';
+          return '';
+        },
+        'cf-phone': function (v) {
+          if (!v.trim()) return 'Please enter your contact number.';
+          return '';
+        },
+        'cf-message': function (v) {
+          if (v.trim().length < 3) return 'Message must be at least 3 characters.';
+          return '';
+        }
+      };
+
+      /* ---------- Show / clear an error under a field ---------- */
+      function showError(el, msg) {
+        var wrap = el.closest('.field') || el.parentNode;
+        var err = wrap.querySelector('.field-error');
+
+        if (msg) {
+          if (!err) {
+            err = document.createElement('span');
+            err.className = 'field-error';
+            err.id = 'err-' + el.id;
+            err.setAttribute('role', 'alert');
+            wrap.appendChild(err);
+          }
+          err.textContent = msg;
+          el.classList.add('is-invalid');
+          el.setAttribute('aria-invalid', 'true');
+          el.setAttribute('aria-describedby', err.id);
+        } else {
+          if (err) err.parentNode.removeChild(err);
+          el.classList.remove('is-invalid');
+          el.removeAttribute('aria-invalid');
+          el.removeAttribute('aria-describedby');
+        }
+        return !msg;
+      }
+
+      function check(el) {
+        return showError(el, rules[el.id](el.value));
+      }
+
+      /* ---------- Name: block anything that is not a letter or space ---------- */
+      var nameEl = byId('cf-name');
+      nameEl.addEventListener('input', function () {
+        var clean = nameEl.value
+          .replace(/[^A-Za-z ]/g, '')   // letters and spaces only
+          .replace(/^ +/, '')           // no leading space
+          .replace(/ {2,}/g, ' ');      // single spaces between words
+
+        if (clean !== nameEl.value) {
+          nameEl.value = clean;
+          showError(nameEl, 'Only letters and spaces are allowed.');
+        } else if (nameEl.classList.contains('is-invalid')) {
+          check(nameEl);
+        }
+      });
+      nameEl.addEventListener('blur', function () { check(nameEl); });
+
+      /* ---------- Other fields: check on blur, re-check live once an error is showing ---------- */
+      ['cf-email', 'cf-phone', 'cf-message'].forEach(function (id) {
+        var el = byId(id);
+        el.addEventListener('blur', function () { check(el); });
+        el.addEventListener('input', function () {
+          if (el.classList.contains('is-invalid')) check(el);
+        });
+      });
+
+      /* ---------- Remove the success note as soon as the user starts a new message ---------- */
+      form.addEventListener('input', function () {
+        var ok = form.querySelector('.form-success');
+        if (ok) ok.parentNode.removeChild(ok);
+      });
+
+      /* ---------- Submit ---------- */
+      document.addEventListener('submit', function (e) {
+        if (e.target !== form) return;
+
+        e.preventDefault();
+        e.stopImmediatePropagation();
+
+        var firstInvalid = null;
+        Object.keys(rules).forEach(function (id) {
+          var el = byId(id);
+          if (!check(el) && !firstInvalid) firstInvalid = el;
+        });
+
+        if (firstInvalid) {
+          firstInvalid.focus();
+          return;
+        }
+
+        var ok = form.querySelector('.form-success');
+        if (!ok) {
+          ok = document.createElement('p');
+          ok.className = 'form-success';
+          ok.setAttribute('role', 'status');
+          form.appendChild(ok);
+        }
+        ok.textContent = 'Thanks! Your enquiry has been received. We will reply within 6 working hours.';
+
+        form.reset();
+        Object.keys(rules).forEach(function (id) { showError(byId(id), ''); });
+      }, true);
+    })();
+  </script>
+
+</body>
+</html>

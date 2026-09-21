@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#0a0c10">
+  <title>APEX ATHLETICS | Sports Categories & Gear</title>
+
+  <!-- Force every load/reload to start at the very top of the page,
+       before any CSS/fonts/images arrive and before the browser gets
+       a chance to auto-scroll to a URL hash. Matches index.html. -->
+  <script>
+    (function () {
+      try { if ('scrollRestoration' in history) history.scrollRestoration = 'manual'; } catch (e) {}
+      window.scrollTo(0, 0);
+      document.addEventListener('DOMContentLoaded', function () { window.scrollTo(0, 0); });
+      window.addEventListener('load', function () { window.scrollTo(0, 0); });
+    })();
+  </script>
+
+  <!-- Google Fonts & Font Awesome Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Teko:wght@500;700&family=Work+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- External CSS -->
+  <link rel="stylesheet" href="../css/categories.css">
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="header-container">
+      <a href="../index.html" class="logo-placeholder">
+        <img src="../assets/logo.webp" alt="Apex Athletics" class="logo-img">
+      </a>
+
+      <nav class="nav-links" id="primary-nav">
+        <a href="../index.html">Home</a>
+        <a href="./categories.html" class="active-link">Categories</a>
+        <a href="./products.html">Products</a>
+        <a href="./whyus.html">Why Us</a>
+        <a href="./about.html">About Us</a>
+        <a href="./contact.html">Contact</a>
+        <a href="./login.html" class="login-link">Login</a>
+      </nav>
+
+      <button class="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="primary-nav">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+    </div>
+  </header>
+
+  <!-- SECTION 1: CATEGORY HERO BANNER (static: no entrance / scroll animation, matches index hero) -->
+  <section id="category-hero" class="hero hero-category-bg">
+    <div class="hero-container">
+      <div class="hero-content">
+        <h1>Explore By <span>Discipline</span></h1>
+        <p>From court performance to endurance training, find specialized athletic gear designed with biomechanical precision for every sport.</p>
+        <div class="hero-buttons">
+          <a href="./404.html" class="btn btn-primary smooth-scroll"><i class="fa-solid fa-trophy"></i> Core Sports</a>
+          <a href="./404.html" class="btn btn-outline smooth-scroll">Browse All Gear</a>
+        </div>
+      </div>
+      <div class="hero-image-wrapper">
+        <img src="../assets/img11.webp" alt="Apex Performance Gear" class="hero-img">
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 2: CORE SPORTS DIVISIONS -->
+  <section id="core-sports" class="categories">
+    <div class="section-title reveal">
+      <h2>Major <span>Core Divisions</span></h2>
+      <p>High-impact equipment built for team and court athletes</p>
+    </div>
+    <div class="category-grid">
+      <div class="category-card flip-card reveal">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <img src="../assets/img12.webp" alt="Basketball Gear">
+            <div class="category-overlay">
+              <div class="category-title">Basketball Division</div>
+            </div>
+          </div>
+          <div class="flip-card-back">
+            <h3>Basketball Division</h3>
+            <p>High-grip indoor/outdoor balls & ankle-support footwear with air-cushioned impact resistance.</p>
+            <a href="#category-grid-section" class="btn btn-primary smooth-scroll">Explore Gear</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="category-card flip-card re../assets/img13.webpeal">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <img src="../assets/img13.webp" alt="Soccer Gear">
+            <div class="category-overlay">
+              <div class="category-title">Soccer / Football</div>
+            </div>
+          </div>
+          <div class="flip-card-back">
+            <h3>Soccer / Football</h3>
+            <p>Precision match balls, firm-ground turf cleats, and impact-shielding guard systems.</p>
+            <a href="#category-grid-section" class="btn btn-primary smooth-scroll">Explore Gear</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="category-card flip-card reveal">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <img src="../assets/img14.webp" alt="Gym Gear">
+            <div class="category-overlay">
+              <div class="category-title">Gym & Fitness</div>
+            </div>
+          </div>
+          <div class="flip-card-back">
+            <h3>Gym & Fitness</h3>
+            <p>Ergonomic cast-iron dumbbells, heavy resistance bands, and modular strength power racks.</p>
+            <a href="#category-grid-section" class="btn btn-primary smooth-scroll">Explore Gear</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="category-card flip-card reveal">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <img src="../assets/img15.webp" alt="Racquet Sports">
+            <div class="category-overlay">
+              <div class="category-title">Racquet Sports</div>
+            </div>
+          </div>
+          <div class="flip-card-back">
+            <h3>Racquet Sports</h3>
+            <p>Aerodynamic carbon fiber racquets and tournament-grade high-velocity shuttlecocks.</p>
+            <a href="#category-grid-section" class="btn btn-primary smooth-scroll">Explore Gear</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 3: ENDURANCE & ACTION DIVISIONS -->
+  <section id="endurance-sports" class="why-us dark-bg-alt">
+    <div class="section-title reveal">
+      <h2>Endurance & <span>Action Sports</span></h2>
+      <p>Tested in demanding conditions to push your physical limits</p>
+    </div>
+    <div class="why-us-grid">
+      <div class="why-card reveal">
+        <div class="why-icon-box"><i class="fa-solid fa-person-running"></i></div>
+        <h3>Track & Marathon</h3>
+        <p>Carbon-plated propulsion footwear and zero-bounce hydration vests built for road runners and competitive marathoners.</p>
+      </div>
+      <div class="why-card reveal">
+        <div class="why-icon-box"><i class="fa-solid fa-water"></i></div>
+        <h3>Aquatics & Swimming</h3>
+        <p>Hydrodynamic competition caps, anti-fog wide-view goggles, and fast-drying active compression swimwear.</p>
+      </div>
+      <div class="why-card reveal">
+        <div class="why-icon-box"><i class="fa-solid fa-hand-fist"></i></div>
+        <h3>Combat & Boxing</h3>
+        <p>Multi-layered shock absorption sparring gloves, heavy bag wraps, and ultra-flexible grappling shorts.</p>
+      </div>
+      <div class="why-card reveal">
+        <div class="why-icon-box"><i class="fa-solid fa-mountain"></i></div>
+        <h3>Outdoor & Trail</h3>
+        <p>All-weather high-traction hiking boots, weather-sealed backpacks, and lightweight trek poles for terrain mastery.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 4: INTERACTIVE DISCIPLINE & EQUIPMENT GRID -->
+  <section id="category-grid-section" class="products">
+    <div class="section-title reveal">
+      <h2>Equipment <span>Catalog</span></h2>
+      <p>Filter engineered equipment by product type</p>
+    </div>
+
+    <div class="category-filters reveal">
+      <button class="btn btn-outline filter-btn active" data-filter="all">All Items</button>
+      <button class="btn btn-outline filter-btn" data-filter="footwear">Footwear</button>
+      <button class="btn btn-outline filter-btn" data-filter="gear">Gear & Balls</button>
+      <button class="btn btn-outline filter-btn" data-filter="apparel">Apparel</button>
+      <button class="btn btn-outline filter-btn" data-filter="tech">Accessories</button>
+    </div>
+
+    <div class="product-grid">
+      <div class="product-card reveal" data-category="footwear">
+        <span class="product-badge">Footwear</span>
+        <img src="../assets/img16.webp" class="product-img" alt="Running Shoe">
+        <div class="product-info">
+          <h3>Carbon Flyer Marathon Shoes</h3>
+          <p class="product-sub font-muted">Category: Track & Road Running</p>
+        </div>
+        <div class="product-bottom"><div class="product-price">$189.99</div></div>
+      </div>
+
+      <div class="product-card reveal" data-category="gear">
+        <span class="product-badge">Gear</span>
+        <img src="../assets/img17.webp" class="product-img" alt="Basketball">
+        <div class="product-info">
+          <h3>Pro Grip Official Basketball</h3>
+          <p class="product-sub font-muted">Category: Basketball Division</p>
+        </div>
+        <div class="product-bottom"><div class="product-price">$59.99</div></div>
+      </div>
+
+      <div class="product-card reveal" data-category="gear">
+        <span class="product-badge">Gear</span>
+        <img src="../assets/img18.webp" class="product-img" alt="Dumbbells">
+        <div class="product-info">
+          <h3>Hex Dumbbell Pair (20kg)</h3>
+          <p class="product-sub font-muted">Category: Gym & Strength</p>
+        </div>
+        <div class="product-bottom"><div class="product-price">$129.99</div></div>
+      </div>
+
+      <div class="product-card reveal" data-category="tech">
+        <span class="product-badge">Tech</span>
+        <img src="../assets/img19.webp" class="product-img" alt="Smart Watch">
+        <div class="product-info">
+          <h3>AeroTrack GPS Smart Tracker</h3>
+          <p class="product-sub font-muted">Category: Electronics & Tech</p>
+        </div>
+        <div class="product-bottom"><div class="product-price">$249.99</div></div>
+      </div>
+
+      <div class="product-card reveal" data-category="apparel">
+        <span class="product-badge">Apparel</span>
+        <img src="../assets/img20.webp" class="product-img" alt="Compression Top">
+        <div class="product-info">
+          <h3>ThermoVent Compression Shirt</h3>
+          <p class="product-sub font-muted">Category: Activewear</p>
+        </div>
+        <div class="product-bottom"><div class="product-price">$49.99</div></div>
+      </div>
+
+      <div class="product-card reveal" data-category="gear">
+        <span class="product-badge">Gear</span>
+        <img src="../assets/img21.webp" class="product-img" alt="Tennis Racquet">
+        <div class="product-info">
+          <h3>Apex Strike Carbon Racquet</h3>
+          <p class="product-sub font-muted">Category: Racquet Sports</p>
+        </div>
+        <div class="product-bottom"><div class="product-price">$169.99</div></div>
+      </div>
+
+      <div class="product-card reveal" data-category="footwear">
+        <span class="product-badge">Footwear</span>
+        <img src="../assets/img22.webp" class="product-img" alt="Court Shoe">
+        <div class="product-info">
+          <h3>Apex HyperCourt Sneaker</h3>
+          <p class="product-sub font-muted">Category: Court Sports</p>
+        </div>
+        <div class="product-bottom"><div class="product-price">$139.99</div></div>
+      </div>
+
+      <div class="product-card reveal" data-category="apparel">
+        <span class="product-badge">Apparel</span>
+        <img src="../assets/img23.webp" class="product-img" alt="Shorts">
+        <div class="product-info">
+          <h3>FlexFit Training Shorts</h3>
+          <p class="product-sub font-muted">Category: Fitness Apparel</p>
+        </div>
+        <div class="product-bottom"><div class="product-price">$39.99</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 5: CATEGORY COMPARISON TABLE -->
+  <section class="tech-hub dark-bg-main">
+    <div class="tech-hub-container">
+      <div class="section-title reveal">
+        <h2>Category Tier <span>Comparison</span></h2>
+        <p>Match your training level with the ideal equipment tier</p>
+      </div>
+
+      <div class="reveal table-responsive">
+        <table class="specs-table">
+          <thead>
+            <tr>
+              <th>Category Tier</th>
+              <th>Primary Focus</th>
+              <th>Material Tech</th>
+              <th>Warranty</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="tier-casual">Amateur / Casual</td>
+              <td>Daily comfort & durability</td>
+              <td>Breathable Mesh & High-Density EVA Foam</td>
+              <td class="font-light">1 Year</td>
+            </tr>
+            <tr>
+              <td class="tier-pro">Pro Athlete</td>
+              <td>Maximum performance & fatigue reduction</td>
+              <td>Carbon-Kinetix™ Plate & ThermoVent™ Micro-Weave</td>
+              <td class="font-light">2 Years</td>
+            </tr>
+            <tr>
+              <td class="tier-olympic">Olympic / Competition</td>
+              <td>Biomechanical optimization & record breaking</td>
+              <td>Custom Nitrogen-Infused Foam & ProGrip-X™ Polyurethane</td>
+              <td class="font-light">3 Years Full Coverage</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 6: FEATURED CATEGORY BUNDLES -->
+  <section class="sports-benefits dark-bg-deep">
+    <div class="section-title reveal">
+      <h2>Complete Sport <span>Gear Bundles</span></h2>
+      <p>Curated starter and pro bundles for maximum savings and synergy</p>
+    </div>
+
+    <div class="benefits-grid">
+      <div class="benefit-card reveal">
+        <div class="benefit-header">
+          <div class="benefit-icon"><i class="fa-solid fa-basketball"></i></div>
+          <span class="benefit-number">01</span>
+        </div>
+        <h3>Court Master Kit</h3>
+        <p>Includes Pro Grip Ball, HyperCourt Sneakers, and sweat-wicking compression socks.</p>
+        <div class="gear-connection">
+          <i class="fa-solid fa-bolt"></i>
+          <span><strong>Bundle Value:</strong> Save 20% compared to buying items individually.</span>
+        </div>
+      </div>
+
+      <div class="benefit-card reveal">
+        <div class="benefit-header">
+          <div class="benefit-icon"><i class="fa-solid fa-dumbbell"></i></div>
+          <span class="benefit-number">02</span>
+        </div>
+        <h3>Home Gym Starter</h3>
+        <p>Includes Hex Dumbbell Pair (20kg), heavy resistance bands, and non-slip training mat.</p>
+        <div class="gear-connection">
+          <i class="fa-solid fa-bolt"></i>
+          <span><strong>Bundle Value:</strong> Free global express shipping included on all home gym kits.</span>
+        </div>
+      </div>
+
+      <div class="benefit-card reveal">
+        <div class="benefit-header">
+          <div class="benefit-icon"><i class="fa-solid fa-stopwatch"></i></div>
+          <span class="benefit-number">03</span>
+        </div>
+        <h3>Marathon Pro Pack</h3>
+        <p>Includes Carbon Flyer Shoes, AeroTrack GPS Watch, and anti-chafing hydration gear.</p>
+        <div class="gear-connection">
+          <i class="fa-solid fa-bolt"></i>
+          <span><strong>Bundle Value:</strong> Includes 6 months free access to Apex Performance Coaching App.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 7: ATHLETE REVIEWS -->
+  <section class="about-us dark-bg-alt">
+    <div class="about-container">
+      <div class="about-content-column reveal full-width center-text">
+        <div class="section-title mb-30">
+          <h2>Trusted By <span>Pro Athletes</span></h2>
+          <p>What champions say about our specialized gear</p>
+        </div>
+
+        <div class="reviews-grid">
+          <div class="review-card">
+            <p class="review-quote">"The Carbon Flyer shoes completely transformed my marathon stride efficiency. Unbelievable responsiveness on long runs."</p>
+            <h4 class="review-author">— Marcus Vance</h4>
+            <span class="review-role">Track & Field Athlete</span>
+          </div>
+
+          <div class="review-card">
+            <p class="review-quote">"Apex basketballs provide unmatched tactile grip when sweat builds up late in the 4th quarter."</p>
+            <h4 class="review-author">— Elena Rostova</h4>
+            <span class="review-role">Pro Basketball Guard</span>
+          </div>
+
+          <div class="review-card">
+            <p class="review-quote">"The ThermoVent material regulates body temperature better than any elite brand I've used in competition."</p>
+            <h4 class="review-author">— David Chen</h4>
+            <span class="review-role">CrossFit & Conditioning Coach</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 8: BRAND AMBASSADORS & PARTNERS -->
+  <section id="ambassadors" class="ambassadors-section dark-bg-main">
+    <div class="ambassadors-container">
+      <div class="section-title reveal">
+        <h2>Global <span>Ambassadors</span> & Partners</h2>
+        <p>Co-engineered with championship teams & biomechanics institutes</p>
+      </div>
+
+      <div class="ambassadors-grid">
+        <div class="ambassador-card reveal">
+          <div class="ambassador-img-wrap">
+            <img src="../assets/img24.webp" alt="Sarah Jenkins">
+          </div>
+          <h3>Sarah Jenkins</h3>
+          <p class="ambassador-title">World Triathlon Champion</p>
+          <span class="ambassador-badge">Aerodynamics Lead</span>
+        </div>
+
+        <div class="ambassador-card reveal">
+          <div class="ambassador-img-wrap">
+            <img src="../assets/img25.webp" alt="Jaxson Reed">
+          </div>
+          <h3>Jaxson Reed</h3>
+          <p class="ambassador-title">All-Star Point Guard</p>
+          <span class="ambassador-badge">Footwear Designer</span>
+        </div>
+
+        <div class="ambassador-card reveal">
+          <div class="ambassador-img-wrap">
+            <img src="../assets/img26.webp" alt="Dr. Aris Thorne">
+          </div>
+          <h3>Dr. Aris Thorne</h3>
+          <p class="ambassador-title">Kinesiology Researcher</p>
+          <span class="ambassador-badge">Bio-Mechanics Director</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER (same layout as index.html: compact single row on desktop) -->
+  <footer>
+    <div class="footer-container">
+      <div class="footer-col footer-intro">
+        <a href="../index.html" class="logo-placeholder">
+          <img src="../assets/logo.webp" alt="Apex Athletics" class="logo-img">
+        </a>
+        <p>Apex Athletics is your ultimate destination for professional sports equipment, high-performance training gear, and modern activewear.</p>
+      </div>
+
+      <div class="footer-col">
+        <h4>Navigation</h4>
+        <ul class="footer-links">
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="./categories.html">Categories</a></li>
+          <li><a href="./products.html">Products</a></li>
+          <li><a href="./whyus.html">Why Us</a></li>
+          <li><a href="./about.html">About Us</a></li>
+          <li><a href="./contact.html">Contact Us</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Support</h4>
+        <ul class="footer-links">
+          <li><a href="./contact.html">Contact Support</a></li>
+          <li><a href="./login.html">Account Login</a></li>
+          <li><a href="./whyus.html">Quality Guarantee</a></li>
+        </ul>
+      </div>
+
+      <!-- Store address -->
+      <div class="footer-col">
+        <h4>Visit Us</h4>
+        <ul class="footer-address">
+          <li>
+            <i class="fa-solid fa-location-dot"></i>
+            <address>
+              MMR Complex, Periyakollappatty <br>
+              Chinna Thirupathi, Salem,<br>
+              Tamil Nadu 636008.
+              <span class="footer-hours">Open daily, 10:00 AM – 9:00 PM</span>
+            </address>
+          </li>
+          <li>
+            <i class="fa-solid fa-phone"></i>
+            <a href="./404.html">+91 40 6677 8899</a>
+          </li>
+          <li>
+            <i class="fa-solid fa-envelope"></i>
+            <a href="./404.html">support@stackly.com</a>
+          </li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Follow Us</h4>
+        <!-- Hidden by CSS (.social-intro) to keep the footer compact -->
+        <p class="social-intro">Connect with Apex Athletics on social media:</p>
+        <div class="social-auth-btns">
+          <a href="./404.html"  rel="noopener noreferrer" class="social-btn instagram">
+            <i class="fa-brands fa-instagram"></i> Instagram
+          </a>
+          <a href="./404.html"  rel="noopener noreferrer" class="social-btn facebook">
+            <i class="fa-brands fa-facebook-f"></i> Facebook
+          </a>
+          <a href="./404.html"  rel="noopener noreferrer" class="social-btn x-twitter">
+            <i class="fa-brands fa-x-twitter"></i> X (Twitter)
+          </a>
+          <a href="./404.html"  rel="noopener noreferrer" class="social-btn youtube">
+            <i class="fa-brands fa-youtube"></i> YouTube
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+            <p>&copy; 2026 Stackly Athletics Inc. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- 404 OVERLAY -->
+  <div id="page-404">
+    <h1>404</h1>
+    <h2>Authentication Service Unavailable</h2>
+    <p>The login endpoint you are trying to reach is currently undergoing scheduled maintenance.</p>
+    <button class="btn btn-primary" id="close404Btn"><i class="fa-solid fa-arrow-left"></i> Return To Home</button>
+  </div>
+
+  <!-- External JS Libraries -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js"></script>
+  <!-- Custom Application Script -->
+  <script src="../js/categories.js"></script>
+
+  <!-- Touch devices have no hover, so tap a category card to flip it -->
+  <script>
+    (function () {
+      if (!window.matchMedia('(hover: none)').matches) return;
+      document.querySelectorAll('.flip-card').forEach(function (card) {
+        card.addEventListener('click', function (e) {
+          if (e.target.closest('a')) return;
+          card.classList.toggle('flipped');
+        });
+      });
+    })();
+  </script>
+</body>
+</html>

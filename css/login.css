@@ -1,0 +1,491 @@
+/* ==========================================================
+   APEX ATHLETICS — login.css
+   Page-specific styles for html/login.html.
+   Reuses the tokens from css/styles.css (:root vars, fonts,
+   .btn, .btn-primary, header, etc.).
+   ========================================================== */
+
+/* No preloader on this page */
+body.loading { overflow: visible; }
+#preloader { display: none !important; }
+
+/* Current-page nav indicator */
+.nav-links a.active-link { color: var(--primary); }
+.nav-links a.active-link::after { width: 100%; }
+
+/* ----------------------------------------------------------
+   LOGO BAR
+   Sits at the top of the page and scrolls away with it, so it
+   can never sit on top of the login card. The page's top
+   padding (120px / 100px / 90px) is larger than the bar.
+   ---------------------------------------------------------- */
+.login-logo-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 16px 25px;
+  pointer-events: none;            /* only the logo itself is clickable */
+}
+
+.login-logo-bar .logo-placeholder {
+  pointer-events: auto;
+  display: inline-flex;
+  align-items: center;
+  width: auto;
+  height: auto;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+}
+
+.login-logo-bar .logo-img {
+  display: block;
+  height: 56px;
+  width: auto;                     /* keeps the logo's real proportions */
+  max-width: 140px;
+  object-fit: contain;
+  padding: 0;
+  border-radius: 0;
+}
+
+/* Tablets & phones: centre the logo above the card */
+@media (max-width: 900px) {
+  .login-logo-bar {
+    justify-content: center;
+    padding: 14px 18px;
+  }
+  .login-logo-bar .logo-img { height: 48px; max-width: 120px; }
+}
+
+@media (max-width: 480px) {
+  .login-logo-bar { padding: 12px 14px; }
+  .login-logo-bar .logo-img { height: 42px; max-width: 110px; }
+}
+
+/* ----------------------------------------------------------
+   PAGE BACKDROP
+   ---------------------------------------------------------- */
+.login-page {
+  position: relative;
+  isolation: isolate;
+  min-height: 100vh;
+  padding: 120px 25px 70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background:
+    linear-gradient(180deg, rgba(10, 12, 16, 0.75) 0%, rgba(10, 12, 16, 0.96) 100%),
+    url('https://images.unsplash.com/photo-1517649763962-0c623266ddc0?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+}
+
+.login-page::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    radial-gradient(ellipse 700px 500px at 88% 15%, rgba(255, 69, 0, 0.16), transparent 60%),
+    radial-gradient(ellipse 600px 500px at 5% 95%, rgba(0, 229, 255, 0.09), transparent 60%);
+}
+
+.login-shell {
+  width: 100%;
+  max-width: 1100px;
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 70px;
+  align-items: center;
+}
+
+/* ----------------------------------------------------------
+   LEFT: BRAND PANEL
+   ---------------------------------------------------------- */
+.promo-title {
+  font-family: var(--font-heading);
+  font-size: 4.2rem;
+  line-height: 0.95;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #fff;
+  margin-bottom: 18px;
+}
+
+.promo-title span { color: var(--primary); }
+
+.login-promo > p {
+  color: var(--text-muted);
+  font-size: 1.1rem;
+  line-height: 1.65;
+  max-width: 470px;
+  margin-bottom: 34px;
+}
+
+.login-perks {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.login-perks li {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.perk-icon {
+  width: 50px;
+  height: 50px;
+  flex-shrink: 0;
+  border-radius: 10px;
+  background: rgba(0, 229, 255, 0.08);
+  border: 1px solid var(--secondary);
+  color: var(--secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+}
+
+.login-perks h3 {
+  font-family: var(--font-heading);
+  font-size: 1.2rem;
+  letter-spacing: 0.5px;
+  margin-bottom: 2px;
+}
+
+.login-perks p {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+
+/* ----------------------------------------------------------
+   RIGHT: LOGIN CARD
+   ---------------------------------------------------------- */
+.login-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 14px;
+  padding: 32px 32px 28px;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
+}
+
+/* Back + Home buttons */
+.login-topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 26px;
+  flex-wrap: wrap;
+}
+
+.login-nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-heading);
+  font-size: 1.05rem;
+  letter-spacing: 0.5px;
+  color: var(--text-muted);
+  background: transparent;
+  border: 1px solid var(--border-color);
+  border-radius: 30px;
+  padding: 6px 16px;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.login-nav-btn:hover {
+  color: #fff;
+  border-color: var(--secondary);
+}
+
+.login-nav-btn:focus-visible {
+  outline: 2px solid var(--secondary);
+  outline-offset: 2px;
+}
+
+.login-nav-btn i { font-size: 0.85rem; color: var(--primary); }
+
+.login-card h1 {
+  font-family: var(--font-heading);
+  font-size: 2.8rem;
+  line-height: 1;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 8px;
+}
+
+.login-card h1 span { color: var(--primary); }
+
+.login-sub {
+  color: var(--text-muted);
+  font-size: 0.92rem;
+  margin-bottom: 22px;
+}
+
+/* Form-level message (wrong password, wrong role...) */
+.login-alert {
+  border-left: 3px solid #ff6b6b;
+  background: rgba(255, 107, 107, 0.1);
+  color: #ff9a9a;
+  border-radius: 6px;
+  padding: 11px 14px;
+  font-size: 0.88rem;
+  line-height: 1.4;
+  margin-bottom: 20px;
+}
+
+.login-alert:empty { display: none; }
+
+/* ----------------------------------------------------------
+   ROLE TOGGLE
+   ---------------------------------------------------------- */
+.role-toggle {
+  border: 0;
+  padding: 0;
+  margin: 0 0 20px;
+  min-width: 0;
+}
+
+.role-toggle legend {
+  padding: 0;
+  margin-bottom: 8px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-light);
+}
+
+.role-options {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.role-option { position: relative; }
+
+.role-option input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.role-option label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 11px 12px;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  cursor: pointer;
+  font-family: var(--font-heading);
+  font-size: 1.2rem;
+  letter-spacing: 0.5px;
+  color: var(--text-muted);
+  transition: var(--transition);
+}
+
+.role-option label:hover { border-color: var(--secondary); color: #fff; }
+
+.role-option input:checked + label {
+  border-color: var(--primary);
+  background: rgba(255, 69, 0, 0.12);
+  color: #fff;
+}
+
+.role-option input:checked + label i { color: var(--primary); }
+
+.role-option input:focus-visible + label {
+  outline: 2px solid var(--secondary);
+  outline-offset: 2px;
+}
+
+/* ----------------------------------------------------------
+   FIELDS
+   ---------------------------------------------------------- */
+.login-field { margin-bottom: 18px; }
+
+.login-field label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-light);
+  margin-bottom: 7px;
+}
+
+.input-wrap { position: relative; }
+
+.input-wrap .lead {
+  position: absolute;
+  left: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  pointer-events: none;
+}
+
+.input-wrap input {
+  width: 100%;
+  padding: 13px 46px 13px 44px;
+  background: var(--bg-dark);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  color: var(--text-light);
+  font-family: var(--font-body);
+  font-size: 16px; /* stops iOS zooming into the field */
+  transition: var(--transition);
+}
+
+.input-wrap input::placeholder { color: var(--text-muted); opacity: 0.7; }
+
+.input-wrap input:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(255, 69, 0, 0.15);
+}
+
+.input-wrap input.is-invalid { border-color: #ff6b6b; }
+
+/* Stop Chrome's autofill from painting the fields yellow/white */
+.input-wrap input:-webkit-autofill,
+.input-wrap input:-webkit-autofill:hover,
+.input-wrap input:-webkit-autofill:focus {
+  -webkit-text-fill-color: var(--text-light);
+  caret-color: var(--text-light);
+  transition: background-color 9999s ease-in-out 0s;
+}
+
+/* Hide the browser's own built-in password reveal / clear icons so
+   only our custom .toggle-pass eye button shows (Edge/IE add a native
+   "reveal" eye inside password fields, which otherwise sits right on
+   top of ours). */
+.input-wrap input::-ms-reveal,
+.input-wrap input::-ms-clear {
+  display: none;
+  width: 0;
+  height: 0;
+}
+
+.toggle-pass {
+  position: absolute;
+  right: 6px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 38px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: 0;
+  border-radius: 6px;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.toggle-pass:hover { color: #fff; }
+.toggle-pass:focus-visible { outline: 2px solid var(--secondary); }
+
+.login-error {
+  display: block;
+  margin-top: 6px;
+  font-size: 0.8rem;
+  line-height: 1.3;
+  color: #ff8a8a;
+}
+
+.login-row {
+  display: flex;
+  justify-content: flex-end;
+  margin: -6px 0 20px;
+}
+
+.forgot-link {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--secondary);
+  transition: var(--transition);
+}
+
+.forgot-link:hover { color: #fff; text-decoration: underline; }
+.forgot-link:focus-visible { outline: 2px solid var(--secondary); outline-offset: 3px; border-radius: 3px; }
+
+.login-submit {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  cursor: pointer;
+}
+
+.login-submit[disabled] { opacity: 0.7; cursor: progress; }
+
+/* ----------------------------------------------------------
+   REGISTER LINK + DEMO NOTE
+   ---------------------------------------------------------- */
+.login-register {
+  margin-top: 22px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border-color);
+  text-align: center;
+  font-size: 0.92rem;
+  color: var(--text-muted);
+}
+
+.login-register a {
+  color: var(--primary);
+  font-weight: 600;
+  transition: var(--transition);
+}
+
+.login-register a:hover { color: #fff; text-decoration: underline; }
+
+/* ----------------------------------------------------------
+   FOOTER
+   ---------------------------------------------------------- */
+.login-footer {
+  text-align: center;
+  padding: 22px 15px;
+  background: #090c12;
+  border-top: 1px solid var(--border-color);
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+
+/* ----------------------------------------------------------
+   RESPONSIVE
+   ---------------------------------------------------------- */
+@media (max-width: 900px) {
+  .login-page {
+    padding: 100px 18px 50px;
+    align-items: flex-start;
+  }
+  .login-shell {
+    grid-template-columns: 1fr;
+    max-width: 520px;
+    gap: 0;
+  }
+  .login-promo { display: none; }
+}
+
+@media (max-width: 480px) {
+  .login-page { padding: 90px 14px 40px; }
+  .login-card { padding: 22px 18px 22px; border-radius: 12px; }
+  .login-card h1 { font-size: 2.3rem; }
+  .login-topbar { margin-bottom: 20px; }
+  .login-nav-btn { font-size: 1rem; padding: 6px 14px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .login-card * { transition: none !important; }
+}

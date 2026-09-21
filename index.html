@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#0a0c10">
+  <title>STACKLY ATHLETICS | Ultimate Sports Equipment</title>
+
+  <!-- Force every load/reload to start at the very top of the page,
+       before any CSS/fonts/images arrive and before the browser gets
+       a chance to auto-scroll to a URL hash (e.g. a #hero anchor). -->
+  <script>
+    (function () {
+      try { if ('scrollRestoration' in history) history.scrollRestoration = 'manual'; } catch (e) {}
+      window.scrollTo(0, 0);
+      document.addEventListener('DOMContentLoaded', function () { window.scrollTo(0, 0); });
+      window.addEventListener('load', function () { window.scrollTo(0, 0); });
+    })();
+  </script>
+
+  <!-- Preload the preloader logo so it is ready the moment the preloader shows -->
+  <link rel="preload" as="image" href="./assets/stackly_logo.webp">
+
+  <!-- Google Fonts & Font Awesome Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Teko:wght@500;700&family=Work+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- External CSS -->
+  <link rel="stylesheet" href="./css/styles.css">
+</head>
+<body class="loading">
+
+  <!-- PRELOADER -->
+  <div id="preloader">
+    <div class="sports-loader">
+      <svg viewBox="0 0 100 100">
+        <circle class="outer-ring" cx="50" cy="50" r="42"></circle>
+        <circle class="inner-spinner" cx="50" cy="50" r="42"></circle>
+      </svg>
+      <img src="./assets/stackly_logo.webp" alt="Stackly Athletics" class="preloader-logo">
+    </div>
+    <div class="preloader-text">Gear Up... Loading Athletism</div>
+  </div>
+
+  <!-- HEADER -->
+  <header>
+    <div class="header-container">
+      <a href="#hero" class="logo-placeholder">
+        <img src="./assets/logo.webp" alt="Apex Athletics" class="logo-img">
+      </a>
+
+      <!-- Header Navigation Links -->
+      <nav class="nav-links" id="primary-nav">
+        <a href="#hero" class="active-link">Home</a>
+        <a href="./html/categories.html">Categories</a>
+        <a href="./html/products.html">Products</a>
+        <a href="./html/whyus.html">Why Us</a>
+        <a href="./html/about.html">About Us</a>
+        <a href="./html/contact.html">Contact</a>
+        <a href="./html/login.html" class="login-link">Login</a>
+      </nav>
+
+      <button class="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="primary-nav">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+    </div>
+  </header>
+
+  <!-- SECTION 1: HERO -->
+  <section id="hero" class="hero">
+    <div class="hero-bg" aria-hidden="true">
+      <img src="./assets/img1.webp" alt="" class="hero-bg-img">
+    </div>
+    <div class="hero-field" aria-hidden="true"></div>
+
+    <div class="hero-container">
+      <div class="hero-content">
+        <h1>Unleash Your <span>Peak Potential</span></h1>
+        <p>Engineered for champions. Discover elite-grade sports equipment, futuristic activewear, and performance gear designed to break records.</p>
+        <div class="hero-buttons">
+          <a href="./html/404.html" class="btn btn-primary"><i class="fa-solid fa-bolt"></i> Shop Gear</a>
+          <a href="./html/404.html" class="btn btn-outline">Explore Categories</a>
+        </div>
+
+        <div class="hero-specs">
+          <div class="hero-spec">
+            <span class="hero-spec-value">140<small>g</small></span>
+            <span class="hero-spec-label">Carbon Flyer weight</span>
+          </div>
+          <div class="hero-spec">
+            <span class="hero-spec-value">500<small>K+</small></span>
+            <span class="hero-spec-label">Athletes outfitted</span>
+          </div>
+          <div class="hero-spec">
+            <span class="hero-spec-value">45<small>+</small></span>
+            <span class="hero-spec-label">Countries served</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <svg class="hero-dial" viewBox="0 0 300 300" role="img" aria-label="Carbon-Kinetix sole returns 87 percent of stored energy on toe-off">
+          <circle class="hero-dial-track" cx="150" cy="150" r="120"></circle>
+          <circle class="hero-dial-progress" cx="150" cy="150" r="120"></circle>
+        </svg>
+        <div class="hero-dial-copy">
+          <span class="hero-dial-value"><span class="hero-dial-num">87</span><small>%</small></span>
+          <span class="hero-dial-label">Energy returned<br>on every stride</span>
+          <span class="hero-dial-tag">Carbon-Kinetix™ Sole</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 2: FEATURED CATEGORIES -->
+  <section id="categories" class="categories">
+    <div class="section-title reveal">
+      <h2>Explore <span>Categories</span></h2>
+      <p>Precision equipment tailored to your discipline</p>
+    </div>
+    <div class="category-grid">
+      <div class="category-card reveal">
+        <img src="./assets/img2.webp" alt="Basketball Gear">
+        <div class="category-overlay">
+          <div class="category-title">Basketball</div>
+        </div>
+      </div>
+      <div class="category-card reveal">
+        <img src="./assets/img3.webp" alt="Soccer Gear">
+        <div class="category-overlay">
+          <div class="category-title">Soccer / Football</div>
+        </div>
+      </div>
+      <div class="category-card reveal">
+        <img src="./assets/img4.webp" alt="Fitness Equipment">
+        <div class="category-overlay">
+          <div class="category-title">Gym &amp; Fitness</div>
+        </div>
+      </div>
+      <div class="category-card reveal">
+        <img src="./assets/img5.webp" alt="Tennis Gear">
+        <div class="category-overlay">
+          <div class="category-title">Racquet Sports</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 3: TOP PRODUCTS -->
+  <section id="products" class="products">
+    <div class="section-title reveal">
+      <h2>Featured <span>Products</span></h2>
+      <p>Pro-tested gear trending right now</p>
+    </div>
+    <div class="product-grid">
+      <div class="product-card reveal">
+        <span class="product-badge">Best Seller</span>
+        <img src="./assets/img6.webp" class="product-img" alt="Running Shoe">
+        <div class="product-info">
+          <h3>Apex Carbon Flyer Shoes</h3>
+          <div class="product-rating">
+            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i> (124)
+          </div>
+        </div>
+        <div class="product-bottom">
+          <div class="product-price">$189.99</div>
+        </div>
+      </div>
+
+      <div class="product-card reveal">
+        <span class="product-badge">New</span>
+        <img src="./assets/img7.webp" class="product-img" alt="Official Basketball">
+        <div class="product-info">
+          <h3>Pro Grip Official Basketball</h3>
+          <div class="product-rating">
+            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i> (89)
+          </div>
+        </div>
+        <div class="product-bottom">
+          <div class="product-price">$59.99</div>
+        </div>
+      </div>
+
+      <div class="product-card reveal">
+        <span class="product-badge">Hot</span>
+        <img src="./assets/img8.webp" class="product-img" alt="Dumbbells Set">
+        <div class="product-info">
+          <h3>Hex Dumbbell Set (20kg)</h3>
+          <div class="product-rating">
+            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i> (210)
+          </div>
+        </div>
+        <div class="product-bottom">
+          <div class="product-price">$129.99</div>
+        </div>
+      </div>
+
+      <div class="product-card reveal">
+        <span class="product-badge">Sale</span>
+        <img src="./assets/img9.webp" class="product-img" alt="Smart Fitness Watch">
+        <div class="product-info">
+          <h3>AeroTrack GPS Fitness Watch</h3>
+          <div class="product-rating">
+            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-regular fa-star"></i> (64)
+          </div>
+        </div>
+        <div class="product-bottom">
+          <div class="product-price">$249.99</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================
+       SECTION 4: ADVANTAGES & BENEFITS OF SPORTS
+       ========================================================== -->
+  <section id="sports-benefits" class="sports-benefits">
+    <div class="section-title reveal">
+      <h2>Power Your Life Through <span>Sports</span></h2>
+      <p>How active living transforms body and mind—and how Apex gear elevates every step</p>
+    </div>
+
+    <div class="benefits-grid">
+      <!-- Benefit 1 -->
+      <div class="benefit-card reveal">
+        <div class="benefit-header">
+          <div class="benefit-icon"><i class="fa-solid fa-heart-pulse"></i></div>
+          <span class="benefit-number">01</span>
+        </div>
+        <h3>Peak Physical Health</h3>
+        <p>Engaging in active sports strengthens cardiovascular health, increases bone density, and burns calories effectively while lowering overall stress on vital organs.</p>
+        <div class="gear-connection">
+          <i class="fa-solid fa-bolt"></i>
+          <span><strong>Apex Advantage:</strong> Our shock-absorbing footwear &amp; ergonomic weights protect joints while maximizing fat-burn efficiency.</span>
+        </div>
+      </div>
+
+      <!-- Benefit 2 -->
+      <div class="benefit-card reveal">
+        <div class="benefit-header">
+          <div class="benefit-icon"><i class="fa-solid fa-brain"></i></div>
+          <span class="benefit-number">02</span>
+        </div>
+        <h3>Sharper Mental Focus</h3>
+        <p>Physical activity triggers endorphin production, sharpening mental acuity, combatting anxiety, and promoting healthier, deeper REM sleep cycles.</p>
+        <div class="gear-connection">
+          <i class="fa-solid fa-bolt"></i>
+          <span><strong>Apex Advantage:</strong> Breathable, temperature-regulating fabrics eliminate physical distractions so you stay 100% in the zone.</span>
+        </div>
+      </div>
+
+      <!-- Benefit 3 -->
+      <div class="benefit-card reveal">
+        <div class="benefit-header">
+          <div class="benefit-icon"><i class="fa-solid fa-shield-halved"></i></div>
+          <span class="benefit-number">03</span>
+        </div>
+        <h3>Injury Prevention &amp; Mobility</h3>
+        <p>Targeted movement enhances joint flexibility, reinforces core stability, and safeguards muscles against age-related strain or postural damage.</p>
+        <div class="gear-connection">
+          <i class="fa-solid fa-bolt"></i>
+          <span><strong>Apex Advantage:</strong> Anatomically engineered compression wear supports tendons and accelerates post-workout muscular recovery.</span>
+        </div>
+      </div>
+
+      <!-- Benefit 4 -->
+      <div class="benefit-card reveal">
+        <div class="benefit-header">
+          <div class="benefit-icon"><i class="fa-solid fa-trophy"></i></div>
+          <span class="benefit-number">04</span>
+        </div>
+        <h3>Discipline &amp; Confidence</h3>
+        <p>Overcoming athletic milestones builds resilience, self-belief, and unwavering personal discipline that translates directly into everyday career and lifestyle success.</p>
+        <div class="gear-connection">
+          <i class="fa-solid fa-bolt"></i>
+          <span><strong>Apex Advantage:</strong> Pro-grade equipment gives you the competitive confidence needed to set new personal records every day.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 5: WHY CHOOSE US -->
+  <section id="why-us" class="why-us">
+    <div class="section-title reveal">
+      <h2>Why Choose <span>Apex Athletics</span></h2>
+      <p>Built for athletes, trusted by professionals around the world</p>
+    </div>
+    <div class="why-us-grid">
+      <div class="why-card reveal">
+        <div class="why-icon-box"><i class="fa-solid fa-award"></i></div>
+        <h3>Olympic-Grade Quality</h3>
+        <p>Every piece of gear undergoes rigorous durability and stress tests to match professional athletic standards before reaching your hands.</p>
+      </div>
+      <div class="why-card reveal">
+        <div class="why-icon-box"><i class="fa-solid fa-microchip"></i></div>
+        <h3>Biomechanical Research</h3>
+        <p>Our apparel and footwear are co-developed with sports scientists to optimize body mechanics, minimize fatigue, and reduce injury risk.</p>
+      </div>
+      <div class="why-card reveal">
+        <div class="why-icon-box"><i class="fa-solid fa-leaf"></i></div>
+        <h3>Sustainable Engineering</h3>
+        <p>We prioritize eco-friendly synthetic polymers, recycled textile fibers, and zero-plastic eco-packaging across 85% of our current product lineup.</p>
+      </div>
+      <div class="why-card reveal">
+        <div class="why-icon-box"><i class="fa-solid fa-truck-fast"></i></div>
+        <h3>Global Express Shipping</h3>
+        <p>With distribution hubs across three continents, we deliver order dispatch within 24 hours with real-time end-to-end GPS tracking.</p>
+      </div>
+      <div class="why-card reveal">
+        <div class="why-icon-box"><i class="fa-solid fa-arrows-rotate"></i></div>
+        <h3>30-Day Performance Guarantee</h3>
+        <p>Try any gear during your workouts. If it doesn't noticeably upgrade your athletic experience, return it within 30 days hassle-free.</p>
+      </div>
+      <div class="why-card reveal">
+        <div class="why-icon-box"><i class="fa-solid fa-user-shield"></i></div>
+        <h3>Dedicated Athlete Support</h3>
+        <p>Our customer service team consists of certified fitness coaches and trainers ready to recommend exact gear options for your goals.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 6: ABOUT US -->
+  <section id="about-us" class="about-us">
+    <div class="about-container">
+      <div class="about-image-column reveal">
+        <img src="./assets/img10.webp" alt="Athletes Training" class="about-main-img">
+        <div class="about-badge">
+          <span class="badge-num">12+</span>
+          <span class="badge-text">Years of Innovation</span>
+        </div>
+      </div>
+      <div class="about-content-column reveal">
+        <div class="section-title" style="text-align: left; margin-bottom: 25px;">
+          <h2>About <span>Apex Athletics</span></h2>
+          <p>Forging the future of human athletic performance</p>
+        </div>
+        <p class="about-lead">Founded in 2014 by a team of sports biomechanists and former professional athletes, Apex Athletics was born out of a simple frustration: mainstream equipment wasn't keeping up with modern training demands.</p>
+        <p class="about-text">We set out to create high-performance gear that seamlessly blends cutting-edge material science with ergonomic comfort. Today, Apex Athletics supplies sports equipment, footwear, and smart training accessories to over 500,000 athletes across 45 countries—from amateur marathoners to elite Olympic contenders.</p>
+
+        <div class="about-stats">
+          <div class="stat-item">
+            <h3>500K+</h3>
+            <p>Active Athletes</p>
+          </div>
+          <div class="stat-item">
+            <h3>45+</h3>
+            <p>Countries Served</p>
+          </div>
+          <div class="stat-item">
+            <h3>99.4%</h3>
+            <p>Satisfaction Rate</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 7: PERFORMANCE TECHNOLOGY HUB -->
+  <section class="tech-hub">
+    <div class="tech-hub-container">
+      <div class="section-title reveal">
+        <h2>Performance <span>Technology Hub</span></h2>
+        <p>Inside the engineering that powers modern world records</p>
+      </div>
+
+      <div class="tech-grid">
+        <div class="tech-card reveal">
+          <div class="tech-header">
+            <span class="tech-tag">Footwear Innovation</span>
+            <h3>Carbon-Kinetix™ Sole Architecture</h3>
+          </div>
+          <p>Our flagship footwear features an ultra-lightweight full-length carbon fiber plate embedded within high-density nitrogen-infused foam. This dual-layer structure stores kinetic energy during footstrike and returns up to 87% of energy during toe-off, enabling longer strides with reduced calf strain.</p>
+          <ul class="tech-list">
+            <li><i class="fa-solid fa-check"></i> 87% Verified Energy Return</li>
+            <li><i class="fa-solid fa-check"></i> 140g Ultra-Lightweight Build</li>
+            <li><i class="fa-solid fa-check"></i> Multi-surface HydroGrip Rubber</li>
+          </ul>
+        </div>
+
+        <div class="tech-card reveal">
+          <div class="tech-header">
+            <span class="tech-tag">Apparel Technology</span>
+            <h3>ThermoVent™ Moisture Control</h3>
+          </div>
+          <p>Designed for extreme thermal regulation, ThermoVent micro-weaves expand when body temperature rises, increasing airflow by up to 300%. The hydrophobic interior layer wicks sweat away from the skin instantly, preventing chaffing during high-intensity training sessions.</p>
+          <ul class="tech-list">
+            <li><i class="fa-solid fa-check"></i> 4-Way Seamless Elastic Weave</li>
+            <li><i class="fa-solid fa-check"></i> Anti-Odor Silver-Ion Infusion</li>
+            <li><i class="fa-solid fa-check"></i> UV 50+ Sun Protection Shield</li>
+          </ul>
+        </div>
+
+        <div class="tech-card reveal">
+          <div class="tech-header">
+            <span class="tech-tag">Equipment Engineering</span>
+            <h3>ProGrip-X™ Surface Composite</h3>
+          </div>
+          <p>Utilized in our premium basketballs, weightlifting grips, and tennis handles, ProGrip-X utilizes a textured polyurethane matrix that absorbs moisture dynamically, maintaining maximum tactile control even during prolonged sweaty competition.</p>
+          <ul class="tech-list">
+            <li><i class="fa-solid fa-check"></i> Zero Slip Moisture Control</li>
+            <li><i class="fa-solid fa-check"></i> High Impact Wear Resistance</li>
+            <li><i class="fa-solid fa-check"></i> Precision Ergonomic Weighting</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 8: ATHLETE VOICES -->
+  <section id="athletes" class="athlete-voices">
+    <div class="section-title reveal">
+      <h2>Voices From The <span>Field</span></h2>
+      <p>Real feedback from the athletes who put our gear through hell</p>
+    </div>
+
+    <div class="athlete-grid">
+      <div class="athlete-card reveal">
+        <i class="fa-solid fa-quote-right quote-mark"></i>
+        <div class="athlete-rating">
+          <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+        </div>
+        <p class="athlete-quote">I logged 900km in the Carbon Flyers across two marathon blocks and the foam still snaps back. The plate does exactly what it claims on tired legs at kilometre 35 — that's where most shoes quit on me.</p>
+        <div class="athlete-meta">
+          <div class="athlete-avatar">DM</div>
+          <div class="athlete-info">
+            <h4>Daniel Mwangi</h4>
+            <span>Marathon Runner · Nairobi</span>
+          </div>
+          <span class="verified"><i class="fa-solid fa-circle-check"></i> Verified</span>
+        </div>
+      </div>
+
+      <div class="athlete-card reveal">
+        <i class="fa-solid fa-quote-right quote-mark"></i>
+        <div class="athlete-rating">
+          <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i>
+        </div>
+        <p class="athlete-quote">We kitted out the entire academy squad — sixteen players, full season. Zero grip failures on the ProGrip-X balls even through monsoon training. Their team-order desk actually understood what junior sizing needs to be.</p>
+        <div class="athlete-meta">
+          <div class="athlete-avatar">SR</div>
+          <div class="athlete-info">
+            <h4>Sana Reddy</h4>
+            <span>Academy Coach · Hyderabad</span>
+          </div>
+          <span class="verified"><i class="fa-solid fa-circle-check"></i> Verified</span>
+        </div>
+      </div>
+
+      <div class="athlete-card reveal">
+        <i class="fa-solid fa-quote-right quote-mark"></i>
+        <div class="athlete-rating">
+          <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+        </div>
+        <p class="athlete-quote">Came back from a partial ACL tear last spring. The compression range and the hex set let me rebuild load slowly without my knee screaming. Support staff swapped a size for me in four days, no argument.</p>
+        <div class="athlete-meta">
+          <div class="athlete-avatar">EK</div>
+          <div class="athlete-info">
+            <h4>Elena Kovač</h4>
+            <span>Strength Athlete · Zagreb</span>
+          </div>
+          <span class="verified"><i class="fa-solid fa-circle-check"></i> Verified</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="athlete-strip reveal">
+      <div class="strip-item"><i class="fa-solid fa-star"></i><span><strong>4.8 / 5</strong> average across 12,400 reviews</span></div>
+      <div class="strip-item"><i class="fa-solid fa-repeat"></i><span><strong>71%</strong> of buyers order again within a year</span></div>
+      <div class="strip-item"><i class="fa-solid fa-people-group"></i><span><strong>320+</strong> clubs and academies supplied</span></div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-container">
+      <div class="footer-col footer-intro">
+        <a href="#hero" class="logo-placeholder">
+          <img src="./assets/logo.webp" alt="Apex Athletics" class="logo-img">
+        </a>
+        <p>Apex Athletics is your ultimate destination for professional sports equipment, high-performance training gear, and modern activewear.</p>
+      </div>
+
+      <div class="footer-col">
+        <h4>Navigation</h4>
+        <ul class="footer-links">
+          <li><a href="#hero">Home</a></li>
+          <li><a href="./html/categories.html">Categories</a></li>
+          <li><a href="./html/products.html">Products</a></li>
+          <li><a href="./html/whyus.html">Why Us</a></li>
+          <li><a href="./html/about.html">About Us</a></li>
+          <li><a href="./html/contact.html">Contact Us</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Support</h4>
+        <ul class="footer-links">
+          <li><a href="./html/contact.html">Contact Support</a></li>
+          <li><a href="./html/login.html">Account Login</a></li>
+          <li><a href="./html/whyus.html">Quality Guarantee</a></li>
+        </ul>
+      </div>
+
+      <!-- Store address -->
+      <div class="footer-col">
+        <h4>Visit Us</h4>
+        <ul class="footer-address">
+          <li>
+            <i class="fa-solid fa-location-dot"></i>
+            <address>
+              MMR Complex, Periyakollappatty <br>
+              Chinna Thirupathi, Salem,<br>
+              Tamil Nadu 636008.
+              <span class="footer-hours">Open daily, 10:00 AM – 9:00 PM</span>
+            </address>
+          </li>
+          <li>
+            <i class="fa-solid fa-phone"></i>
+            <a href="./html/404.html">+91 40 6677 8899</a>
+          </li>
+          <li>
+            <i class="fa-solid fa-envelope"></i>
+            <a href="./html/404.html">support@stackly.com</a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Follow Us</h4>
+        <!-- Hidden by CSS (.social-intro) to keep the footer compact -->
+        <p class="social-intro">Connect with Apex Athletics on social media:</p>
+        <div class="social-auth-btns">
+          <a href="./html/404.html" target="_blank" rel="noopener noreferrer" class="social-btn instagram">
+            <i class="fa-brands fa-instagram"></i> Instagram
+          </a>
+          <a href="./html/404.html" target="_blank" rel="noopener noreferrer" class="social-btn facebook">
+            <i class="fa-brands fa-facebook-f"></i> Facebook
+          </a>
+          <a href="./html/404.html" target="_blank" rel="noopener noreferrer" class="social-btn x-twitter">
+            <i class="fa-brands fa-x-twitter"></i> X (Twitter)
+          </a>
+          <a href="./html/404.html" target="_blank" rel="noopener noreferrer" class="social-btn youtube">
+            <i class="fa-brands fa-youtube"></i> YouTube
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>&copy; 2026 Apex Athletics Inc. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- 404 OVERLAY -->
+  <div id="page-404">
+    <h1>404</h1>
+    <h2>Authentication Service Unavailable</h2>
+    <p>The login endpoint you are trying to reach is currently undergoing scheduled maintenance.</p>
+    <button class="btn btn-primary" id="close404Btn"><i class="fa-solid fa-arrow-left"></i> Return To Home</button>
+  </div>
+
+  <!-- External JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js"></script>
+  <script src="./js/script.js"></script>
+</body>
+</html>

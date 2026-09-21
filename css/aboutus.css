@@ -1,0 +1,304 @@
+/* ==========================================================
+   aboutus.css — About page extras
+   Loaded AFTER ../css/styles.css, so it reuses that file's variables,
+   section rhythm (--section-pad-y / --section-pad-x, which already shrink
+   at 992 / 768 / 480px) and its overflow guards.
+   ========================================================== */
+
+/* ---------- 1. Hero ---------- */
+.about-hero {
+  position: relative;
+  min-height: 60vh;
+  padding-top: 160px;
+  padding-bottom: 70px;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.about-hero-bg {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  background: var(--bg-dark);
+}
+
+.about-hero-bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 35%;
+  filter: grayscale(0.25) brightness(0.42);
+  transform: scale(1.04);
+}
+
+.about-hero-field {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    linear-gradient(100deg, rgba(10,12,16,0.97) 22%, rgba(10,12,16,0.55) 60%, rgba(10,12,16,0.92) 100%),
+    radial-gradient(ellipse 700px 500px at 85% 30%, rgba(255, 69, 0, 0.16), transparent 60%),
+    radial-gradient(ellipse 600px 500px at 10% 90%, rgba(0, 229, 255, 0.08), transparent 60%);
+}
+
+.about-hero-container {
+  width: 100%;
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 0 25px;
+  position: relative;
+  z-index: 1;
+}
+
+.about-hero-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  max-width: 100%;
+  font-family: var(--font-heading);
+  font-size: 0.95rem;
+  line-height: 1.2;
+  letter-spacing: 1.5px;
+  color: var(--secondary);
+  border: 1px solid rgba(0, 229, 255, 0.4);
+  border-radius: 20px;
+  padding: 6px 16px;
+  margin-bottom: 22px;
+  text-transform: uppercase;
+}
+
+.about-hero h1 {
+  font-family: var(--font-heading);
+  font-size: clamp(3rem, 10vw, 5rem);
+  line-height: 0.95;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 20px;
+  max-width: 800px;
+}
+
+.about-hero h1 span {
+  color: transparent;
+  -webkit-text-stroke: 2px var(--primary);
+}
+
+.about-hero p {
+  font-size: clamp(1rem, 2.8vw, 1.2rem);
+  color: var(--text-muted);
+  max-width: 640px;
+  line-height: 1.6;
+}
+
+/* ---------- 2. Mission strip (inside the hero) ---------- */
+.mission-strip {
+  max-width: 1300px;
+  margin: 60px auto 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
+  gap: 20px;
+  border-top: 1px solid var(--border-color);
+  padding-top: 40px;
+}
+
+.mission-strip .strip-item { align-items: flex-start; }
+
+/* script.js animates every .strip-item on the site, aimed at a strip that
+   only exists on the home page. On this page that tween has no trigger, so
+   pin these visible instead of risking them staying hidden. */
+.mission-strip .strip-item {
+  opacity: 1 !important;
+  transform: none !important;
+  visibility: visible !important;
+}
+
+/* ---------- 3. Our story: heading alignment ----------
+   (was an inline style; moved here so it can be centred on mobile) */
+.about-content-column .section-title {
+  text-align: left;
+  margin-bottom: 25px;
+}
+
+/* ---------- 4. Milestones ---------- */
+.milestones {
+  padding: var(--section-pad-y) var(--section-pad-x);
+  background: #0d1017;
+}
+
+.tech-card .milestone-year {
+  font-family: var(--font-heading);
+  font-size: 1.1rem;
+  color: var(--primary);
+  letter-spacing: 1px;
+  margin-bottom: 4px;
+}
+
+/* ---------- 5. Leadership ---------- */
+.leadership {
+  padding: var(--section-pad-y) var(--section-pad-x);
+  background: var(--bg-dark);
+}
+
+.leader-card {
+  position: relative;
+  height: 380px;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--border-color);
+  transition: var(--transition);
+}
+
+.leader-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+.leader-card:hover img { transform: scale(1.08); }
+.leader-card:hover {
+  border-color: var(--primary);
+  box-shadow: 0 10px 30px rgba(255, 69, 0, 0.2);
+}
+
+.leader-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 24px;
+  background: linear-gradient(to top, rgba(10,12,16,0.96), rgba(10,12,16,0.05) 55%);
+}
+
+.leader-overlay h3 {
+  font-family: var(--font-heading);
+  font-size: 1.7rem;
+  text-transform: uppercase;
+  margin-bottom: 2px;
+}
+
+.leader-overlay span {
+  font-size: 0.85rem;
+  color: var(--secondary);
+}
+
+/* ---------- 6. By the numbers ---------- */
+.impact-numbers {
+  padding: var(--section-pad-y) var(--section-pad-x);
+  background: #090c12;
+}
+
+.impact-grid {
+  max-width: 1300px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr));
+  gap: 30px;
+  border-top: 1px solid var(--border-color);
+  border-bottom: 1px solid var(--border-color);
+  padding: 45px 0;
+}
+
+.impact-grid .stat-item { text-align: center; }
+.impact-grid .stat-item h3 { font-size: 3.4rem; }
+
+/* ---------- 7. CTA ---------- */
+.about-cta {
+  padding: calc(var(--section-pad-y) + 10px) var(--section-pad-x);
+  text-align: center;
+  background: var(--bg-dark);
+  background-image: radial-gradient(ellipse 900px 400px at 50% 0%, rgba(255,69,0,0.1), transparent 65%);
+}
+
+.about-cta h2 {
+  font-family: var(--font-heading);
+  font-size: clamp(2.3rem, 7.5vw, 3.2rem);
+  line-height: 1;
+  text-transform: uppercase;
+  max-width: 780px;
+  margin: 0 auto 18px;
+  letter-spacing: 1px;
+}
+
+.about-cta h2 span { color: var(--primary); }
+
+.about-cta p {
+  color: var(--text-muted);
+  max-width: 560px;
+  margin: 0 auto 35px;
+  font-size: clamp(0.95rem, 2.6vw, 1.05rem);
+  line-height: 1.6;
+}
+
+.about-cta .hero-buttons {
+  justify-content: center;
+  margin-bottom: 0;
+}
+
+/* ==========================================================
+   RESPONSIVE
+   Breakpoints match styles.css: 992 (tablet, hamburger),
+   768 (phones), 480 (small phones).
+   ========================================================== */
+
+/* --- Tablet & below --- */
+@media (max-width: 992px) {
+  .about-hero {
+    min-height: auto;
+    padding-top: 125px;
+    padding-bottom: 55px;
+  }
+
+  .about-hero-container { padding: 0 20px; }
+
+  .mission-strip {
+    margin-top: 45px;
+    padding-top: 32px;
+  }
+
+  /* styles.css centres the story block at this width; the heading follows */
+  .about-content-column .section-title { text-align: center; }
+
+  .impact-grid { gap: 24px; padding: 36px 0; }
+  .impact-grid .stat-item h3 { font-size: 3rem; }
+}
+
+/* --- Phones --- */
+@media (max-width: 768px) {
+  .about-hero {
+    padding-top: 105px;
+    padding-bottom: 44px;
+  }
+
+  .about-hero-tag { font-size: 0.85rem; letter-spacing: 1px; padding: 6px 13px; }
+  .about-hero h1 span { -webkit-text-stroke: 1.5px var(--primary); }
+
+  .mission-strip { gap: 18px; }
+
+  .leader-card { height: 320px; }
+  .leader-overlay { padding: 18px; }
+  .leader-overlay h3 { font-size: 1.5rem; }
+
+  /* Four stats become a tidy 2 x 2 */
+  .impact-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 28px 16px;
+    padding: 32px 0;
+  }
+  .impact-grid .stat-item h3 { font-size: 2.6rem; }
+
+  .about-cta p { margin-bottom: 28px; }
+}
+
+/* --- Small phones --- */
+@media (max-width: 480px) {
+  .about-hero-container { padding: 0 16px; }
+  .about-hero h1 { letter-spacing: 1px; }
+
+  .leader-card { height: 300px; }
+
+  .impact-grid .stat-item h3 { font-size: 2.2rem; }
+  .impact-grid .stat-item p { font-size: 0.75rem; }
+}

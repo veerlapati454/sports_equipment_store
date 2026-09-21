@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign Up | APEX ATHLETICS</title>
+
+  <script>
+    (function () {
+      try { if ('scrollRestoration' in history) history.scrollRestoration = 'manual'; } catch (e) {}
+      window.scrollTo(0, 0);
+      window.addEventListener('load', function () { window.scrollTo(0, 0); });
+    })();
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Teko:wght@500;700&family=Work+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Shared site styles + this page's styles -->
+  <link rel="stylesheet" href="../css/styles.css">
+  <link rel="stylesheet" href="../css/signup.css">
+</head>
+<body>
+
+  <!-- HEADER / LOGO -->
+  <div class="login-logo-bar">
+    <a href="../index.html" class="logo-placeholder" aria-label="Apex Athletics home">
+      <img src="../assets/logo.webp" alt="Apex Athletics" class="logo-img">
+    </a>
+  </div>
+
+  <!-- ==========================================================
+       SIGN UP
+       ========================================================== -->
+  <main class="signup-page">
+    <div class="signup-shell">
+
+      <!-- Left: brand panel (hidden on tablets & phones) -->
+      <aside class="signup-promo" aria-hidden="false">
+
+        <div class="promo-title">Join <span>The Lineup</span></div>
+        <p>Create an account to track orders, save your favourite kit, and check out faster next time.</p>
+        <ul class="signup-perks">
+          <li>
+            <span class="perk-icon"><i class="fa-solid fa-truck-fast"></i></span>
+            <div><h3>24hr Dispatch</h3><p>Every order ships same or next day</p></div>
+          </li>
+          <li>
+            <span class="perk-icon"><i class="fa-solid fa-arrows-rotate"></i></span>
+            <div><h3>30-Day Returns</h3><p>Train in it, then decide</p></div>
+          </li>
+          <li>
+            <span class="perk-icon"><i class="fa-solid fa-user-shield"></i></span>
+            <div><h3>Coach-Backed Support</h3><p>Real trainers answer your questions</p></div>
+          </li>
+        </ul>
+      </aside>
+
+      <!-- Right: signup card -->
+      <section class="signup-card" aria-labelledby="signupTitle">
+
+        <div class="signup-topbar">
+          <button type="button" class="signup-nav-btn" id="backBtn">
+            <i class="fa-solid fa-arrow-left"></i> Back
+          </button>
+          <a href="../index.html" class="signup-nav-btn">
+            <i class="fa-solid fa-house"></i> Back to home
+          </a>
+        </div>
+
+        <h1 id="signupTitle">Create <span>Account</span></h1>
+        <p class="signup-sub">Sign up with your Gmail address to get started.</p>
+
+        <div class="signup-alert" id="signupAlert" role="alert"></div>
+
+        <form id="signupForm" novalidate autocomplete="off">
+
+          <!-- Username -->
+          <div class="signup-field">
+            <label for="su-username">Username*</label>
+            <div class="input-wrap">
+              <i class="fa-solid fa-user lead" aria-hidden="true"></i>
+              <input type="text" id="su-username" name="username" placeholder="Letters only, e.g. JohnDoe"
+                     autocomplete="off" pattern="[A-Za-z]+" required>
+            </div>
+          </div>
+
+          <!-- Gmail -->
+          <div class="signup-field">
+            <label for="su-email">Gmail address*</label>
+            <div class="input-wrap">
+              <i class="fa-solid fa-envelope lead" aria-hidden="true"></i>
+              <input type="email" id="su-email" name="email" placeholder="yourname@gmail.com"
+                     autocomplete="off" inputmode="email" required>
+            </div>
+          </div>
+
+          <!-- Password -->
+          <div class="signup-field">
+            <label for="su-password">Password*</label>
+            <div class="input-wrap">
+              <i class="fa-solid fa-lock lead" aria-hidden="true"></i>
+              <input type="password" id="su-password" name="password" placeholder="At least 8 characters"
+                     autocomplete="new-password" required>
+              <button type="button" class="toggle-pass" data-target="su-password" aria-label="Show password" aria-pressed="false">
+                <i class="fa-solid fa-eye"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Confirm Password -->
+          <div class="signup-field">
+            <label for="su-confirm">Confirm Password*</label>
+            <div class="input-wrap">
+              <i class="fa-solid fa-lock lead" aria-hidden="true"></i>
+              <input type="password" id="su-confirm" name="confirmPassword" placeholder="Re-enter your password"
+                     autocomplete="new-password" required>
+              <button type="button" class="toggle-pass" data-target="su-confirm" aria-label="Show password" aria-pressed="false">
+                <i class="fa-solid fa-eye"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Terms & Conditions -->
+          <div class="signup-terms">
+            <input type="checkbox" id="su-terms" name="terms" required>
+            <label for="su-terms">I have read and agree to the <a href="./404.html">Terms &amp; Conditions</a>*</label>
+          </div>
+
+          <button type="submit" class="btn btn-primary signup-submit" id="signupSubmit">
+            <i class="fa-solid fa-user-plus"></i> <span>Sign Up</span>
+          </button>
+        </form>
+
+        <!-- Social sign up -->
+        <div class="signup-divider"><span>or sign up with</span></div>
+
+        <div class="social-row">
+          <a href="./404.html" class="social-btn" aria-label="Sign up with Google">
+            <i class="fa-brands fa-google"></i>
+          </a>
+          <a href="./404.html" class="social-btn" aria-label="Sign up with Facebook">
+            <i class="fa-brands fa-facebook-f"></i>
+          </a>
+          <a href="./404.html" class="social-btn" aria-label="Sign up with Apple">
+            <i class="fa-brands fa-apple"></i>
+          </a>
+        </div>
+
+        <p class="signup-register">
+          Already have an account? <a href="./login.html">Log in here</a>
+        </p>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="signup-footer">
+    <p>&copy; 2026 Stackly Athletics Inc. All rights reserved.</p>
+  </footer>
+
+  <!-- 404 OVERLAY (kept so shared script.js finds the elements it expects) -->
+  <div id="page-404">
+    <h1>404</h1>
+    <h2>Authentication Service Unavailable</h2>
+    <p>The page you are trying to reach is currently undergoing scheduled maintenance.</p>
+    <button class="btn btn-primary" id="close404Btn"><i class="fa-solid fa-arrow-left"></i> Return To Home</button>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js"></script>
+  <script src="../js/script.js"></script>
+  <script src="../js/signup.js"></script>
+</body>
+</html>

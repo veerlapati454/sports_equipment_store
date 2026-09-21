@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Page not found · APEX ATHLETICS</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Teko:wght@500;600;700&family=Work+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <link rel="stylesheet" href="../css/404.css" />
+</head>
+<body>
+  <main class="stage">
+    <!-- Ambient background: stadium floodlights + a running-track floor -->
+    <div class="flood flood-l" aria-hidden="true"></div>
+    <div class="flood flood-r" aria-hidden="true"></div>
+    <div class="floor" aria-hidden="true"><div class="floor-plane"></div></div>
+
+    <a href="../index.html" class="top-brand" aria-label="Apex Athletics home">
+      <img src="../assets/logo.webp" alt="Apex Athletics" class="brand-logo">
+    </a>
+
+    <section class="content">
+      <div class="status-strip rise" style="--d:.1s">Error 404 &middot; Out of bounds</div>
+
+      <!-- The zero is a ball. Tap it to juggle. -->
+      <div class="digits" role="img" aria-label="404">
+        <span class="digit digit-l" aria-hidden="true">4</span>
+        <button type="button" class="ball" id="ball" aria-label="Kick the ball">
+          <span class="ball-shadow"></span>
+          <span class="ball-drop">
+            <span class="ball-kick" id="ball-kick">
+              <span class="ball-bounce">
+                <span class="ball-spin">
+                  <svg viewBox="0 0 100 100" aria-hidden="true" focusable="false">
+                    <circle cx="50" cy="50" r="48" fill="#FF4500"/>
+                    <g fill="none" stroke="#1a0a04" stroke-width="2.8" stroke-linecap="round">
+                      <path d="M50 2 V98"/>
+                      <path d="M2 50 H98"/>
+                      <path d="M17 13 C35 30 35 70 17 87"/>
+                      <path d="M83 13 C65 30 65 70 83 87"/>
+                    </g>
+                  </svg>
+                </span>
+                <span class="ball-shade"></span>
+              </span>
+            </span>
+          </span>
+          <span class="sparks" id="sparks" aria-hidden="true"></span>
+        </button>
+        <span class="digit digit-r" aria-hidden="true">4</span>
+      </div>
+
+      <div class="scoreboard rise" style="--d:.95s">
+        <span class="sb-hint"><i class="fa-solid fa-hand-pointer"></i>&nbsp; Tap the ball to juggle it</span>
+        <span class="sb-cell"><span class="sb-label">Keepy-ups</span><strong id="score">0</strong></span>
+        <span class="sb-cell"><span class="sb-label">Best</span><strong id="best">0</strong></span>
+      </div>
+
+      <h1 class="title rise" style="--d:1.05s">This page is out of bounds</h1>
+      <p class="lead rise" style="--d:1.15s">The page you're after was moved, renamed, or never made the team. Head back to where you were, or restart from the home page.</p>
+
+      <div class="path-chip rise" style="--d:1.25s">
+        <i class="fa-solid fa-location-crosshairs"></i>
+        <span>Requested</span>
+        <code id="req-path">/</code>
+      </div>
+
+      <div class="actions rise" style="--d:1.35s">
+        <button type="button" class="btn btn-back" id="back-btn">
+          <span class="btn-fill" aria-hidden="true"></span>
+          <i class="fa-solid fa-arrow-left btn-icon" aria-hidden="true"></i>
+          <span class="btn-label">Go Back</span>
+        </button>
+        <a href="../index.html" class="btn btn-home" id="home-btn">
+          <span class="btn-shine" aria-hidden="true"></span>
+          <i class="fa-solid fa-house btn-icon" aria-hidden="true"></i>
+          <span class="btn-label">Back to Home</span>
+        </a>
+      </div>
+    </section>
+  </main>
+  <script src="../js/404.js"></script>
+</body>
+</html>

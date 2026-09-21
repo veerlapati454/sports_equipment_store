@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login | APEX ATHLETICS</title>
+
+  <script>
+    (function () {
+      try { if ('scrollRestoration' in history) history.scrollRestoration = 'manual'; } catch (e) {}
+      window.scrollTo(0, 0);
+      window.addEventListener('load', function () { window.scrollTo(0, 0); });
+    })();
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Teko:wght@500;700&family=Work+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Shared site styles + this page's styles -->
+  <link rel="stylesheet" href="../css/styles.css">
+  <link rel="stylesheet" href="../css/login.css">
+</head>
+<body>
+
+  <!-- HEADER / LOGO -->
+  <div class="login-logo-bar">
+    <a href="../index.html" class="logo-placeholder" aria-label="Apex Athletics home">
+      <img src="../assets/logo.webp" alt="Apex Athletics" class="logo-img">
+    </a>
+  </div>
+
+  <!-- ==========================================================
+       LOGIN
+       ========================================================== -->
+  <main class="login-page">
+    <div class="login-shell">
+
+      <!-- Left: brand panel (hidden on tablets & phones) -->
+      <aside class="login-promo" aria-hidden="false">
+
+        <div class="promo-title">Back To <span>The Lineup</span></div>
+        <p>Log in to track orders, manage your kit, and pick up right where your last session ended.</p>
+        <ul class="login-perks">
+          <li>
+            <span class="perk-icon"><i class="fa-solid fa-truck-fast"></i></span>
+            <div><h3>24hr Dispatch</h3><p>Every order ships same or next day</p></div>
+          </li>
+          <li>
+            <span class="perk-icon"><i class="fa-solid fa-arrows-rotate"></i></span>
+            <div><h3>30-Day Returns</h3><p>Train in it, then decide</p></div>
+          </li>
+          <li>
+            <span class="perk-icon"><i class="fa-solid fa-user-shield"></i></span>
+            <div><h3>Coach-Backed Support</h3><p>Real trainers answer your questions</p></div>
+          </li>
+        </ul>
+      </aside>
+
+      <!-- Right: login card -->
+      <section class="login-card" aria-labelledby="loginTitle">
+
+        <div class="login-topbar">
+          <button type="button" class="login-nav-btn" id="backBtn">
+            <i class="fa-solid fa-arrow-left"></i> Back
+          </button>
+          <a href="../index.html" class="login-nav-btn">
+            <i class="fa-solid fa-house"></i> Back to home
+          </a>
+        </div>
+
+        <h1 id="loginTitle">Member <span>Login</span></h1>
+        <p class="login-sub">Choose your role, then sign in with your Gmail address.</p>
+
+        <div class="login-alert" id="loginAlert" role="alert"></div>
+
+        <form id="loginForm" novalidate autocomplete="off">
+
+          <!-- Role -->
+          <fieldset class="role-toggle">
+            <legend>Log in as</legend>
+            <div class="role-options">
+              <div class="role-option">
+                <input type="radio" id="role-user" name="role" value="user" checked>
+                <label for="role-user"><i class="fa-solid fa-user"></i> User</label>
+              </div>
+              <div class="role-option">
+                <input type="radio" id="role-admin" name="role" value="admin">
+                <label for="role-admin"><i class="fa-solid fa-user-gear"></i> Admin</label>
+              </div>
+            </div>
+          </fieldset>
+
+          <!-- Gmail -->
+          <div class="login-field">
+            <label for="lg-email">Gmail address*</label>
+            <div class="input-wrap">
+              <i class="fa-solid fa-envelope lead" aria-hidden="true"></i>
+              <input type="email" id="lg-email" name="email" placeholder="yourname@gmail.com"
+                     autocomplete="off" inputmode="email" required>
+            </div>
+          </div>
+
+          <!-- Password -->
+          <div class="login-field">
+            <label for="lg-password">Password*</label>
+            <div class="input-wrap">
+              <i class="fa-solid fa-lock lead" aria-hidden="true"></i>
+              <input type="password" id="lg-password" name="password" placeholder="Enter your password"
+                     autocomplete="new-password" required>
+              <button type="button" class="toggle-pass" id="togglePass" aria-label="Show password" aria-pressed="false">
+                <i class="fa-solid fa-eye"></i>
+              </button>
+            </div>
+          </div>
+
+          <div class="login-row">
+            <a href="./404.html" class="forgot-link">Forgot password?</a>
+          </div>
+
+          <button type="submit" class="btn btn-primary login-submit" id="loginSubmit">
+            <i class="fa-solid fa-right-to-bracket"></i> <span>Log in</span>
+          </button>
+        </form>
+
+        <p class="login-register">
+          New user? <a href="./signup.html">Click here to register</a>
+        </p>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="login-footer">
+    <p>&copy; 2026 Stackly Athletics Inc. All rights reserved.</p>
+  </footer>
+
+  <!-- 404 OVERLAY (kept so shared script.js finds the elements it expects) -->
+  <div id="page-404">
+    <h1>404</h1>
+    <h2>Authentication Service Unavailable</h2>
+    <p>The login endpoint you are trying to reach is currently undergoing scheduled maintenance.</p>
+    <button class="btn btn-primary" id="close404Btn"><i class="fa-solid fa-arrow-left"></i> Return To Home</button>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js"></script>
+  <script src="../js/script.js"></script>
+  <script src="../js/login.js"></script>
+</body>
+</html>

@@ -1,0 +1,1119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>APEX ATHLETICS · My Account</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Teko:wght@500;600;700&family=Work+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+  <style>
+    /* =========================================================
+       APEX ATHLETICS — User Dashboard
+       Matches the site tokens used across login.css/signup.css:
+       dark ink background, OrangeRed primary, cyan secondary,
+       Teko display + Work Sans body.
+       ========================================================= */
+    * { box-sizing: border-box; margin: 0; }
+    body {
+      font-family: 'Work Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      font-weight: 400;
+      background: #0A0C10;
+      color: #F1F1F1;
+      -webkit-font-smoothing: antialiased;
+    }
+    :root {
+      --bg-dark: #0A0C10;
+      --bg-deep: #06070a;
+      --bg-card: #12151c;
+      --bg-card-hover: #171b24;
+      --border-color: rgba(255,255,255,0.09);
+      --border-bright: rgba(255,255,255,0.18);
+      --text-light: #F1F1F1;
+      --text-muted: #9BA3AC;
+      --text-faint: rgba(155,163,172,0.65);
+      --primary: #FF4500;
+      --primary-deep: #D93A00;
+      --primary-soft: rgba(255,69,0,0.14);
+      --primary-glow: rgba(255,69,0,0.35);
+      --secondary: #00E5FF;
+      --secondary-soft: rgba(0,229,255,0.12);
+      --green: #29C08A;
+      --green-soft: rgba(41,192,138,0.14);
+      --danger: #FF5C5C;
+      --danger-soft: rgba(255,92,92,0.12);
+      --gold: #FFC94D;
+      --gold-soft: rgba(255,201,77,0.14);
+      --font-heading: 'Teko', sans-serif;
+      --font-body: 'Work Sans', sans-serif;
+      --ease: cubic-bezier(.19,1,.22,1);
+      --transition: all .2s ease;
+      --radius-sm: 6px;
+      --radius-md: 12px;
+      --radius-lg: 20px;
+    }
+    @media (prefers-reduced-motion: reduce){
+      *{ animation-duration:.001ms !important; transition-duration:.001ms !important; }
+    }
+    ::selection{ background:var(--primary); color:#fff; }
+
+    .member-bar {
+      background: var(--bg-deep); color: var(--text-muted);
+      font-family: var(--font-heading); font-size: 13px; font-weight: 500;
+      letter-spacing: 0.06em; text-align: center;
+      padding: 7px 10px; position: sticky; top: 0; z-index: 60;
+      border-bottom: 1px solid var(--border-color);
+    }
+    .member-bar strong { color: var(--gold); }
+
+    .dashboard-root { display: flex; min-height: 100vh; width: 100%; max-width: 100vw; position:relative; }
+    .dashboard-root::before{
+      content:""; position:fixed; inset:0; z-index:0; pointer-events:none;
+      background-image:radial-gradient(circle at 18% 20%, rgba(255,69,0,0.07) 0%, transparent 55%),
+                       radial-gradient(circle at 85% 80%, rgba(0,229,255,0.05) 0%, transparent 55%);
+    }
+    .sidebar-overlay {
+      position: fixed; inset: 0; background: rgba(0,0,0,0.6);
+      z-index: 40; display: none; backdrop-filter: blur(4px);
+    }
+    .sidebar-overlay.show { display: block; animation: fadeIn .25s var(--ease); }
+    @keyframes fadeIn{ from{ opacity:0; } to{ opacity:1; } }
+    .sidebar {
+      width: 264px; flex-shrink: 0; background: var(--bg-card);
+      border-right: 1px solid var(--border-color); display: flex; flex-direction: column;
+      padding: 22px 16px 16px; position: fixed; left: 0; top: 34px;
+      height: calc(100vh - 34px); overflow-y: auto; z-index: 30;
+    }
+    .sidebar-header { display: flex; align-items: center; justify-content: center; margin-bottom: 18px; padding: 10px 4px; position: relative; }
+    .brand { display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; text-decoration: none; }
+    .brand-logo { width: 170px; height: auto; max-height: 48px; object-fit: contain; display: block; }
+    .close-btn {
+      display: none; background: none; border: none; color: var(--text-muted);
+      font-size: 15px; padding: 4px 8px; cursor:pointer;
+      position: absolute; right: 0; top: 50%; transform: translateY(-50%);
+    }
+    .unit-strip {
+      font-family: var(--font-heading); font-size: 13px; font-weight: 500; letter-spacing: 0.04em;
+      color: var(--primary); text-transform: uppercase; text-align: center;
+      padding: 9px 6px; margin-bottom: 16px; border: 1px solid var(--border-color); border-radius: var(--radius-sm);
+      display: flex; align-items: center; justify-content: center; gap: 8px; background: var(--primary-soft);
+    }
+    .unit-strip::before {
+      content: ''; width: 6px; height: 6px; background: var(--primary);
+      border-radius: 50%; box-shadow: 0 0 8px var(--primary-glow);
+      animation: blink 2.2s ease-in-out infinite;
+    }
+    @keyframes blink { 0%,100% { opacity: 1; } 50% { opacity: 0.4; } }
+    .sidebar-section-label {
+      font-family:var(--font-heading); font-size: 12px; font-weight: 500; letter-spacing: 0.06em;
+      color: var(--text-faint); text-transform: uppercase; margin: 14px 8px 8px;
+    }
+    .sidebar-nav { display: flex; flex-direction: column; gap: 2px; }
+    .nav-item {
+      display: flex; align-items: center; gap: 12px;
+      background: none; border: none; width: 100%;
+      padding: 10px 12px; border-radius: var(--radius-sm);
+      color: var(--text-muted); font-size: 13.5px; font-weight: 500;
+      text-align: left; transition: all .2s ease; position: relative; cursor:pointer;
+      font-family: var(--font-body);
+    }
+    .nav-item:hover { background: var(--primary-soft); color: var(--text-light); transform:translateX(2px); }
+    .nav-item.nav-active { background: var(--primary-soft); color: var(--primary); font-weight: 600; box-shadow: 0 0 0 1px var(--primary-glow) inset; }
+    .nav-icon { font-size: 14px; width: 18px; text-align: center; flex-shrink: 0; }
+    .nav-badge { margin-left: auto; background: var(--primary); color: #fff; font-family:var(--font-heading); font-size: 11px; font-weight: 600; padding: 1px 7px; border-radius: 999px; }
+    .sidebar-user {
+      display: flex; align-items: center; gap: 10px;
+      padding: 10px; margin-top: 16px; margin-bottom: 4px;
+      border-radius: var(--radius-sm); background: var(--bg-deep); border: 1px solid var(--border-color);
+    }
+    .sidebar-user-avatar {
+      width: 34px; height: 34px; border-radius: 50%; flex-shrink: 0;
+      background: var(--primary-soft); color: var(--primary);
+      display: flex; align-items: center; justify-content: center;
+      font-family:var(--font-heading); font-size: 16px; font-weight: 600; text-transform: uppercase;
+    }
+    .sidebar-user-info { min-width: 0; flex: 1; }
+    .sidebar-user-name { font-size: 12.5px; font-weight: 600; color: var(--text-light); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; text-transform:capitalize; }
+    .sidebar-user-email { font-size: 11px; color: var(--text-faint); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .logout-full-btn {
+      margin-top: 8px; width: 100%; padding: 11px; border-radius: var(--radius-sm);
+      background: var(--danger-soft); border: 1px solid rgba(255,92,92,0.28);
+      color: var(--danger); font-family:var(--font-heading); font-size: 13px; font-weight: 500; letter-spacing:.04em; text-transform:uppercase;
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+      transition: background .2s ease; text-decoration: none; cursor: pointer;
+    }
+    .logout-full-btn:hover { background: rgba(255,92,92,0.2); }
+    .main-content { flex: 1; min-width: 0; max-width: 100%; display: flex; flex-direction: column; margin-left: 264px; position:relative; z-index:1; }
+    .topbar {
+      position: sticky; top: 34px; z-index: 25;
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 12px; padding: 10px 24px;
+      background: rgba(10,12,16,0.92); backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border-color);
+      flex-wrap: nowrap; min-height: 62px;
+    }
+    .topbar-left { display: flex; align-items: center; gap: 14px; min-width: 0; flex-shrink: 1; }
+    .hamburger {
+      display: none; flex-direction: column; justify-content: center; gap: 4px;
+      width: 36px; height: 36px; border-radius: var(--radius-sm);
+      background: var(--bg-card); border: 1px solid var(--border-color);
+      align-items: center; flex-shrink: 0; cursor:pointer;
+    }
+    .hamburger span { width: 16px; height: 2px; background: var(--text-light); border-radius: 2px; }
+    .page-title { min-width: 0; display: flex; align-items: baseline; gap: 12px; white-space: nowrap; }
+    .page-title h1 {
+      font-family:var(--font-heading); letter-spacing:.01em; font-size: 28px; font-weight: 600; margin: 0;
+      color: var(--text-light); white-space: nowrap; text-transform: uppercase;
+    }
+    .page-title p { font-size: 12px; color: var(--text-muted); margin: 0; white-space: nowrap; font-family: var(--font-body); letter-spacing:.01em; }
+    .topbar-right { display: flex; align-items: center; gap: 10px; flex-shrink: 0; margin-left: auto; }
+    .search-box { display: flex; align-items: center; gap: 6px; background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-sm); padding: 6px 10px; min-width: 0; }
+    .search-box input { background: none; border: none; outline: none; color: var(--text-light); font-size: 12px; width: 170px; max-width: 100%; min-width: 60px; font-family: var(--font-body); }
+    .search-box input::placeholder { color: var(--text-faint); font-size: 11.5px; }
+    .search-icon { font-size: 12px; opacity: 0.7; color: var(--text-muted); }
+    .icon-btn {
+      position: relative; width: 34px; height: 34px; border-radius: var(--radius-sm);
+      background: var(--bg-card); border: 1px solid var(--border-color);
+      display: flex; align-items: center; justify-content: center; font-size: 13px;
+      flex-shrink: 0; cursor:pointer; transition:all .2s ease; color: var(--text-muted);
+    }
+    .icon-btn:hover{ border-color:var(--primary); transform:translateY(-1px); color: var(--primary); }
+    .notif-dot {
+      position: absolute; top: 6px; right: 6px; width: 6px; height: 6px;
+      border-radius: 50%; background: var(--primary); border: 1.5px solid var(--bg-card);
+      animation: notifPulse 2.2s ease-in-out infinite;
+    }
+    @keyframes notifPulse{ 0%,100%{ box-shadow:0 0 0 0 rgba(255,69,0,.35); } 50%{ box-shadow:0 0 0 4px rgba(255,69,0,0); } }
+    .topbar-user { position: relative; flex-shrink: 0; }
+    .topbar-user-btn {
+      display: flex; align-items: center; gap: 8px;
+      background: var(--bg-card); border: 1px solid var(--border-color);
+      border-radius: 999px; padding: 3px 10px 3px 3px;
+      transition: border-color .2s ease; cursor:pointer;
+    }
+    .topbar-user-btn:hover { border-color:var(--primary); }
+    .topbar-user-avatar {
+      width: 26px; height: 26px; border-radius: 50%; flex-shrink: 0;
+      background: var(--primary); color: #fff;
+      display: flex; align-items: center; justify-content: center;
+      font-family:var(--font-heading); font-size: 14px; font-weight: 600; text-transform: uppercase;
+    }
+    .topbar-user-name { font-size: 11.5px; font-weight: 500; color: var(--text-light); max-width: 100px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; text-transform:capitalize; }
+    .topbar-user-caret { font-size: 9px; color: var(--text-faint); }
+    .topbar-user-menu {
+      position: absolute; top: calc(100% + 8px); right: 0; width: 220px;
+      background: var(--bg-card); border: 1px solid var(--border-bright);
+      border-radius: 10px; padding: 8px;
+      box-shadow: 0 18px 40px rgba(0,0,0,0.5);
+      opacity: 0; visibility: hidden; transform: translateY(-6px);
+      transition: opacity .2s var(--ease), transform .2s var(--ease), visibility .2s ease;
+      z-index: 60;
+    }
+    .topbar-user.open .topbar-user-menu { opacity: 1; visibility: visible; transform: translateY(0); }
+    .topbar-user-menu-email { padding: 8px 10px 10px; border-bottom: 1px solid var(--border-color); margin-bottom: 6px; }
+    .topbar-user-menu-email .label { font-family:var(--font-heading); font-size: 11px; font-weight: 500; color: var(--text-faint); text-transform: uppercase; letter-spacing: .06em; }
+    .topbar-user-menu-email .value { font-size: 11.5px; font-weight: 600; color: var(--text-light); margin-top: 2px; word-break: break-all; }
+    .topbar-user-menu-item {
+      display: flex; align-items: center; gap: 9px; width: 100%;
+      padding: 8px 10px; border-radius: var(--radius-sm);
+      background: none; border: none; text-align: left;
+      font-size: 11.5px; font-weight: 500; color: var(--text-muted);
+      transition: background .15s ease, color .15s ease; cursor:pointer; font-family: var(--font-body);
+    }
+    .topbar-user-menu-item:hover { background: var(--primary-soft); color: var(--text-light); }
+    .topbar-user-menu-item.danger:hover { background: var(--danger-soft); color: var(--danger); }
+
+    .content-area { padding: 24px 28px 48px; min-width: 0; max-width: 100%; overflow-x: hidden; }
+    .hero-banner {
+      position: relative; border-radius: var(--radius-lg); overflow: hidden; margin-bottom: 20px;
+      border: 1px solid var(--border-bright); min-height: 150px; display: flex; align-items: center;
+      background: linear-gradient(135deg, #171b24, var(--bg-deep));
+    }
+    .hero-banner::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg, var(--primary), #FF9466, var(--primary));
+    }
+    .hero-banner-inner { padding: 26px 30px; max-width: 580px; }
+    .hero-eyebrow { font-family:var(--font-heading); font-size: 13px; font-weight: 500; letter-spacing: .06em; text-transform: uppercase; color: var(--secondary); margin-bottom: 8px; }
+    .hero-banner h2 { font-family:var(--font-heading); font-size: 30px; font-weight: 600; margin-bottom: 8px; color: #fff; letter-spacing: -0.01em; text-transform: uppercase; }
+    .hero-banner p { font-size: 13.5px; color: rgba(241,241,241,0.62); line-height: 1.6; }
+    .stats-grid { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 16px; margin-bottom: 20px; }
+    .stat-card {
+      background: var(--bg-card); border: 1px solid var(--border-color);
+      border-radius: var(--radius-md); padding: 18px 18px 16px; min-width: 0;
+      transition: all .25s ease; box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+      opacity:0; transform:translateY(14px); animation: cardPop .5s var(--ease) forwards;
+    }
+    .stat-card[data-aos] { opacity: 0; animation: none; }
+    .stats-grid .stat-card:nth-child(1){ animation-delay:.03s; }
+    .stats-grid .stat-card:nth-child(2){ animation-delay:.09s; }
+    .stats-grid .stat-card:nth-child(3){ animation-delay:.15s; }
+    .stats-grid .stat-card:nth-child(4){ animation-delay:.21s; }
+    @keyframes cardPop{ to{ opacity:1; transform:translateY(0); } }
+    .stat-card:hover { border-color:var(--primary); transform:translateY(-3px); box-shadow:0 10px 26px rgba(255,69,0,0.14); }
+    .stat-accent { border-color: var(--primary-glow); background:linear-gradient(145deg, var(--primary-soft), var(--bg-card) 70%); }
+    .stat-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; }
+    .stat-icon { font-size: 16px; color: var(--primary); }
+    .stat-delta { font-family:var(--font-heading); font-size: 12px; font-weight: 500; padding: 2px 8px; border-radius: 999px; }
+    .stat-delta.up { color: var(--green); background: var(--green-soft); }
+    .stat-delta.warn { color: var(--danger); background: var(--danger-soft); }
+    .stat-value { font-family:var(--font-heading); font-size: 30px; font-weight: 600; letter-spacing: -0.01em; color: var(--text-light); }
+    .stat-label { font-size: 12px; color: var(--text-muted); margin-top: 4px; font-family: var(--font-body); text-transform: uppercase; letter-spacing: 0.03em; }
+    .stat-bar { height: 5px; background: rgba(255,255,255,0.07); border-radius: 999px; margin-top: 12px; overflow: hidden; }
+    .stat-bar-fill { height: 100%; width:0; background: linear-gradient(90deg, var(--primary-deep), var(--primary)); border-radius: 999px; transition: width 1.1s var(--ease) .3s; }
+    .mid-grid { display: grid; grid-template-columns: 1.7fr 1fr; gap: 16px; margin-bottom: 16px; align-items: start; }
+    .bottom-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; align-items: start; }
+    .card {
+      background: var(--bg-card); border: 1px solid var(--border-color);
+      border-radius: var(--radius-md); padding: 20px; margin-bottom: 16px; min-width: 0;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+      opacity:0; transform:translateY(14px); animation: cardPop .5s var(--ease) .1s forwards;
+    }
+    .card[data-aos] { opacity: 0; animation: none; }
+    .card-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; margin-bottom: 16px; flex-wrap: wrap; }
+    .card-title { font-family:var(--font-heading); letter-spacing:.01em; font-size: 20px; font-weight: 600; margin: 0; color: var(--text-light); text-transform: uppercase; }
+    .card-sub { font-size: 12px; color: var(--text-muted); margin: 3px 0 0; font-family: var(--font-body); }
+    .table-wrapper { overflow-x: auto; max-width: 100%; -webkit-overflow-scrolling: touch; }
+    .runs-table { width: 100%; border-collapse: collapse; min-width: 640px; }
+    .runs-table th {
+      text-align: left; font-family:var(--font-heading); font-size: 12px; font-weight: 500; text-transform: uppercase;
+      letter-spacing: 0.04em; color: var(--text-faint);
+      padding: 0 10px 10px; border-bottom: 1px solid var(--border-color);
+    }
+    .runs-table td { padding: 12px 10px; border-bottom: 1px solid var(--border-color); font-size: 13px; vertical-align: middle; }
+    .runs-table tr:last-child td { border-bottom: none; }
+    .runs-table tbody tr { transition: background .15s ease; cursor:pointer; }
+    .runs-table tbody tr:hover { background: var(--primary-soft); }
+    .t-name { font-weight: 600; font-family: var(--font-body); font-size: 14px; color: var(--text-light); }
+    .t-sub { font-size: 11.5px; color: var(--text-faint); margin-top: 2px; font-family: var(--font-body); }
+    .type-col { color: var(--text-muted); }
+    .date-col { color: var(--text-muted); white-space: nowrap; font-family: var(--font-body); font-size: 12px; }
+    .budget-col { font-weight: 700; white-space: nowrap; font-family:var(--font-heading); font-size:15px; color: var(--primary); }
+    .region-tag { font-family:var(--font-heading); font-size: 12px; font-weight: 500; padding: 3px 9px; border-radius: 999px; border: 1px solid; white-space: nowrap; text-transform: uppercase; }
+    .status-badge { font-family:var(--font-heading); font-size: 12px; font-weight: 500; padding: 4px 10px; border-radius: 999px; white-space: nowrap; text-transform:uppercase; letter-spacing:.02em; }
+    .status-active { background: var(--green-soft); color: var(--green); }
+    .status-field { background: var(--secondary-soft); color: var(--secondary); }
+    .status-complete { background: rgba(155,163,172,0.16); color: var(--text-muted); }
+    .status-review { background: var(--danger-soft); color: var(--danger); }
+    .status-gold { background: var(--gold-soft); color: var(--gold); }
+    .progress-wrap { display: flex; align-items: center; gap: 8px; min-width: 100px; }
+    .progress-bar { flex: 1; height: 6px; background: rgba(255,255,255,0.07); border-radius: 999px; overflow: hidden; }
+    .progress-fill { height: 100%; width:0; background: linear-gradient(90deg, var(--primary-deep), var(--primary)); border-radius: 999px; transition:width 1s var(--ease) .2s; }
+    .progress-pct { font-family:var(--font-heading); font-size: 13px; color: var(--text-muted); flex-shrink: 0; }
+    .activity-list { display: flex; flex-direction: column; gap: 4px; padding: 0; margin: 0; }
+    .activity-item { display: flex; align-items: flex-start; gap: 12px; padding: 12px 6px; border-radius: var(--radius-sm); transition: background .15s ease; cursor:pointer; }
+    .activity-item:hover { background: var(--primary-soft); }
+    .act-icon { font-size: 15px; flex-shrink: 0; line-height: 1.4; color: var(--primary); width:18px; text-align:center; margin-top:1px; }
+    .act-body { flex: 1; min-width: 0; }
+    .act-text { font-size: 13px; margin: 0; line-height: 1.5; word-wrap: break-word; color: var(--text-light); }
+    .act-time { font-family:var(--font-heading); font-size: 12px; color: var(--text-faint); margin-top: 4px; display: block; }
+    .team-list { display: flex; flex-direction: column; gap: 4px; padding: 0; margin: 0; }
+    .team-item { display: flex; align-items: center; gap: 12px; padding: 10px 6px; border-radius: var(--radius-sm); transition: background .15s ease; cursor:pointer; }
+    .team-item:hover { background: var(--primary-soft); }
+    .member-avatar {
+      position: relative; width: 38px; height: 38px; border-radius: 50%;
+      background: var(--bg-deep); border: 1px solid var(--border-color);
+      display: flex; align-items: center; justify-content: center;
+      font-family:var(--font-heading); font-size: 15px; font-weight: 600; color: var(--primary); flex-shrink: 0;
+    }
+    .online-dot { position: absolute; bottom: -1px; right: -1px; width: 10px; height: 10px; border-radius: 50%; border: 2px solid var(--bg-card); }
+    .dot-active { background: var(--green); }
+    .dot-away { background: var(--gold); }
+    .member-info { flex: 1; min-width: 0; }
+    .member-name { font-size: 13px; font-weight: 600; color: var(--text-light); }
+    .member-role { font-size: 11.5px; color: var(--text-faint); margin-top: 1px; font-family: var(--font-body); }
+    .member-projects { text-align: center; flex-shrink: 0; }
+    .proj-count { display: block; font-family:var(--font-heading); font-size: 17px; color: var(--primary); }
+    .proj-label { display: block; font-family:var(--font-heading); font-size: 11px; color: var(--text-faint); text-transform:uppercase; }
+    .milestone-list { display: flex; flex-direction: column; padding: 0; margin: 0; }
+    .milestone-item { display: flex; align-items: flex-start; gap: 12px; padding: 12px 6px; border-radius: var(--radius-sm); position: relative; transition: background .15s ease; cursor:pointer; }
+    .milestone-item:hover { background: var(--primary-soft); }
+    .ms-date { width: 38px; flex-shrink: 0; text-align: center; }
+    .ms-date span { display: block; }
+    .ms-date span:first-child { font-family:var(--font-heading); font-size: 11px; font-weight: 500; color: var(--primary); text-transform: uppercase; }
+    .ms-date span:last-child { font-family:var(--font-heading); font-size: 19px; color: var(--text-light); }
+    .ms-line { width: 2px; align-self: stretch; display: flex; justify-content: center; flex-shrink: 0; }
+    .ms-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--primary); margin-top: 4px; }
+    .ms-body { flex: 1; min-width: 0; }
+    .ms-event { font-size: 13px; font-weight: 600; color: var(--text-light); }
+    .ms-project { font-size: 11.5px; color: var(--text-faint); margin-top: 2px; font-family: var(--font-body); }
+    .ms-tag { font-family:var(--font-heading); font-size: 11px; font-weight: 500; padding: 2px 8px; border-radius: 999px; background: var(--danger-soft); color: var(--danger); flex-shrink: 0; align-self: flex-start; text-transform:uppercase; }
+    .ms-done-tag { background: var(--green-soft); color: var(--green); }
+    .ms-done .ms-event { text-decoration: line-through; color: var(--text-faint); }
+    .donut-chart { display: flex; justify-content: center; margin: 6px 0 14px; cursor:pointer; }
+    .donut-svg { width: 150px; height: 150px; max-width: 100%; }
+    .donut-num { font-family:var(--font-heading); font-size: 25px; fill: var(--text-light); font-weight: 600; }
+    .donut-label { font-family:var(--font-heading); font-size: 10px; fill: var(--text-faint); text-transform: uppercase; letter-spacing: 0.06em; }
+    .legend-list { display: flex; flex-direction: column; gap: 9px; padding: 0; margin: 0; }
+    .legend-item { display: flex; align-items: center; gap: 9px; padding: 4px 6px; border-radius: var(--radius-sm); cursor:pointer; }
+    .legend-item:hover { background: var(--primary-soft); }
+    .legend-dot { width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0; }
+    .legend-label { flex: 1; font-size: 12px; color: var(--text-muted); font-family: var(--font-body); text-transform: uppercase; }
+    .legend-count { font-family:var(--font-heading); font-size: 13px; font-weight: 600; color: var(--text-light); }
+    .btn-outline {
+      background: none; border: 1.5px solid var(--border-bright); color: var(--text-muted);
+      padding: 7px 14px; border-radius: var(--radius-sm); font-family:var(--font-heading); font-size: 13px; font-weight: 500; letter-spacing:.02em;
+      transition: all .2s ease; cursor:pointer; text-transform: uppercase;
+    }
+    .btn-outline:hover { border-color:var(--primary); color:var(--primary); transform:translateY(-1px); }
+    .btn-solid {
+      background: var(--primary); border: 1.5px solid var(--primary); color: #fff;
+      padding: 7px 14px; border-radius: var(--radius-sm); font-family:var(--font-heading); font-size: 13px; font-weight: 500; letter-spacing:.03em;
+      transition: all .2s ease; cursor:pointer; text-transform: uppercase;
+    }
+    .btn-solid:hover { background: var(--primary-deep); border-color: var(--primary-deep); transform:translateY(-1px); }
+    .research-card {
+      background: var(--bg-deep); border: 1px solid var(--border-color); border-radius: var(--radius-md);
+      padding: 16px; cursor: pointer; min-width: 0; transition: border-color .2s ease, transform .2s ease;
+    }
+    .research-card:hover{ border-color: var(--primary-glow); transform:translateY(-2px); }
+    select.pref-select { background: var(--bg-deep); border: 1.5px solid var(--border-bright); color: var(--text-light); border-radius: var(--radius-sm); padding: 7px 12px; font-size: 13px; outline: none; font-family:var(--font-body); }
+    .toggle-switch { width: 42px; height: 24px; border-radius: 999px; cursor: pointer; position: relative; flex-shrink: 0; transition: background .3s ease; }
+    .toggle-knob { position: absolute; top: 3px; width: 18px; height: 18px; border-radius: 50%; background: #fff; box-shadow: 0 1px 4px rgba(0,0,0,0.4); transition: left .3s var(--ease); }
+    @media (max-width: 1200px) { .mid-grid { grid-template-columns: 1fr; } .bottom-grid { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 1024px) {
+      .sidebar { z-index: 50; transform: translateX(-100%); transition: transform .35s var(--ease); will-change: transform; }
+      .sidebar.sidebar-open { transform: translateX(0); }
+      .main-content { margin-left: 0; }
+      .close-btn { display: block; }
+      .hamburger { display: flex; }
+      .stats-grid { grid-template-columns: repeat(2, minmax(0,1fr)); }
+    }
+    @media (max-width: 820px) { .page-title p { display: none; } .search-box input { width: 100px; } }
+    @media (max-width: 720px) {
+      .bottom-grid { grid-template-columns: 1fr; }
+      .stats-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
+      .content-area { padding: 18px 16px 40px; }
+      .topbar { padding: 10px 14px; }
+      .search-box input { width: 80px; }
+      .topbar-user-name { display: none; }
+      .topbar-user-btn { padding: 3px; }
+      .hero-banner-inner { padding: 20px; }
+    }
+    @media (max-width: 600px) { .search-box { display: none; } .page-title h1 { font-size: 22px; } }
+    @media (max-width: 480px) {
+      .stats-grid { grid-template-columns: 1fr; }
+      .stat-card { padding: 14px; }
+      .stat-value { font-size: 26px; }
+      .card { padding: 14px; }
+      .page-title h1 { font-size: 20px; }
+    }
+    @media (max-width: 400px) {
+      .topbar { padding: 8px 10px; gap: 6px; }
+      .content-area { padding: 14px 12px 32px; }
+      .stat-card { padding: 12px; }
+      .sidebar { width: 84%; max-width: 300px; }
+    }
+  </style>
+</head>
+<body>
+<div class="member-bar">STACKLY REWARDS &middot; <strong id="member-tier-bar">GOLD MEMBER</strong></div>
+<div class="dashboard-root">
+  <div class="sidebar-overlay" id="sidebar-overlay"></div>
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <a href="../index.html" class="brand">
+        <img src="../assets/logo.webp" alt="Apex Athletics" class="brand-logo">
+      </a>
+      <button class="close-btn" id="close-sidebar-btn" aria-label="Close sidebar"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <div class="unit-strip">My Account</div>
+    <div class="sidebar-section-label">Shopping</div>
+    <nav class="sidebar-nav" id="nav-main"></nav>
+    <div class="sidebar-section-label">Account</div>
+    <nav class="sidebar-nav" id="nav-management"></nav>
+    <div class="sidebar-user" id="sidebar-user">
+      <div class="sidebar-user-avatar" id="sidebar-user-avatar">–</div>
+      <div class="sidebar-user-info">
+        <div class="sidebar-user-name" id="sidebar-user-name">Signed out</div>
+        <div class="sidebar-user-email" id="sidebar-user-email">—</div>
+      </div>
+    </div>
+    <button class="logout-full-btn" id="logout-btn"><i class="fa-solid fa-right-from-bracket"></i> Logout</button>
+  </aside>
+  <main class="main-content">
+    <header class="topbar" id="topbar">
+      <div class="topbar-left">
+        <button class="hamburger" id="hamburger-btn" aria-label="Open menu"><span></span><span></span><span></span></button>
+        <div class="page-title">
+          <h1 id="page-title-text">Dashboard</h1>
+        </div>
+      </div>
+      <div class="topbar-right">
+        <div class="search-box">
+          <i class="fa-solid fa-magnifying-glass search-icon"></i>
+          <input placeholder="Search orders, products…">
+        </div>
+        <button class="icon-btn" id="notif-btn" aria-label="Notifications"><i class="fa-solid fa-bell"></i><span class="notif-dot"></span></button>
+        <div class="topbar-user" id="topbar-user">
+          <button class="topbar-user-btn" id="topbar-user-btn">
+            <span class="topbar-user-avatar" id="topbar-user-avatar">–</span>
+            <span class="topbar-user-name" id="topbar-user-name">Signed out</span>
+            <i class="fa-solid fa-chevron-down topbar-user-caret"></i>
+          </button>
+          <div class="topbar-user-menu" id="topbar-user-menu">
+            <div class="topbar-user-menu-email">
+              <div class="label">Email</div>
+              <div class="value" id="topbar-user-email">—</div>
+            </div>
+            <button class="topbar-user-menu-item" data-nav="settings"><i class="fa-solid fa-gear"></i>&nbsp; Settings</button>
+            <button class="topbar-user-menu-item danger" id="topbar-logout-btn"><i class="fa-solid fa-right-from-bracket"></i>&nbsp; Logout</button>
+          </div>
+        </div>
+      </div>
+    </header>
+    <div class="content-area" id="content-area"></div>
+  </main>
+</div>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+  // ─── USER SESSION (matches login.js: sessionStorage 'apexSession') ───
+  function getCurrentUser() {
+    try {
+      const raw = sessionStorage.getItem('apexSession');
+      if (!raw) return null;
+      const parsed = JSON.parse(raw);
+      if (!parsed || parsed.role !== 'user') return null;
+      return parsed;
+    } catch { return null; }
+  }
+  function usernameFromEmail(email) { if (!email) return ''; return email.includes('@') ? email.split('@')[0] : email; }
+  function getInitial(email) { if (!email) return '?'; return email.charAt(0).toUpperCase(); }
+
+  const currentUser = getCurrentUser();
+  // No valid user session? send them back to log in.
+  if (!currentUser) {
+    window.location.replace('./login.html');
+  }
+  const currentEmail = currentUser?.email || '';
+  const currentUsername = usernameFromEmail(currentEmail);
+  const currentInitial = getInitial(currentEmail);
+
+  function paintUserChrome() {
+    const nameToShow = currentUsername || currentEmail || 'Signed out';
+    const displayEmail = currentEmail || 'No account signed in';
+    document.getElementById('sidebar-user-avatar').textContent = currentInitial;
+    document.getElementById('sidebar-user-name').textContent = nameToShow;
+    document.getElementById('sidebar-user-email').textContent = displayEmail;
+    document.getElementById('topbar-user-avatar').textContent = currentInitial;
+    document.getElementById('topbar-user-name').textContent = nameToShow;
+    document.getElementById('topbar-user-email').textContent = displayEmail;
+  }
+  function logout() {
+    sessionStorage.removeItem('apexSession');
+    localStorage.removeItem('apexActiveNav');
+    window.location.href = 'login.html';
+  }
+
+  // ─── ACCOUNT DATA (this shopper's own orders, wishlist, rewards, addresses) ───
+  const categoryAccents = {
+    footwear: "#FF4500", strength: "#00E5FF", cricket: "#29C08A",
+    fitness: "#FFC94D", racket: "#FF9466", cycling: "#00E5FF", football: "#29C08A", outdoor: "#9BA3AC"
+  };
+  const categoryName = {
+    footwear: "Footwear", strength: "Strength", cricket: "Cricket",
+    fitness: "Fitness", racket: "Racket Sports", cycling: "Cycling", football: "Football", outdoor: "Outdoor"
+  };
+
+  const orders = [
+    { id: "APX-20894", items: "Nike Air Zoom Pegasus 40 + 2 more", category: "footwear", date: "Sep 14, 2026", amount: 8499, status: "Shipped", eta: "Arriving Sep 21, 2026" },
+    { id: "APX-20881", items: "Adjustable Dumbbell Set 20kg", category: "strength", date: "Sep 10, 2026", amount: 6299, status: "Delivered", eta: "Delivered Sep 13, 2026" },
+    { id: "APX-20860", items: "SG English Willow Cricket Bat", category: "cricket", date: "Sep 2, 2026", amount: 11999, status: "Delivered", eta: "Delivered Sep 6, 2026" },
+    { id: "APX-20844", items: "Yoga Mat Pro + Resistance Bands", category: "fitness", date: "Aug 27, 2026", amount: 2199, status: "Cancelled", eta: "Refund issued" },
+    { id: "APX-20812", items: "Yonex Astrox Badminton Racket", category: "racket", date: "Aug 18, 2026", amount: 5499, status: "Delivered", eta: "Delivered Aug 22, 2026" }
+  ];
+
+  const wishlist = [
+    { name: "Wilson Pro Staff Tennis Racket", category: "racket", price: 14999, inStock: true },
+    { name: "Trek Marlin 7 Mountain Bike", category: "cycling", price: 52999, inStock: true },
+    { name: "Nivia World Cup Edition Football", category: "football", price: 1299, inStock: false },
+    { name: "Alpine 4-Person Camping Tent", category: "outdoor", price: 8999, inStock: true }
+  ];
+
+  const addresses = [
+    { label: "Home", name: currentUsername || "You", line: "204, Sunrise Residency, Banjara Hills, Hyderabad, Telangana 500034", isDefault: true },
+    { label: "Office", name: currentUsername || "You", line: "Level 3, Cyber Towers, HITEC City, Hyderabad, Telangana 500081", isDefault: false },
+    { label: "Parents' Home", name: currentUsername || "You", line: "12-6-44, Lakshmi Nagar, Vijayawada, Andhra Pradesh 520010", isDefault: false }
+  ];
+
+  const supportTickets = [
+    { id: "TCK-4471", subject: "Wrong size delivered — running shoes", status: "Open", updated: "2h ago" },
+    { id: "TCK-4458", subject: "Refund not credited for cancelled order", status: "Pending", updated: "1d ago" },
+    { id: "TCK-4402", subject: "Bat grip replacement request", status: "Resolved", updated: "5d ago" }
+  ];
+
+  const liveFeed = [
+    { icon: "fa-truck-fast", text: "Your order APX-20894 has shipped and is on its way", time: "3h ago" },
+    { icon: "fa-heart", text: "Nivia World Cup Edition Football from your wishlist is back in stock", time: "1d ago" },
+    { icon: "fa-medal", text: "You earned 180 loyalty points from order APX-20881", time: "2d ago" },
+    { icon: "fa-star", text: "Reminder: rate your SG Cricket Bat purchase for bonus points", time: "4d ago" },
+    { icon: "fa-headset", text: "Support replied on ticket TCK-4402 — issue resolved", time: "5d ago" },
+    { icon: "fa-tag", text: "A 15% off coupon was added to your account for Football Season Sale", time: "6d ago" }
+  ];
+
+  const scheduleEvents = [
+    { date: "Sep 21", event: "Order APX-20894 arriving", site: "Home", type: "normal" },
+    { date: "Sep 24", event: "Loyalty points expiring reminder — 400 pts", site: "Rewards", type: "urgent" },
+    { date: "Sep 27", event: "Festive Season Sale opens for Gold members", site: "Site-wide", type: "meeting" },
+    { date: "Oct 02", event: "Free service check-up — Trek bikes", site: "Service Center", type: "normal" }
+  ];
+
+  const navItemsList = [
+    { icon: "fa-gauge-high", label: "Dashboard", id: "dashboard" },
+    { icon: "fa-bag-shopping", label: "My Orders", id: "orders" },
+    { icon: "fa-heart", label: "Wishlist", id: "wishlist" },
+    { icon: "fa-medal", label: "Loyalty Rewards", id: "loyalty" },
+    { icon: "fa-location-dot", label: "Addresses", id: "addresses" },
+    { icon: "fa-headset", label: "Support", id: "support" },
+    { icon: "fa-gear", label: "Settings", id: "settings" }
+  ];
+
+  const orderStatusColor = { "Delivered": "status-active", "Shipped": "status-field", "Processing": "status-gold", "Cancelled": "status-review" };
+  const ticketStatusColor = { "Open": "status-review", "Pending": "status-gold", "Resolved": "status-active" };
+  const scheduleTypeColor = { urgent: "#FF5C5C", normal: "#9BA3AC", meeting: "#29C08A" };
+
+  const pageMap = {
+    dashboard: { title: "Dashboard", sub: "An overview of your orders, wishlist and rewards" },
+    orders:    { title: "My Orders", sub: "Every purchase, past and in transit" },
+    wishlist:  { title: "Wishlist", sub: "Gear you've saved for later" },
+    loyalty:   { title: "Loyalty Rewards", sub: "Points, tier progress and redeemable rewards" },
+    addresses: { title: "Addresses", sub: "Saved delivery addresses on your account" },
+    support:   { title: "Support", sub: "Your tickets and ways to reach us" },
+    settings:  { title: "Settings", sub: "Account and preferences" }
+  };
+
+  let state = {
+    activeNav: (function () {
+      const saved = localStorage.getItem('apexActiveNav');
+      return saved && pageMap[saved] ? saved : "dashboard";
+    })(),
+    settings: { notifications: true, emailDigest: false, darkMode: true, language: "English" }
+  };
+
+  const loyalty = { points: 3420, tier: "Gold", nextTier: "Platinum", pointsToNext: 1580, totalNeeded: 5000,
+    rewards: [
+      { name: "₹500 Off Coupon", points: 1000 },
+      { name: "Free Express Shipping ×3", points: 600 },
+      { name: "Exclusive Apex Jersey", points: 2500 }
+    ]
+  };
+
+  function fmt(n) { return "₹" + n.toLocaleString("en-IN"); }
+  function go404() { window.location.href = "404.html"; }
+
+  function regionTag(cat) {
+    const c = categoryAccents[cat] || "#FF4500";
+    return `<span class="region-tag" style="color:${c};border-color:${c};background:${c}1F;">${categoryName[cat] || cat}</span>`;
+  }
+
+  function animateStatBars() {
+    requestAnimationFrame(() => {
+      document.querySelectorAll('.stat-bar-fill, .progress-fill').forEach(el => {
+        const target = el.getAttribute('data-w');
+        if (target) el.style.width = target + '%';
+      });
+    });
+  }
+
+  function initAOS() {
+    AOS.init({ duration: 600, once: true, offset: 20, easing: 'ease-out-cubic', disable: window.innerWidth < 768 });
+  }
+
+  // ─── RENDER FUNCTIONS ───
+  function renderDashboard() {
+    const activeOrders = orders.filter(o => o.status === "Shipped" || o.status === "Processing").length;
+    const wishlistCount = wishlist.length;
+    const nextEvent = scheduleEvents[0];
+
+    const stats = [
+      { icon: "fa-bag-shopping", delta: orders.length + " total", value: String(activeOrders), label: "Orders In Transit", bar: Math.round((activeOrders / orders.length) * 100), accent: true },
+      { icon: "fa-heart", delta: wishlist.filter(w => w.inStock).length + " in stock", value: String(wishlistCount), label: "Wishlist Items", bar: 65 },
+      { icon: "fa-medal", delta: loyalty.tier + " tier", value: loyalty.points.toLocaleString("en-IN"), label: "Loyalty Points", bar: Math.round((loyalty.points / loyalty.totalNeeded) * 100) },
+      { icon: "fa-calendar-days", delta: nextEvent.date, value: nextEvent.event.length > 22 ? nextEvent.event.slice(0, 20) + "…" : nextEvent.event, label: "Next Update", bar: 40 }
+    ];
+
+    const statsHtml = stats.map((s, i) =>
+      `<div class="stat-card ${s.accent ? "stat-accent" : ""}" data-aos="fade-up" data-aos-delay="${i * 60}" onclick="go404()">
+        <div class="stat-top"><i class="fa-solid ${s.icon} stat-icon"></i><span class="stat-delta up">${s.delta}</span></div>
+        <div class="stat-value" style="font-size:${s.label === 'Next Update' ? '19px' : '30px'}">${s.value}</div><div class="stat-label">${s.label}</div>
+        <div class="stat-bar"><div class="stat-bar-fill" data-w="${s.bar}"></div></div>
+      </div>`
+    ).join("");
+
+    const rows = orders.map(o => {
+      return `<tr onclick="go404()">
+        <td><div class="t-name">${o.items}</div><div class="t-sub">${o.id}</div></td>
+        <td>${regionTag(o.category)}</td>
+        <td><span class="status-badge ${orderStatusColor[o.status]}">${o.status}</span></td>
+        <td class="budget-col">${fmt(o.amount)}</td>
+        <td class="date-col">${o.date}</td>
+        <td class="date-col">${o.eta}</td>
+      </tr>`;
+    }).join("");
+
+    const feedHtml = liveFeed.map(a =>
+      `<li class="activity-item" onclick="go404()">
+        <i class="fa-solid ${a.icon} act-icon"></i>
+        <div class="act-body"><p class="act-text">${a.text}</p><span class="act-time">${a.time}</span></div>
+      </li>`
+    ).join("");
+
+    const ticketItems = supportTickets.slice(0, 5).map(t =>
+      `<li class="team-item" onclick="go404()">
+        <div class="member-avatar">${t.id.slice(4, 6)}</div>
+        <div class="member-info"><div class="member-name">${t.subject}</div><div class="member-role">${t.id} · ${t.status}</div></div>
+        <div class="member-projects"><span class="proj-count" style="font-size:13px">${t.updated}</span><span class="proj-label">${t.status}</span></div>
+      </li>`
+    ).join("");
+
+    const upcomingMs = scheduleEvents.slice(0, 5).map(ev => {
+      const c2 = scheduleTypeColor[ev.type];
+      const parts = ev.date.split(" ");
+      return `<li class="milestone-item" onclick="go404()">
+        <div class="ms-date"><span>${parts[0]}</span><span style="font-size:19px;font-family:var(--font-heading)">${parts[1]}</span></div>
+        <div class="ms-line"><div class="ms-dot" style="background:${c2}"></div></div>
+        <div class="ms-body"><div class="ms-event">${ev.event}</div><div class="ms-project">${ev.site}</div></div>
+        <span class="ms-tag" style="background:${c2}1F;color:${c2}">${ev.type}</span>
+      </li>`;
+    }).join("");
+
+    const legend = orders.map(o => ({ color: o.status === "Delivered" ? "#29C08A" : o.status === "Shipped" ? "#00E5FF" : o.status === "Cancelled" ? "#FF5C5C" : "#FFC94D", label: o.id, count: Math.round((o.amount / orders.reduce((a, x) => a + x.amount, 0)) * 100) }));
+    const legendHtml = legend.map(l =>
+      `<li class="legend-item" onclick="go404()">
+        <span class="legend-dot" style="background:${l.color}"></span>
+        <span class="legend-label">${l.label}</span>
+        <span class="legend-count">${l.count}%</span>
+      </li>`
+    ).join("");
+
+    return `
+      <div class="hero-banner" data-aos="fade">
+        <div class="hero-banner-inner">
+          <div class="hero-eyebrow">Welcome back${currentUsername ? ", " + currentUsername : ""}</div>
+          <h2>Your gear, one line of sight</h2>
+          <p>Track orders, revisit your wishlist, redeem loyalty rewards, and manage your account — all in one place.</p>
+        </div>
+      </div>
+      <section class="stats-grid" data-aos="fade-up" data-aos-delay="0">${statsHtml}</section>
+      <section class="mid-grid">
+        <div class="card" data-aos="fade-up" data-aos-delay="100">
+          <div class="card-header"><div><h2 class="card-title">Recent Orders</h2><p class="card-sub">Your latest purchases and their status</p></div></div>
+          <div class="table-wrapper"><table class="runs-table"><thead><tr><th>Item</th><th>Category</th><th>Status</th><th>Amount</th><th>Ordered</th><th>Delivery</th></tr></thead><tbody>${rows}</tbody></table></div>
+        </div>
+        <div class="card" data-aos="fade-up" data-aos-delay="150">
+          <div class="card-header"><div><h2 class="card-title">Recent Activity</h2><p class="card-sub">Updates on your account</p></div></div>
+          <ul class="activity-list">${feedHtml}</ul>
+        </div>
+      </section>
+      <section class="bottom-grid">
+        <div class="card" data-aos="fade-up" data-aos-delay="200">
+          <div class="card-header"><div><h2 class="card-title">Support Tickets</h2><p class="card-sub">Open and recent requests</p></div></div>
+          <ul class="team-list">${ticketItems}</ul>
+        </div>
+        <div class="card" data-aos="fade-up" data-aos-delay="250">
+          <div class="card-header"><div><h2 class="card-title">Upcoming</h2><p class="card-sub">Deliveries & reminders</p></div></div>
+          <ul class="milestone-list">${upcomingMs}</ul>
+        </div>
+        <div class="card" data-aos="fade-up" data-aos-delay="300">
+          <div class="card-header"><div><h2 class="card-title">Spend Mix</h2><p class="card-sub">Share of recent orders</p></div></div>
+          <div class="donut-chart" onclick="go404()">
+            <svg viewBox="0 0 120 120" class="donut-svg">
+              <circle cx="60" cy="60" r="48" fill="none" stroke="#1A1D25" stroke-width="16"/>
+              <circle cx="60" cy="60" r="48" fill="none" stroke="#FF4500" stroke-width="16" stroke-dasharray="72 212" stroke-dashoffset="0" stroke-linecap="round" transform="rotate(-90 60 60)"/>
+              <circle cx="60" cy="60" r="48" fill="none" stroke="#00E5FF" stroke-width="16" stroke-dasharray="45 212" stroke-dashoffset="-72" stroke-linecap="round" transform="rotate(-90 60 60)"/>
+              <circle cx="60" cy="60" r="48" fill="none" stroke="#29C08A" stroke-width="16" stroke-dasharray="60 212" stroke-dashoffset="-117" stroke-linecap="round" transform="rotate(-90 60 60)"/>
+              <circle cx="60" cy="60" r="48" fill="none" stroke="#FFC94D" stroke-width="16" stroke-dasharray="20 212" stroke-dashoffset="-177" stroke-linecap="round" transform="rotate(-90 60 60)"/>
+              <circle cx="60" cy="60" r="48" fill="none" stroke="#FF5C5C" stroke-width="16" stroke-dasharray="15 212" stroke-dashoffset="-197" stroke-linecap="round" transform="rotate(-90 60 60)"/>
+              <text x="60" y="56" text-anchor="middle" class="donut-num">${orders.length}</text>
+              <text x="60" y="68" text-anchor="middle" class="donut-label">Orders</text>
+            </svg>
+          </div>
+          <ul class="legend-list">${legendHtml}</ul>
+        </div>
+      </section>
+    `;
+  }
+
+  function renderOrders() {
+    const stats = [
+      { icon: "fa-bag-shopping", value: orders.length, label: "Total Orders", bar: 100, accent: true },
+      { icon: "fa-truck-fast", value: orders.filter(o => o.status === "Shipped").length, label: "Shipped", bar: 60 },
+      { icon: "fa-circle-check", value: orders.filter(o => o.status === "Delivered").length, label: "Delivered", bar: 75 },
+      { icon: "fa-ban", value: orders.filter(o => o.status === "Cancelled").length, label: "Cancelled", bar: 20 }
+    ];
+    const statsHtml = stats.map((s, i) =>
+      `<div class="stat-card ${s.accent ? "stat-accent" : ""}" data-aos="fade-up" data-aos-delay="${i * 60}" onclick="go404()">
+        <div class="stat-top"><i class="fa-solid ${s.icon} stat-icon"></i></div>
+        <div class="stat-value">${s.value}</div><div class="stat-label">${s.label}</div>
+        <div class="stat-bar"><div class="stat-bar-fill" data-w="${s.bar}"></div></div>
+      </div>`
+    ).join("");
+
+    const cards = orders.map((o, i) =>
+      `<div class="research-card" data-aos="fade-up" data-aos-delay="${i * 40}">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap">
+          <div style="flex:1;min-width:220px">
+            <div style="font-weight:700;color:var(--text-light);font-size:14.5px;margin-bottom:4px">${o.items}</div>
+            <div style="font-size:12.5px;color:var(--text-muted);margin-bottom:6px">${o.id} · ${categoryName[o.category]}</div>
+            <div style="font-size:12px;color:var(--text-faint)">Ordered ${o.date} · ${o.eta}</div>
+          </div>
+          <div style="display:flex;flex-direction:column;align-items:flex-end;gap:8px;flex-shrink:0">
+            <span class="status-badge ${orderStatusColor[o.status]}">${o.status}</span>
+            <span class="budget-col">${fmt(o.amount)}</span>
+          </div>
+        </div>
+        <div style="display:flex;gap:10px;margin-top:14px">
+          ${o.status === "Shipped" ? `<button class="btn-solid" onclick="event.stopPropagation();go404()">Track Order</button>` : `<button class="btn-outline" onclick="event.stopPropagation();go404()">View Invoice</button>`}
+          <button class="btn-outline" onclick="event.stopPropagation();go404()">Buy Again</button>
+        </div>
+      </div>`
+    ).join("");
+
+    return `
+      <section class="stats-grid">${statsHtml}</section>
+      <div class="card" data-aos="fade-up" data-aos-delay="100">
+        <div class="card-header"><div><h2 class="card-title">My Orders</h2><p class="card-sub">Every purchase, past and in transit</p></div></div>
+        <div style="display:flex;flex-direction:column;gap:14px">${cards}</div></div>
+    `;
+  }
+
+  function renderWishlist() {
+    const stats = [
+      { icon: "fa-heart", value: wishlist.length, label: "Saved Items", bar: 100, accent: true },
+      { icon: "fa-check", value: wishlist.filter(w => w.inStock).length, label: "In Stock", bar: 70 },
+      { icon: "fa-triangle-exclamation", value: wishlist.filter(w => !w.inStock).length, label: "Out of Stock", bar: 25, warn: true },
+      { icon: "fa-indian-rupee-sign", value: fmt(wishlist.reduce((a, w) => a + w.price, 0)), label: "Total Value", bar: 55 }
+    ];
+    const statsHtml = stats.map((s, i) =>
+      `<div class="stat-card ${s.accent ? "stat-accent" : ""}" data-aos="fade-up" data-aos-delay="${i * 60}" onclick="go404()">
+        <div class="stat-top"><i class="fa-solid ${s.icon} stat-icon"></i></div>
+        <div class="stat-value" style="font-size:${s.label === 'Total Value' ? '22px' : '30px'}">${s.value}</div><div class="stat-label">${s.label}</div>
+        <div class="stat-bar"><div class="stat-bar-fill" data-w="${s.bar}"></div></div>
+      </div>`
+    ).join("");
+
+    const cards = wishlist.map((w, i) =>
+      `<div class="research-card" data-aos="fade-up" data-aos-delay="${i * 40}">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap">
+          <div style="flex:1;min-width:220px">
+            <div style="font-weight:700;color:var(--text-light);font-size:14.5px;margin-bottom:4px">${w.name}</div>
+            <div style="font-size:12.5px;color:var(--text-muted)">${categoryName[w.category]}</div>
+          </div>
+          <div style="display:flex;flex-direction:column;align-items:flex-end;gap:8px;flex-shrink:0">
+            <span class="status-badge ${w.inStock ? "status-active" : "status-review"}">${w.inStock ? "In Stock" : "Out of Stock"}</span>
+            <span class="budget-col">${fmt(w.price)}</span>
+          </div>
+        </div>
+        <div style="display:flex;gap:10px;margin-top:14px">
+          ${w.inStock ? `<button class="btn-solid" onclick="event.stopPropagation();go404()">Add to Cart</button>` : `<button class="btn-outline" onclick="event.stopPropagation();go404()">Notify Me</button>`}
+          <button class="btn-outline" onclick="event.stopPropagation();go404()">Remove</button>
+        </div>
+      </div>`
+    ).join("");
+
+    return `
+      <section class="stats-grid">${statsHtml}</section>
+      <div class="card" data-aos="fade-up" data-aos-delay="100">
+        <div class="card-header"><div><h2 class="card-title">Wishlist</h2><p class="card-sub">Gear you've saved for later</p></div></div>
+        <div style="display:flex;flex-direction:column;gap:14px">${cards}</div></div>
+    `;
+  }
+
+  function renderLoyalty() {
+    const pct = Math.round((loyalty.points / loyalty.totalNeeded) * 100);
+    const stats = [
+      { icon: "fa-medal", value: loyalty.points.toLocaleString("en-IN"), label: "Current Points", bar: pct, accent: true },
+      { icon: "fa-crown", value: loyalty.tier, label: "Current Tier", bar: 100 },
+      { icon: "fa-arrow-trend-up", value: loyalty.pointsToNext.toLocaleString("en-IN"), label: "Points to " + loyalty.nextTier, bar: 100 - pct },
+      { icon: "fa-gift", value: loyalty.rewards.length, label: "Rewards Available", bar: 60 }
+    ];
+    const statsHtml = stats.map((s, i) =>
+      `<div class="stat-card ${s.accent ? "stat-accent" : ""}" data-aos="fade-up" data-aos-delay="${i * 60}" onclick="go404()">
+        <div class="stat-top"><i class="fa-solid ${s.icon} stat-icon"></i></div>
+        <div class="stat-value" style="font-size:${s.label === 'Current Tier' ? '26px' : '28px'}">${s.value}</div><div class="stat-label">${s.label}</div>
+        <div class="stat-bar"><div class="stat-bar-fill" data-w="${s.bar}"></div></div>
+      </div>`
+    ).join("");
+
+    const rewardCards = loyalty.rewards.map((r, i) =>
+      `<div class="research-card" data-aos="fade-up" data-aos-delay="${i * 40}">
+        <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
+          <div>
+            <div style="font-weight:700;color:var(--text-light);font-size:14.5px;margin-bottom:4px">${r.name}</div>
+            <div style="font-size:12.5px;color:var(--text-muted)">${r.points.toLocaleString("en-IN")} points</div>
+          </div>
+          <button class="btn-solid" onclick="event.stopPropagation();go404()" ${loyalty.points < r.points ? "" : ""}>Redeem</button>
+        </div>
+      </div>`
+    ).join("");
+
+    return `
+      <section class="stats-grid">${statsHtml}</section>
+      <div class="card" data-aos="fade-up" data-aos-delay="100">
+        <div class="card-header"><div><h2 class="card-title">Tier Progress</h2><p class="card-sub">${loyalty.tier} → ${loyalty.nextTier}</p></div></div>
+        <div class="progress-wrap" style="width:100%"><div class="progress-bar" style="height:10px"><div class="progress-fill" data-w="${pct}" style="height:10px"></div></div><span class="progress-pct">${pct}%</span></div>
+        <p style="margin-top:12px;font-size:12.5px;color:var(--text-muted)">Earn ${loyalty.pointsToNext.toLocaleString("en-IN")} more points to unlock ${loyalty.nextTier} tier benefits.</p>
+      </div>
+      <div class="card" data-aos="fade-up" data-aos-delay="150">
+        <div class="card-header"><div><h2 class="card-title">Redeemable Rewards</h2><p class="card-sub">Use your points before they expire</p></div></div>
+        <div style="display:flex;flex-direction:column;gap:14px">${rewardCards}</div>
+      </div>
+    `;
+  }
+
+  function renderAddresses() {
+    const stats = [
+      { icon: "fa-location-dot", value: addresses.length, label: "Saved Addresses", bar: 100, accent: true },
+      { icon: "fa-house", value: addresses.filter(a => a.isDefault).length, label: "Default Address", bar: 100 },
+      { icon: "fa-truck-fast", value: orders.length, label: "Deliveries Made", bar: 70 },
+      { icon: "fa-map", value: [...new Set(addresses.map(a => a.line.split(",").slice(-2, -1)[0]?.trim()))].length, label: "Cities", bar: 40 }
+    ];
+    const statsHtml = stats.map((s, i) =>
+      `<div class="stat-card ${s.accent ? "stat-accent" : ""}" data-aos="fade-up" data-aos-delay="${i * 60}" onclick="go404()">
+        <div class="stat-top"><i class="fa-solid ${s.icon} stat-icon"></i></div>
+        <div class="stat-value">${s.value}</div><div class="stat-label">${s.label}</div>
+        <div class="stat-bar"><div class="stat-bar-fill" data-w="${s.bar}"></div></div>
+      </div>`
+    ).join("");
+
+    const cards = addresses.map((a, i) =>
+      `<div class="research-card" data-aos="fade-up" data-aos-delay="${i * 40}">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap">
+          <div style="flex:1;min-width:220px">
+            <div style="font-weight:700;color:var(--text-light);font-size:14.5px;margin-bottom:4px">${a.label} ${a.isDefault ? '<span class="status-badge status-active" style="margin-left:6px">Default</span>' : ""}</div>
+            <div style="font-size:12.5px;color:var(--text-muted);margin-bottom:4px">${a.name}</div>
+            <div style="font-size:12.5px;color:var(--text-faint);max-width:420px;line-height:1.5">${a.line}</div>
+          </div>
+        </div>
+        <div style="display:flex;gap:10px;margin-top:14px">
+          <button class="btn-outline" onclick="event.stopPropagation();go404()">Edit</button>
+          <button class="btn-outline" onclick="event.stopPropagation();go404()">Remove</button>
+        </div>
+      </div>`
+    ).join("");
+
+    return `
+      <section class="stats-grid">${statsHtml}</section>
+      <div class="card" data-aos="fade-up" data-aos-delay="100">
+        <div class="card-header">
+          <div><h2 class="card-title">Addresses</h2><p class="card-sub">Saved delivery addresses on your account</p></div>
+          <button class="btn-solid" onclick="go404()"><i class="fa-solid fa-plus"></i>&nbsp; Add Address</button>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:14px">${cards}</div></div>
+    `;
+  }
+
+  function renderSupport() {
+    const stats = [
+      { icon: "fa-headset", value: supportTickets.length, label: "Total Tickets", bar: 100, accent: true },
+      { icon: "fa-envelope-open-text", value: supportTickets.filter(t => t.status === "Open").length, label: "Open", bar: 60, warn: true },
+      { icon: "fa-hourglass-half", value: supportTickets.filter(t => t.status === "Pending").length, label: "Pending", bar: 45 },
+      { icon: "fa-circle-check", value: supportTickets.filter(t => t.status === "Resolved").length, label: "Resolved", bar: 70 }
+    ];
+    const statsHtml = stats.map((s, i) =>
+      `<div class="stat-card ${s.accent ? "stat-accent" : ""}" data-aos="fade-up" data-aos-delay="${i * 60}" onclick="go404()">
+        <div class="stat-top"><i class="fa-solid ${s.icon} stat-icon"></i></div>
+        <div class="stat-value">${s.value}</div><div class="stat-label">${s.label}</div>
+        <div class="stat-bar"><div class="stat-bar-fill" data-w="${s.bar}"></div></div>
+      </div>`
+    ).join("");
+
+    const cards = supportTickets.map((t, i) =>
+      `<div class="research-card" data-aos="fade-up" data-aos-delay="${i * 40}">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap">
+          <div style="flex:1;min-width:220px">
+            <div style="font-weight:700;color:var(--text-light);font-size:14.5px;margin-bottom:4px">${t.subject}</div>
+            <div style="font-size:12.5px;color:var(--text-faint)">${t.id} · Updated ${t.updated}</div>
+          </div>
+          <span class="status-badge ${ticketStatusColor[t.status]}">${t.status}</span>
+        </div>
+        <div style="display:flex;gap:10px;margin-top:14px">
+          <button class="btn-outline" onclick="event.stopPropagation();go404()">View Thread</button>
+        </div>
+      </div>`
+    ).join("");
+
+    return `
+      <section class="stats-grid">${statsHtml}</section>
+      <div class="card" data-aos="fade-up" data-aos-delay="100">
+        <div class="card-header">
+          <div><h2 class="card-title">Support Tickets</h2><p class="card-sub">Your open and recent requests</p></div>
+          <button class="btn-solid" onclick="go404()"><i class="fa-solid fa-plus"></i>&nbsp; New Ticket</button>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:14px">${cards}</div></div>
+      <div class="card" data-aos="fade-up" data-aos-delay="150">
+        <div class="card-header"><div><h2 class="card-title">Other Ways to Reach Us</h2><p class="card-sub">Live chat and phone support</p></div></div>
+        <div style="display:flex;gap:12px;flex-wrap:wrap">
+          <button class="btn-outline" onclick="go404()"><i class="fa-solid fa-comment-dots"></i>&nbsp; Live Chat</button>
+          <button class="btn-outline" onclick="go404()"><i class="fa-solid fa-phone"></i>&nbsp; Call Support</button>
+        </div>
+      </div>
+    `;
+  }
+
+  function renderSettings() {
+    const s = state.settings;
+    const displayName = currentUsername || currentEmail || "Signed out";
+    const displayEmail = currentEmail || "No account signed in";
+    return `
+      <div class="card" data-aos="fade-up" data-aos-delay="100">
+        <div class="card-header"><div><h2 class="card-title">Account</h2><p class="card-sub">Profile and session</p></div></div>
+        <div style="display:flex;align-items:center;gap:18px;margin-bottom:20px;flex-wrap:wrap">
+          <div style="width:64px;height:64px;border-radius:50%;border:2px solid var(--primary-glow);background:var(--primary-soft);color:var(--primary);display:flex;align-items:center;justify-content:center;font-family:var(--font-heading);font-size:28px;text-transform:uppercase;flex-shrink:0">${currentInitial}</div>
+          <div><div style="font-weight:700;color:var(--text-light);font-size:17px;text-transform:capitalize;font-family:var(--font-heading)">${displayName}</div>
+          <div style="font-size:13px;color:var(--text-muted);margin-top:2px">${displayEmail}</div>
+          <div style="font-family:var(--font-heading);font-size:13px;color:var(--primary);margin-top:4px">${loyalty.tier} Member · My Account</div></div>
+        </div>
+        <button class="btn-outline" style="border-color:var(--primary);color:var(--primary)" onclick="go404()">Edit Profile</button>
+      </div>
+      <div class="card" data-aos="fade-up" data-aos-delay="150">
+        <div class="card-header"><div><h2 class="card-title">Preferences</h2><p class="card-sub">Notifications and display</p></div></div>
+        <div>
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:18px 0;border-bottom:1px solid var(--border-color)">
+            <div><div style="font-weight:700;color:var(--text-light);font-size:13.5px">Push Notifications</div><div style="font-size:12.5px;color:var(--text-muted);margin-top:2px">Order & delivery alerts</div></div>
+            <div class="toggle-switch" id="toggle-notifications" data-toggle="notifications" style="background:${s.notifications ? 'var(--primary)' : 'var(--primary-soft)'}">
+              <div class="toggle-knob" id="toggle-knob-notifications" style="left:${s.notifications ? '20px' : '3px'}"></div>
+            </div>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:18px 0;border-bottom:1px solid var(--border-color)">
+            <div><div style="font-weight:700;color:var(--text-light);font-size:13.5px">Weekly Digest</div><div style="font-size:12.5px;color:var(--text-muted);margin-top:2px">Deals & wishlist summary every Monday</div></div>
+            <div class="toggle-switch" id="toggle-emailDigest" data-toggle="emailDigest" style="background:${s.emailDigest ? 'var(--primary)' : 'var(--primary-soft)'}">
+              <div class="toggle-knob" id="toggle-knob-emailDigest" style="left:${s.emailDigest ? '20px' : '3px'}"></div>
+            </div>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:18px 0;border-bottom:1px solid var(--border-color)">
+            <div><div style="font-weight:700;color:var(--text-light);font-size:13.5px">Dark Mode</div><div style="font-size:12.5px;color:var(--text-muted);margin-top:2px">Dark theme (default)</div></div>
+            <div class="toggle-switch" id="toggle-darkMode" data-toggle="darkMode" style="background:${s.darkMode ? 'var(--primary)' : 'var(--primary-soft)'}">
+              <div class="toggle-knob" id="toggle-knob-darkMode" style="left:${s.darkMode ? '20px' : '3px'}"></div>
+            </div>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center;padding-top:18px">
+            <div><div style="font-weight:700;color:var(--text-light);font-size:13.5px">Language</div><div style="font-size:12.5px;color:var(--text-muted);margin-top:2px">Interface language</div></div>
+            <select class="pref-select" id="lang-select">${["English", "Hindi", "Tamil", "Telugu", "Spanish"].map(l => `<option ${s.language === l ? "selected" : ""}>${l}</option>`).join("")}</select>
+          </div>
+        </div>
+      </div>
+      <div class="card" data-aos="fade-up" data-aos-delay="200">
+        <div class="card-header"><div><h2 class="card-title">Session</h2><p class="card-sub">Sign out</p></div></div>
+        <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:14px">
+          <div style="font-size:12.5px;color:var(--text-muted)">Signed in as <strong style="color:var(--text-light)">${displayEmail}</strong>.</div>
+          <button class="btn-outline" style="border-color:rgba(255,92,92,0.35);color:var(--danger);flex-shrink:0" id="settings-logout-btn"><i class="fa-solid fa-right-from-bracket"></i>&nbsp; Logout</button>
+        </div>
+      </div>
+      <div class="card" data-aos="fade-up" data-aos-delay="250" style="border-color:rgba(255,92,92,0.28);">
+        <div class="card-header"><div><h2 class="card-title">Account Controls</h2><p class="card-sub">Irreversible actions</p></div></div>
+        <div style="display:flex;gap:12px;flex-wrap:wrap">
+          <button class="btn-outline" style="border-color:rgba(255,92,92,0.35);color:var(--danger)" onclick="go404()">Reset Password</button>
+          <button class="btn-outline" style="border-color:rgba(255,92,92,0.35);color:var(--danger)" onclick="go404()">Delete Account</button>
+        </div>
+      </div>
+    `;
+  }
+
+  const pageRenderers = {
+    dashboard: renderDashboard,
+    orders: renderOrders,
+    wishlist: renderWishlist,
+    loyalty: renderLoyalty,
+    addresses: renderAddresses,
+    support: renderSupport,
+    settings: renderSettings
+  };
+
+  // ─── NAVIGATION ───
+  function renderNav() {
+    const mainItems = navItemsList.slice(0, 4);
+    const mgmtItems = navItemsList.slice(4);
+    function itemHtml(item) {
+      const badge = item.id === "support" ? `<span class="nav-badge">${supportTickets.filter(t => t.status === "Open").length}</span>` : "";
+      return `<button class="nav-item ${state.activeNav === item.id ? "nav-active" : ""}" data-nav="${item.id}">
+        <i class="fa-solid ${item.icon} nav-icon"></i><span>${item.label}</span>${badge}</button>`;
+    }
+    document.getElementById("nav-main").innerHTML = mainItems.map(itemHtml).join("");
+    document.getElementById("nav-management").innerHTML = mgmtItems.map(itemHtml).join("");
+  }
+
+  function renderPage() {
+    const page = pageMap[state.activeNav];
+    document.getElementById("page-title-text").textContent = page.title;
+    document.getElementById("content-area").innerHTML = pageRenderers[state.activeNav]();
+    renderNav();
+    const settingsLogoutBtn = document.getElementById("settings-logout-btn");
+    if (settingsLogoutBtn) settingsLogoutBtn.addEventListener("click", logout);
+    window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+    animateStatBars();
+    initAOS();
+  }
+
+  function navigateTo(id) {
+    state.activeNav = id;
+    localStorage.setItem('apexActiveNav', id);
+    closeSidebar();
+    closeTopbarUserMenu();
+    renderPage();
+  }
+
+  function openSidebar() {
+    document.getElementById("sidebar").classList.add("sidebar-open");
+    document.getElementById("sidebar-overlay").classList.add("show");
+  }
+  function closeSidebar() {
+    document.getElementById("sidebar").classList.remove("sidebar-open");
+    document.getElementById("sidebar-overlay").classList.remove("show");
+  }
+  function closeTopbarUserMenu() {
+    document.getElementById("topbar-user").classList.remove("open");
+  }
+
+  // ─── SETTINGS TOGGLES (update in place — no full re-render, no scroll reset) ───
+  function toggleSetting(key) {
+    state.settings[key] = !state.settings[key];
+    const track = document.getElementById(`toggle-${key}`);
+    const knob = document.getElementById(`toggle-knob-${key}`);
+    if (!track || !knob) return;
+    const isOn = state.settings[key];
+    track.style.background = isOn ? 'var(--primary)' : 'var(--primary-soft)';
+    knob.style.left = isOn ? '20px' : '3px';
+  }
+
+  // ─── EVENT BINDING ───
+  document.getElementById("hamburger-btn").addEventListener("click", openSidebar);
+  document.getElementById("close-sidebar-btn").addEventListener("click", closeSidebar);
+  document.getElementById("sidebar-overlay").addEventListener("click", closeSidebar);
+  document.getElementById("notif-btn").addEventListener("click", go404);
+  document.getElementById("logout-btn").addEventListener("click", logout);
+  document.getElementById("topbar-logout-btn").addEventListener("click", logout);
+  document.getElementById("topbar-user-btn").addEventListener("click", function(e) {
+    e.stopPropagation();
+    document.getElementById("topbar-user").classList.toggle("open");
+  });
+  document.addEventListener("click", closeTopbarUserMenu);
+
+  document.addEventListener("click", function(e) {
+    const navBtn = e.target.closest("[data-nav]");
+    if (navBtn) { navigateTo(navBtn.getAttribute("data-nav")); return; }
+    const toggle = e.target.closest("[data-toggle]");
+    if (toggle) {
+      toggleSetting(toggle.getAttribute("data-toggle"));
+      return;
+    }
+  });
+
+  document.addEventListener("change", function(e) {
+    if (e.target && e.target.id === "lang-select") {
+      state.settings.language = e.target.value;
+      go404();
+    }
+  });
+
+  // ─── INIT ───
+  if (currentUser) {
+    document.getElementById('member-tier-bar').textContent = loyalty.tier.toUpperCase() + ' MEMBER';
+    paintUserChrome();
+    renderPage();
+  }
+</script>
+</body>
+</html>
