@@ -624,6 +624,9 @@ header {
 
 /* ==========================================================
    6. PRODUCTS SECTION
+   Cards are flex columns so every card is the same height and
+   the price row (price left, stock right) sits on the same line
+   across the whole grid, whatever the title length.
    ========================================================== */
 .products {
   padding: var(--section-pad-y) var(--section-pad-x);
@@ -636,6 +639,7 @@ header {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
   gap: 30px;
+  align-items: stretch;   /* equal-height cards */
 }
 
 .product-card {
@@ -645,6 +649,10 @@ header {
   border: 1px solid var(--border-color);
   position: relative;
   transition: var(--transition);
+
+  /* Equal-height cards; price row pinned to the bottom */
+  display: flex;
+  flex-direction: column;
 }
 
 .product-card:hover {
@@ -657,6 +665,7 @@ header {
   position: absolute;
   top: 15px;
   left: 15px;
+  z-index: 2;
   background: var(--primary);
   color: #fff;
   font-size: 0.75rem;
@@ -669,24 +678,87 @@ header {
 .product-img {
   width: 100%;
   height: 200px;
-  object-fit: contain;
+  object-fit: cover;      /* every image fills the same box */
+  border-radius: 8px;
   margin: 15px 0;
+  flex-shrink: 0;
 }
 
-.product-info h3 { font-size: 1.2rem; margin-bottom: 8px; }
-.product-rating { color: #ffb703; font-size: 0.85rem; margin-bottom: 12px; }
+/* Grows to fill spare space, so short titles don't leave the price floating higher */
+.product-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
 
+.product-info h3 {
+  font-size: 1.2rem;
+  line-height: 1.3;
+  margin-bottom: 8px;
+}
+
+.product-rating {
+  color: #ffb703;
+  font-size: 0.85rem;
+  margin-top: auto;       /* rating lines up across cards */
+  margin-bottom: 12px;
+}
+
+/* Price (left) + stock (right) */
 .product-bottom {
   margin-top: 15px;
-  padding-top: 10px;
+  padding-top: 14px;
   border-top: 1px solid var(--border-color);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
 }
 
 .product-price {
   font-family: var(--font-heading);
   font-size: 1.8rem;
+  line-height: 1;
   color: var(--secondary);
+  white-space: nowrap;
 }
+
+.product-stock {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 6px;
+  min-width: 84px;
+}
+
+.stock-count {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #22c55e;         /* healthy stock = green */
+  white-space: nowrap;
+}
+
+.stock-bar {
+  width: 100%;
+  height: 4px;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.08);
+  overflow: hidden;
+}
+
+.stock-bar span {
+  display: block;
+  height: 100%;
+  border-radius: 4px;
+  background: #22c55e;
+}
+
+/* Low stock = orange */
+.product-stock.low .stock-count { color: var(--primary); }
+.product-stock.low .stock-bar span { background: var(--primary); }
 
 /* ==========================================================
    7. ADVANTAGES & BENEFITS OF SPORTS SECTION

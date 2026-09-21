@@ -5,6 +5,12 @@
    ScrollTrigger and the .gsap-enabled class script.js already
    set on <html>. Every block is guarded so a failure here can
    never hide catalog content.
+
+   FIX: every animation now uses gsap.fromTo() with an explicit
+   end state (opacity: 1). Previously gsap.from() animated
+   "to whatever the element currently is" — and because the
+   .reveal class starts elements at opacity 0 in CSS, GSAP was
+   animating 0 -> 0 and the cards never appeared.
    ========================================================== */
 
 (function () {
@@ -80,10 +86,14 @@
 
     if (ANIMATE) {
       guard(function () {
+        var visibleCards = Array.prototype.filter.call(cards, function (c) {
+          return !c.classList.contains('hidden-item');
+        });
         gsap.fromTo(
-          Array.prototype.filter.call(cards, function (c) { return !c.classList.contains('hidden-item'); }),
+          visibleCards,
           { opacity: 0, y: 16 },
-          { opacity: 1, y: 0, duration: 0.45, ease: 'power2.out', stagger: 0.04 }
+          { opacity: 1, y: 0, duration: 0.45, ease: 'power2.out', stagger: 0.04,
+            overwrite: 'auto', clearProps: 'transform' }
         );
       });
     }
@@ -199,7 +209,12 @@
 
       if (ANIMATE && revealed.length) {
         guard(function () {
-          gsap.from(revealed, { opacity: 0, y: 30, duration: 0.6, ease: 'power3.out', stagger: 0.08 });
+          gsap.fromTo(
+            revealed,
+            { opacity: 0, y: 30 },
+            { opacity: 1, y: 0, duration: 0.6, ease: 'power3.out', stagger: 0.08,
+              clearProps: 'transform' }
+          );
         });
       }
     });
@@ -226,61 +241,95 @@
 
   /* ----------------------------------------------------------
      6. GSAP scroll choreography for products-page-only sections
+
+     All tweens use fromTo() with an explicit end of opacity: 1,
+     so they work even if CSS (.reveal) starts elements hidden.
+     clearProps: 'transform' hands transforms back to CSS once
+     the animation is done, so :hover lifts still work. Opacity
+     is deliberately NOT cleared (clearing it would fall back to
+     the CSS .reveal value of 0 and hide the element again).
      ---------------------------------------------------------- */
   if (ANIMATE) guard(function () {
     var ST = function (trigger, start) {
       return { trigger: trigger, start: start || 'top 85%', toggleActions: 'play none none reverse' };
     };
 
-    gsap.from('.breadcrumb, .products-hero h1, .products-hero p, .products-hero-meta div', {
-      y: 30, opacity: 0, duration: 0.7, ease: 'power3.out', stagger: 0.08, delay: 0.15
-    });
+    // Hero
+    gsap.fromTo(
+      '.breadcrumb, .products-hero h1, .products-hero p, .products-hero-meta div',
+      { y: 30, opacity: 0 },
+      { y: 0, opacity: 1, duration: 0.7, ease: 'power3.out', stagger: 0.08, delay: 0.15,
+        clearProps: 'transform' }
+    );
 
-    // Filter chips: rendered instantly with no animation. They used to fade in
-    // via scrollTrigger tied to the sticky toolbar, but ScrollTrigger can't
-    // reliably measure a `position: sticky` element once it locks to the
-    // viewport top, which left chips stuck mid-fade. Since this is an
-    // above-the-fold control people need immediately, it's simplest and most
-    // reliable to leave it unanimated entirely.
+    // Filter chips: intentionally not animated (see note in original file —
+    // ScrollTrigger can't reliably measure a position: sticky element).
 
-    gsap.from('.catalog-grid .product-card', {
-      scrollTrigger: ST('.catalog-grid', 'top 85%'),
-      rotationX: -55, y: 45, opacity: 0,
-      transformOrigin: '50% 100%', duration: 0.8, ease: 'power3.out', stagger: 0.07
-    });
+    // Catalog grid
+    gsap.fromTo(
+      '.catalog-grid .product-card:not(.hidden-item)',
+      { rotationX: -55, y: 45, opacity: 0, transformOrigin: '50% 100%' },
+      { rotationX: 0, y: 0, opacity: 1, duration: 0.8, ease: 'power3.out', stagger: 0.07,
+        scrollTrigger: ST('.catalog-grid', 'top 85%'), clearProps: 'transform' }
+    );
 
-    // NOTE: scoped to .bundle-copy .btn (a bare '.btn' also caught Load More and every other button)
-    gsap.from('.bundle-tag, .bundle-banner h2, .bundle-banner p, .bundle-timer, .bundle-copy .btn', {
-      scrollTrigger: ST('.bundle-banner-inner', 'top 78%'),
-      x: -40, opacity: 0, duration: 0.7, ease: 'power3.out', stagger: 0.08
-    });
-    gsap.from('.bundle-visual', {
-      scrollTrigger: ST('.bundle-banner-inner', 'top 78%'),
-      x: 40, opacity: 0, duration: 0.8, ease: 'power3.out', delay: 0.15
-    });
+    // Bundle banner (scoped to .bundle-copy .btn so Load More etc. aren't caught)
+    gsap.fromTo(
+      '.bundle-tag, .bundle-banner h2, .bundle-banner p, .bundle-timer, .bundle-copy .btn',
+      { x: -40, opacity: 0 },
+      { x: 0, opacity: 1, duration: 0.7, ease: 'power3.out', stagger: 0.08,
+        scrollTrigger: ST('.bundle-banner-inner', 'top 78%'), clearProps: 'transform' }
+    );
+    gsap.fromTo(
+      '.bundle-visual',
+      { x: 40, opacity: 0 },
+      { x: 0, opacity: 1, duration: 0.8, ease: 'power3.out', delay: 0.15,
+        scrollTrigger: ST('.bundle-banner-inner', 'top 78%'), clearProps: 'transform' }
+    );
 
-    gsap.from('.spotlight-card', {
-      scrollTrigger: ST('.spotlight-track', 'top 88%'),
-      y: 40, opacity: 0, scale: 0.92, duration: 0.6, ease: 'back.out(1.6)', stagger: 0.08
-    });
+    // Best sellers spotlight
+    gsap.fromTo(
+      '.spotlight-card',
+      { y: 40, opacity: 0, scale: 0.92 },
+      { y: 0, opacity: 1, scale: 1, duration: 0.6, ease: 'back.out(1.6)', stagger: 0.08,
+        scrollTrigger: ST('.spotlight-track', 'top 88%'), clearProps: 'transform' }
+    );
 
-    gsap.from('.compare-table thead th, .compare-table tbody tr', {
-      scrollTrigger: ST('.compare-wrap', 'top 82%'),
-      y: 20, opacity: 0, duration: 0.5, ease: 'power2.out', stagger: 0.08
-    });
+    // Comparison table
+    gsap.fromTo(
+      '.compare-table thead th, .compare-table tbody tr',
+      { y: 20, opacity: 0 },
+      { y: 0, opacity: 1, duration: 0.5, ease: 'power2.out', stagger: 0.08,
+        scrollTrigger: ST('.compare-wrap', 'top 82%'), clearProps: 'transform' }
+    );
 
-    gsap.from('.trust-item', {
-      scrollTrigger: ST('.trust-strip-inner', 'top 88%'),
-      y: 25, opacity: 0, duration: 0.55, ease: 'power2.out', stagger: 0.08
-    });
+    // Trust strip
+    gsap.fromTo(
+      '.trust-item',
+      { y: 25, opacity: 0 },
+      { y: 0, opacity: 1, duration: 0.55, ease: 'power2.out', stagger: 0.08,
+        scrollTrigger: ST('.trust-strip-inner', 'top 88%'), clearProps: 'transform' }
+    );
 
-    gsap.from('.guide-card', {
-      scrollTrigger: ST('.guide-grid', 'top 85%'),
-      y: 35, opacity: 0, duration: 0.6, ease: 'power3.out', stagger: 0.1
-    });
-    gsap.from('.guide-cta', {
-      scrollTrigger: ST('.guide-cta', 'top 92%'),
-      y: 25, opacity: 0, duration: 0.6, ease: 'power3.out'
-    });
+    // Buyer's guide
+    gsap.fromTo(
+      '.guide-card',
+      { y: 35, opacity: 0 },
+      { y: 0, opacity: 1, duration: 0.6, ease: 'power3.out', stagger: 0.1,
+        scrollTrigger: ST('.guide-grid', 'top 85%'), clearProps: 'transform' }
+    );
+
+    // Only runs if a .guide-cta exists in the HTML (it was removed from the markup)
+    if (document.querySelector('.guide-cta')) {
+      gsap.fromTo(
+        '.guide-cta',
+        { y: 25, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.6, ease: 'power3.out',
+          scrollTrigger: ST('.guide-cta', 'top 92%'), clearProps: 'transform' }
+      );
+    }
+
+    // Recalculate trigger positions once images/fonts have loaded
+    window.addEventListener('load', function () { ScrollTrigger.refresh(); });
   });
 })();

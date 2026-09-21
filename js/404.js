@@ -1,6 +1,6 @@
 /* =========================================================
    APEX ATHLETICS — 404 page behaviour
-   - Go Back / Back to Home
+   - Go Back (exactly one step) / Back to Home
    - Shows the address that went out of bounds
    - Tap-the-ball keepy-up mini game (+ sparks)
    - Button ripple + magnetic hover
@@ -8,20 +8,34 @@
 (function () {
   'use strict';
 
-  var HOME_URL = '../index.html';
   var BEST_KEY = 'apex404Best';
+
+  // Resolve home relative to THIS script, not the current page URL,
+  // so it works no matter what broken address the 404 is shown at.
+  // (document.currentScript must be read synchronously, i.e. right here.)
+  var scriptEl = document.currentScript;
+  var HOME_URL = scriptEl && scriptEl.src
+    ? new URL('../index.html', scriptEl.src).href
+    : '../index.html';
 
   var prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var canHover = window.matchMedia('(hover: hover)').matches;
 
   // ─── Navigation ───
   var backBtn = document.getElementById('back-btn');
+  var homeBtn = document.getElementById('home-btn');
+  var brandLink = document.querySelector('.top-brand');
+
+  // Home: always the real home page
+  homeBtn.setAttribute('href', HOME_URL);
+  if (brandLink) brandLink.setAttribute('href', HOME_URL);
+
+  // Back: exactly one step back in history
   backBtn.addEventListener('click', function () {
-    // Something to go back to? Use it. Otherwise (direct visit, new tab) fall back to home.
     if (window.history.length > 1) {
-      window.history.back();
+      window.history.back();               // one step back, nothing more
     } else {
-      window.location.href = HOME_URL;
+      window.location.replace(HOME_URL);   // nothing to go back to (direct visit / new tab)
     }
   });
 

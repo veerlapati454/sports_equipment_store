@@ -13,30 +13,47 @@
    the 404 overlay and the mobile menu below it never got bound.
    Those tweens now live inside the guarded block with the others.
 
-   NOTE (this revision): the preloader logo swap (basketball icon ->
+   NOTE (earlier revision): the preloader logo swap (basketball icon ->
    stackly_logo.webp) is markup + CSS only. The preloader timeline
    targets the .sports-loader wrapper, so no JS changes were needed.
+
+   FIX (this revision): pressing Go Back on the 404 page returned to
+   the footer position and then jumped to the top of the page. Cause:
+   scroll was forced to the top on EVERY load. It is now only forced
+   on a fresh visit or reload; on back/forward navigation the browser's
+   own scroll restoration is left alone.
    ========================================================== */
 
 (function () {
   'use strict';
 
-  // Reloading mid-scroll used to leave the hero half-transformed: the browser
-  // restores the old scroll position before this script runs, so the hero's
-  // scroll-scrubbed parallax (and the preloader's full-screen overlay) would
-  // initialize against that stale position instead of a clean top-of-page
-  // state. Forcing scroll-to-top here, before GSAP/ScrollTrigger ever touch
-  // the hero, makes the intro look identical on a fresh load and a reload.
-  try { if ('scrollRestoration' in history) history.scrollRestoration = 'manual'; } catch (e) {}
-  window.scrollTo(0, 0);
+  // Fresh visit or reload -> start clean at the top. Reloading mid-scroll used
+  // to leave the hero half-transformed: the browser restores the old scroll
+  // position before this script runs, so the hero and the preloader's
+  // full-screen overlay would initialize against a stale position. Forcing
+  // scroll-to-top keeps the intro identical on a fresh load and a reload.
+  //
+  // Back/forward (e.g. returning from the 404 page) -> do NOT force the top.
+  // Let the browser put the visitor back exactly where they were.
+  var navType = 'navigate';
+  try {
+    var navEntry = performance.getEntriesByType('navigation')[0];
+    if (navEntry && navEntry.type) navType = navEntry.type;
+  } catch (e) {}
 
-  // Back/forward-cache restores (Safari and some Firefox/Chrome flows) can
-  // reapply the browser's own scroll position on 'pageshow' — after the
-  // scrollTo above already ran — which is what made a reload sometimes
-  // land mid-page instead of at the top. Forcing it again here catches
-  // that case too.
-  window.addEventListener('pageshow', function (e) {
-    if (e.persisted) window.scrollTo(0, 0);
+  var canRestore = 'scrollRestoration' in history;
+
+  if (navType === 'back_forward') {
+    try { if (canRestore) history.scrollRestoration = 'auto'; } catch (e) {}
+  } else {
+    try { if (canRestore) history.scrollRestoration = 'manual'; } catch (e) {}
+    window.scrollTo(0, 0);
+  }
+
+  // 'manual' is stored on this history entry, which would block scroll
+  // restoration when the visitor comes back to it. Reset it as they leave.
+  window.addEventListener('pagehide', function () {
+    try { if (canRestore) history.scrollRestoration = 'auto'; } catch (e) {}
   });
 
   var HAS_GSAP = typeof window.gsap !== 'undefined' && typeof window.ScrollTrigger !== 'undefined';

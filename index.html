@@ -81,7 +81,7 @@
         <p>Engineered for champions. Discover elite-grade sports equipment, futuristic activewear, and performance gear designed to break records.</p>
         <div class="hero-buttons">
           <a href="./html/404.html" class="btn btn-primary"><i class="fa-solid fa-bolt"></i> Shop Gear</a>
-          <a href="./html/404.html" class="btn btn-outline">Explore Categories</a>
+          <a href="./html/categories.html" class="btn btn-outline">Explore Categories</a>
         </div>
 
         <div class="hero-specs">
@@ -148,7 +148,10 @@
     </div>
   </section>
 
-  <!-- SECTION 3: TOP PRODUCTS -->
+  <!-- SECTION 3: TOP PRODUCTS
+       Each card: image -> title + rating -> price (left) + stock left (right).
+       Add class "low" on .product-stock when roughly 10 or fewer units remain.
+       The bar width is: units left / max stock * 100. -->
   <section id="products" class="products">
     <div class="section-title reveal">
       <h2>Featured <span>Products</span></h2>
@@ -166,6 +169,10 @@
         </div>
         <div class="product-bottom">
           <div class="product-price">$189.99</div>
+          <div class="product-stock low">
+            <span class="stock-count"><i class="fa-solid fa-box-open"></i> 7 left</span>
+            <span class="stock-bar"><span style="width: 14%"></span></span>
+          </div>
         </div>
       </div>
 
@@ -180,6 +187,10 @@
         </div>
         <div class="product-bottom">
           <div class="product-price">$59.99</div>
+          <div class="product-stock">
+            <span class="stock-count"><i class="fa-solid fa-box-open"></i> 42 left</span>
+            <span class="stock-bar"><span style="width: 84%"></span></span>
+          </div>
         </div>
       </div>
 
@@ -194,6 +205,10 @@
         </div>
         <div class="product-bottom">
           <div class="product-price">$129.99</div>
+          <div class="product-stock">
+            <span class="stock-count"><i class="fa-solid fa-box-open"></i> 23 left</span>
+            <span class="stock-bar"><span style="width: 46%"></span></span>
+          </div>
         </div>
       </div>
 
@@ -208,6 +223,10 @@
         </div>
         <div class="product-bottom">
           <div class="product-price">$249.99</div>
+          <div class="product-stock low">
+            <span class="stock-count"><i class="fa-solid fa-box-open"></i> 4 left</span>
+            <span class="stock-bar"><span style="width: 8%"></span></span>
+          </div>
         </div>
       </div>
     </div>
