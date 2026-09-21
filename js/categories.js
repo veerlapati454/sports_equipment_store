@@ -23,17 +23,20 @@
   // anything, makes a reload look identical to a fresh load. The <head>
   // script in categories.html already does this before paint; this repeats
   // it once the DOM/script itself is running.
-  try { if ('scrollRestoration' in history) history.scrollRestoration = 'manual'; } catch (e) {}
-  window.scrollTo(0, 0);
+  var __navType = 'navigate';
+  try { var __n = performance.getEntriesByType('navigation')[0]; if (__n && __n.type) __navType = __n.type; } catch (e) {}
+  if (__navType !== 'back_forward') {
+    try { if ('scrollRestoration' in history) history.scrollRestoration = 'manual'; } catch (e) {}
+    window.scrollTo(0, 0);
+  }
 
   // Back/forward-cache restores (Safari and some Firefox/Chrome flows) can
   // reapply the browser's own scroll position on 'pageshow' — after the
   // scrollTo above already ran — which is what made a reload sometimes
   // land mid-page instead of at the top. Forcing it again here catches
   // that case too.
-  window.addEventListener('pageshow', function (e) {
-    if (e.persisted) window.scrollTo(0, 0);
-  });
+  /* A back/forward-cache restore keeps the visitor's position (e.g. Go Back
+     from the 404 page), so nothing is forced to the top here. */
 
   var HAS_GSAP = typeof window.gsap !== 'undefined' && typeof window.ScrollTrigger !== 'undefined';
   var REDUCED = window.matchMedia('(prefers-reduced-motion: reduce)').matches;

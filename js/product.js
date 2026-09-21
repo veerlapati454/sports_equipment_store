@@ -29,12 +29,12 @@
   /* ----------------------------------------------------------
      0. Always start at the top on reload + sync header height
      ---------------------------------------------------------- */
-  if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
-
   var navEntry = window.performance && performance.getEntriesByType && performance.getEntriesByType('navigation')[0];
   var isReload = navEntry ? navEntry.type === 'reload' : false;
+  var isBackForward = navEntry ? navEntry.type === 'back_forward' : false;
+  if (!isBackForward && 'scrollRestoration' in history) history.scrollRestoration = 'manual';
   if (isReload && location.hash) history.replaceState(null, '', location.pathname + location.search);
-  if (!location.hash) {
+  if (!location.hash && !isBackForward) {
     window.scrollTo(0, 0);
     window.addEventListener('load', function () { window.scrollTo(0, 0); });
   }

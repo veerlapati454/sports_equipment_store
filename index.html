@@ -6,12 +6,20 @@
   <meta name="theme-color" content="#0a0c10">
   <title>STACKLY ATHLETICS | Ultimate Sports Equipment</title>
 
-  <!-- Force every load/reload to start at the very top of the page,
-       before any CSS/fonts/images arrive and before the browser gets
-       a chance to auto-scroll to a URL hash (e.g. a #hero anchor). -->
+  <!-- Fresh visit / reload: start at the very top of the page.
+       Back/forward (e.g. returning from the 404 page): do NOT force the top,
+       so the browser (and script.js) can put the visitor back where they were. -->
   <script>
     (function () {
-      try { if ('scrollRestoration' in history) history.scrollRestoration = 'manual'; } catch (e) {}
+      var navType = 'navigate';
+      try {
+        var e = performance.getEntriesByType('navigation')[0];
+        if (e && e.type) navType = e.type;
+      } catch (err) {}
+
+      if (navType === 'back_forward') return;
+
+      try { if ('scrollRestoration' in history) history.scrollRestoration = 'manual'; } catch (err) {}
       window.scrollTo(0, 0);
       document.addEventListener('DOMContentLoaded', function () { window.scrollTo(0, 0); });
       window.addEventListener('load', function () { window.scrollTo(0, 0); });
@@ -579,7 +587,7 @@
     <p>The login endpoint you are trying to reach is currently undergoing scheduled maintenance.</p>
     <button class="btn btn-primary" id="close404Btn"><i class="fa-solid fa-arrow-left"></i> Return To Home</button>
   </div>
-
+   <a href="./html/404.html">Test 404</a>
   <!-- External JS -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>

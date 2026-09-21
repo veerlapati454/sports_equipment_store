@@ -5,8 +5,52 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Shop All Gear | APEX ATHLETICS</title>
 
-  <!-- Always start at the top on reload -->
-  <script>if ('scrollRestoration' in history) history.scrollRestoration = 'manual';</script>
+  <!-- Start at the top on a fresh visit / reload; keep position on back/forward -->
+  <script>
+    /* Scroll handling.
+       Fresh visit / reload: start at the top.
+       Back/forward (e.g. Go Back from the 404 page): keep the visitor where
+       they were, using the browser's own restore plus a saved-position backup. */
+    (function () {
+      var navType = 'navigate';
+      try {
+        var nav = performance.getEntriesByType('navigation')[0];
+        if (nav && nav.type) navType = nav.type;
+      } catch (err) {}
+
+      var canRestore = 'scrollRestoration' in history;
+      var KEY = 'apex-scroll:' + location.pathname;
+
+      /* 'manual' is stored on the history entry; reset it as the visitor
+         leaves, and remember where they were. */
+      window.addEventListener('pagehide', function () {
+        try { if (canRestore) history.scrollRestoration = 'auto'; } catch (err) {}
+        try { sessionStorage.setItem(KEY, String(window.pageYOffset || 0)); } catch (err) {}
+      });
+
+      if (navType === 'back_forward') {
+        try { if (canRestore) history.scrollRestoration = 'auto'; } catch (err) {}
+        var restore = function () {
+          var saved;
+          try { saved = parseInt(sessionStorage.getItem(KEY), 10); } catch (err) {}
+          if (!isNaN(saved) && Math.abs((window.pageYOffset || 0) - saved) > 5) {
+            window.scrollTo({ top: saved, left: 0, behavior: 'instant' });
+          }
+        };
+        window.addEventListener('load', function () {
+          restore();
+          setTimeout(restore, 300);
+          setTimeout(restore, 1200);
+        });
+        return;
+      }
+
+      try { if (canRestore) history.scrollRestoration = 'manual'; } catch (err) {}
+      window.scrollTo(0, 0);
+      document.addEventListener('DOMContentLoaded', function () { window.scrollTo(0, 0); });
+      window.addEventListener('load', function () { window.scrollTo(0, 0); });
+    })();
+  </script>
 
   <!-- Google Fonts & Font Awesome Icons -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -531,5 +575,6 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js"></script>
   <script src="../js/script.js"></script>
   <script src="../js/product.js"></script>
+  <script>try { sessionStorage.setItem('apexLastPage', location.href); } catch (e) {}</script>
 </body>
 </html>

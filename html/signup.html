@@ -6,9 +6,47 @@
   <title>Sign Up | APEX ATHLETICS</title>
 
   <script>
+    /* Scroll handling.
+       Fresh visit / reload: start at the top.
+       Back/forward (e.g. Go Back from the 404 page): keep the visitor where
+       they were, using the browser's own restore plus a saved-position backup. */
     (function () {
-      try { if ('scrollRestoration' in history) history.scrollRestoration = 'manual'; } catch (e) {}
+      var navType = 'navigate';
+      try {
+        var nav = performance.getEntriesByType('navigation')[0];
+        if (nav && nav.type) navType = nav.type;
+      } catch (err) {}
+
+      var canRestore = 'scrollRestoration' in history;
+      var KEY = 'apex-scroll:' + location.pathname;
+
+      /* 'manual' is stored on the history entry; reset it as the visitor
+         leaves, and remember where they were. */
+      window.addEventListener('pagehide', function () {
+        try { if (canRestore) history.scrollRestoration = 'auto'; } catch (err) {}
+        try { sessionStorage.setItem(KEY, String(window.pageYOffset || 0)); } catch (err) {}
+      });
+
+      if (navType === 'back_forward') {
+        try { if (canRestore) history.scrollRestoration = 'auto'; } catch (err) {}
+        var restore = function () {
+          var saved;
+          try { saved = parseInt(sessionStorage.getItem(KEY), 10); } catch (err) {}
+          if (!isNaN(saved) && Math.abs((window.pageYOffset || 0) - saved) > 5) {
+            window.scrollTo({ top: saved, left: 0, behavior: 'instant' });
+          }
+        };
+        window.addEventListener('load', function () {
+          restore();
+          setTimeout(restore, 300);
+          setTimeout(restore, 1200);
+        });
+        return;
+      }
+
+      try { if (canRestore) history.scrollRestoration = 'manual'; } catch (err) {}
       window.scrollTo(0, 0);
+      document.addEventListener('DOMContentLoaded', function () { window.scrollTo(0, 0); });
       window.addEventListener('load', function () { window.scrollTo(0, 0); });
     })();
   </script>

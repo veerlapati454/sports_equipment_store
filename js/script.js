@@ -17,11 +17,18 @@
    stackly_logo.webp) is markup + CSS only. The preloader timeline
    targets the .sports-loader wrapper, so no JS changes were needed.
 
-   FIX (this revision): pressing Go Back on the 404 page returned to
+   FIX (earlier revision): pressing Go Back on the 404 page returned to
    the footer position and then jumped to the top of the page. Cause:
    scroll was forced to the top on EVERY load. It is now only forced
    on a fresh visit or reload; on back/forward navigation the browser's
    own scroll restoration is left alone.
+
+   FIX (this revision): the inline script in the <head> of index.html
+   (and any other page copying it) was ALSO forcing scroll to the top on
+   every load, which overrode the fix above. That head script now skips
+   back/forward navigations too. As a safety net, this file also saves
+   the scroll position when the visitor leaves and restores it on
+   back/forward if the browser did not do so itself (see restoreScroll).
    ========================================================== */
 
 (function () {
@@ -52,9 +59,24 @@
 
   // 'manual' is stored on this history entry, which would block scroll
   // restoration when the visitor comes back to it. Reset it as they leave.
+  // Also remember where they were, as a fallback for restoring on return.
+  var SCROLL_KEY = 'apex-scroll:' + location.pathname;
+
   window.addEventListener('pagehide', function () {
     try { if (canRestore) history.scrollRestoration = 'auto'; } catch (e) {}
+    try { sessionStorage.setItem(SCROLL_KEY, String(window.pageYOffset || 0)); } catch (e) {}
   });
+
+  // Back/forward only: if the browser did not put the visitor back where they
+  // were, jump to the saved position (instantly, ignoring CSS smooth scroll).
+  function restoreScroll() {
+    if (navType !== 'back_forward') return;
+    var saved;
+    try { saved = parseInt(sessionStorage.getItem(SCROLL_KEY), 10); } catch (e) {}
+    if (!isNaN(saved) && Math.abs((window.pageYOffset || 0) - saved) > 5) {
+      window.scrollTo({ top: saved, left: 0, behavior: 'instant' });
+    }
+  }
 
   var HAS_GSAP = typeof window.gsap !== 'undefined' && typeof window.ScrollTrigger !== 'undefined';
   var REDUCED = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -97,6 +119,7 @@
     if (p) { p.style.opacity = '0'; p.style.visibility = 'hidden'; }
     document.body.classList.remove('loading');
     showEverything();
+    restoreScroll();
   }
 
   function guard(fn) {
@@ -205,6 +228,7 @@
         preloader.style.opacity = '0';
         preloader.style.visibility = 'hidden';
         document.body.classList.remove('loading');
+        restoreScroll();
         introDone = true;
       }, 1000);
       return;
@@ -218,7 +242,10 @@
           yPercent: -100,
           duration: 0.7,
           ease: 'power4.inOut',
-          onStart: function () { document.body.classList.remove('loading'); },
+          onStart: function () {
+            document.body.classList.remove('loading');
+            restoreScroll();
+          },
           onComplete: function () {
             preloader.style.visibility = 'hidden';
             ScrollTrigger.refresh();
