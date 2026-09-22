@@ -52,6 +52,9 @@
     })();
   </script>
 
+  <!-- Preload the preloader logo so it is ready the moment the preloader shows -->
+  <link rel="preload" as="image" href="../assets/stackly_logo.webp">
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Teko:wght@500;700&family=Work+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
@@ -62,9 +65,21 @@
   <link rel="stylesheet" href="../css/aboutus.css">
 
 </head>
-<body>
+<body class="loading">
 
-  <!-- HEADER (no preloader on this page — content renders immediately) -->
+  <!-- PRELOADER -->
+  <div id="preloader">
+    <div class="sports-loader">
+      <svg viewBox="0 0 100 100">
+        <circle class="outer-ring" cx="50" cy="50" r="42"></circle>
+        <circle class="inner-spinner" cx="50" cy="50" r="42"></circle>
+      </svg>
+      <img src="../assets/stackly_logo.webp" alt="Stackly Athletics" class="preloader-logo">
+    </div>
+    <div class="preloader-text">Loading Our Story...</div>
+  </div>
+
+  <!-- HEADER -->
   <header>
     <div class="header-container">
       <a href="../index.html" class="logo-placeholder">
@@ -348,7 +363,19 @@
     </div>
   </section>
 
- 
+ <!-- ==========================================================
+     SECTION 8: CTA
+     (reuses .about-cta, already styled in aboutus.css but
+     not yet used anywhere on this page)
+     ========================================================== -->
+<section class="about-cta">
+  <h2>Ready To Train <span>Like We Built It For?</span></h2>
+  <p>Twelve years of lab testing and athlete feedback, in gear you can order today — backed by our 30-day performance guarantee.</p>
+  <div class="hero-buttons">
+    <a href="./products.html" class="btn btn-primary"><i class="fa-solid fa-bag-shopping"></i> Shop The Gear</a>
+    <a href="./contact.html" class="btn btn-outline">Get In Touch</a>
+  </div>
+</section>
 
   <!-- FOOTER (same layout as index.html: compact single row on desktop) -->
   <footer>

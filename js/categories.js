@@ -11,6 +11,10 @@
 
    Every GSAP block is guarded: if anything throws, the page falls
    back to the plain CSS .reveal fade and nothing stays hidden.
+
+   UPDATE: this page now has a preloader (matching index.html), so
+   the hero no longer starts immediately after fonts load — it now
+   waits for the preloader to finish, same as script.js.
    ========================================================== */
 
 (function () {
@@ -76,12 +80,27 @@
     if (window.console) console.error('[Apex] animation disabled:', err);
     ANIMATE = false;
     document.documentElement.classList.remove('gsap-enabled');
+    var p = document.getElementById('preloader');
+    if (p) { p.style.opacity = '0'; p.style.visibility = 'hidden'; }
+    document.body.classList.remove('loading');
     showEverything();
   }
 
   function guard(fn) {
     try { fn(); } catch (e) { bail(e); }
   }
+
+  // Hard failsafe: whatever happened, nothing stays invisible past 5s.
+  setTimeout(function () {
+    if (!introDone) {
+      var p = document.getElementById('preloader');
+      if (p && p.style.visibility !== 'hidden') {
+        p.style.opacity = '0';
+        p.style.visibility = 'hidden';
+        document.body.classList.remove('loading');
+      }
+    }
+  }, 5000);
 
   /* ----------------------------------------------------------
      1. Helpers
@@ -125,24 +144,60 @@
 
   /* ----------------------------------------------------------
      2. Hero: intentionally no entrance animation (matches index).
-     There's no preloader gating the page anymore, so this just
-     flips the flag magnetic buttons check before engaging.
      ---------------------------------------------------------- */
   function startHero() {
     introDone = true;
   }
 
-  // Wait for web fonts so Teko is painted before ScrollTrigger measures
-  // anything (avoids mistimed trigger points from a late font swap), then
-  // refresh ScrollTrigger and mark the intro as done.
+  /* ----------------------------------------------------------
+     2b. Preloader (mirrors script.js's runPreloader)
+     ---------------------------------------------------------- */
+  function runPreloader() {
+    var preloader = document.getElementById('preloader');
+
+    if (!preloader) {
+      if (ANIMATE && window.ScrollTrigger) ScrollTrigger.refresh();
+      startHero();
+      return;
+    }
+
+    if (!ANIMATE) {
+      setTimeout(function () {
+        preloader.style.opacity = '0';
+        preloader.style.visibility = 'hidden';
+        document.body.classList.remove('loading');
+        startHero();
+      }, 1000);
+      return;
+    }
+
+    try {
+      gsap.timeline({ delay: 0.7 })
+        .to('.preloader-text', { opacity: 0, y: -15, duration: 0.3 })
+        .to('.sports-loader', { scale: 0.4, opacity: 0, duration: 0.4, ease: 'back.in(2)' }, '-=0.2')
+        .to(preloader, {
+          yPercent: -100,
+          duration: 0.7,
+          ease: 'power4.inOut',
+          onStart: function () {
+            document.body.classList.remove('loading');
+          },
+          onComplete: function () {
+            preloader.style.visibility = 'hidden';
+            ScrollTrigger.refresh();
+          }
+        })
+        .add(startHero, '-=0.3');
+    } catch (e) { bail(e); }
+  }
+
+  // Wait for both `load` AND web fonts before the preloader lifts, so Teko
+  // is painted before anything is revealed or measured.
   function boot() {
     var fontsReady = (window.document.fonts && window.document.fonts.ready)
       ? window.document.fonts.ready.catch(function () {})
       : Promise.resolve();
-    fontsReady.then(function () {
-      if (ANIMATE && window.ScrollTrigger) ScrollTrigger.refresh();
-      startHero();
-    });
+    fontsReady.then(runPreloader);
   }
 
   if (document.readyState === 'complete') boot();
@@ -276,6 +331,12 @@
     gsap.from('.ambassadors-grid .ambassador-img-wrap', {
       scrollTrigger: ST('.ambassadors-grid', 'top 80%'),
       rotationY: 180, duration: 0.8, ease: 'power2.out', stagger: 0.08, delay: 0.2
+    });
+
+    /* --- Final CTA --- */
+    gsap.from('.cta-container', {
+      scrollTrigger: ST('.cta-band', 'top 85%'),
+      y: 30, opacity: 0, duration: 0.65, ease: 'power3.out'
     });
 
     /* --- Footer (identical choreography to index.html) --- */

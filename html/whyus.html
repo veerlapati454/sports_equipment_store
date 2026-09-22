@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#0a0c10">
   <title>Why Apex Athletics | Built By Athletes, Proven By Athletes</title>
 
   <!-- Top-of-page scroll guard -->
@@ -52,6 +53,9 @@
     })();
   </script>
 
+  <!-- Preload the preloader logo so it is ready the moment the preloader shows -->
+  <link rel="preload" as="image" href="../assets/stackly_logo.webp">
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Teko:wght@500;700&family=Work+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
@@ -61,7 +65,19 @@
   <link rel="stylesheet" href="../css/styles.css">
   <link rel="stylesheet" href="../css/whyus.css">
 </head>
-<body>
+<body class="loading">
+
+  <!-- PRELOADER -->
+  <div id="preloader">
+    <div class="sports-loader">
+      <svg viewBox="0 0 100 100">
+        <circle class="outer-ring" cx="50" cy="50" r="42"></circle>
+        <circle class="inner-spinner" cx="50" cy="50" r="42"></circle>
+      </svg>
+      <img src="../assets/stackly_logo.webp" alt="Stackly Athletics" class="preloader-logo">
+    </div>
+    <div class="preloader-text">Loading Standards...</div>
+  </div>
 
   <!-- HEADER -->
   <header>
@@ -307,7 +323,17 @@
       </details>
     </div>
   </section>
-
+  <!-- SECTION 9: FINAL CTA -->
+<section id="cta" class="cta-band">
+  <div class="cta-container reveal">
+    <h2>Still Deciding <span>What To Buy?</span></h2>
+    <p>Browse the full catalog above, or let a coach point you to the right gear for your sport.</p>
+    <div class="cta-buttons">
+      <a href="#catalog" class="btn btn-primary"><i class="fa-solid fa-bag-shopping"></i> Back To Catalog</a>
+      <a href="./contact.html" class="btn btn-outline">Talk To A Coach</a>
+    </div>
+  </div>
+</section>
   <!-- FOOTER -->
   <footer>
     <div class="footer-container">

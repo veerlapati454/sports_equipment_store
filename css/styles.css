@@ -1197,7 +1197,65 @@ header {
 
 .strip-item i { color: var(--primary); font-size: 1.1rem; }
 .strip-item strong { color: #fff; font-family: var(--font-heading); font-size: 1.35rem; letter-spacing: 1px; }
+/* ==========================================================
+   11.5 FINAL CTA BAND
+   ========================================================== */
+.cta-band {
+  position: relative;
+  padding: var(--section-pad-y) var(--section-pad-x);
+  overflow: hidden;
+  background: #05070a;
+  border-top: 1px solid var(--border-color);
+  border-bottom: 1px solid var(--border-color);
+}
 
+.cta-band::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 650px 400px at 15% 20%, rgba(255, 69, 0, 0.14), transparent 60%),
+    radial-gradient(ellipse 600px 450px at 85% 80%, rgba(0, 229, 255, 0.08), transparent 60%);
+  pointer-events: none;
+}
+
+.cta-container {
+  position: relative;
+  z-index: 1;
+  max-width: 760px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.cta-container h2 {
+  font-family: var(--font-heading);
+  font-size: clamp(2.3rem, 7vw, 3.5rem);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: #fff;
+  line-height: 1;
+  margin-bottom: 16px;
+}
+
+.cta-container h2 span { color: var(--primary); }
+
+.cta-container p {
+  color: var(--text-muted);
+  font-size: clamp(0.95rem, 2.6vw, 1.1rem);
+  line-height: 1.6;
+  margin-bottom: 35px;
+}
+
+.cta-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 18px;
+}
+
+@media (max-width: 480px) {
+  .cta-buttons .btn { flex: 1 1 100%; }
+}
 /* ==========================================================
    12. FOOTER & 404 OVERLAY
    ========================================================== */

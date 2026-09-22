@@ -4,12 +4,11 @@
    Reuses every token from css/styles.css (:root vars, fonts,
    .reveal, .btn, .product-card, .section-title, etc.) — this
    file only adds what the products page needs on top of it.
-   ========================================================== */
 
-/* Preloader removed from this page — safety net in case
-   script.js tries to bring the old loading state back. */
-#preloader { display: none !important; }
-body.loading { overflow: auto !important; }
+   NOTE: the preloader (#preloader, body.loading) is now used on
+   this page too — styles.css already defines it, and script.js
+   already drives it. No override needed here anymore.
+   ========================================================== */
 
 /* ----------------------------------------------------------
    0. HEADER — current-page nav indicator
@@ -676,6 +675,66 @@ body.loading { overflow: auto !important; }
 
 .guide-cta p { color: var(--text-muted); font-size: 1.05rem; }
 
+/* ----------------------------------------------------------
+   9. FINAL CTA BAND
+   ---------------------------------------------------------- */
+.cta-band {
+  position: relative;
+  padding: 90px 25px;
+  overflow: hidden;
+  background: #05070a;
+  border-top: 1px solid var(--border-color);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.cta-band::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 650px 400px at 15% 20%, rgba(255, 69, 0, 0.14), transparent 60%),
+    radial-gradient(ellipse 600px 450px at 85% 80%, rgba(0, 229, 255, 0.08), transparent 60%);
+  pointer-events: none;
+}
+
+.cta-container {
+  position: relative;
+  z-index: 1;
+  max-width: 760px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.cta-container h2 {
+  font-family: var(--font-heading);
+  font-size: clamp(2.3rem, 7vw, 3.5rem);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: #fff;
+  line-height: 1;
+  margin-bottom: 16px;
+}
+
+.cta-container h2 span { color: var(--primary); }
+
+.cta-container p {
+  color: var(--text-muted);
+  font-size: clamp(0.95rem, 2.6vw, 1.1rem);
+  line-height: 1.6;
+  margin-bottom: 35px;
+}
+
+.cta-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 18px;
+}
+
+@media (max-width: 640px) {
+  .cta-band { padding: 60px 15px; }
+  .cta-buttons .btn { flex: 1 1 100%; }
+}
 /* ----------------------------------------------------------
    RESPONSIVE
    ---------------------------------------------------------- */

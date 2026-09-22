@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#0a0c10">
   <title>Contact | APEX ATHLETICS</title>
 
   <script>
@@ -51,6 +52,9 @@
     })();
   </script>
 
+  <!-- Preload the preloader logo so it is ready the moment the preloader shows -->
+  <link rel="preload" as="image" href="../assets/stackly_logo.webp">
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Teko:wght@500;700&family=Work+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
@@ -86,12 +90,19 @@
     }
   </style>
 </head>
-<body>
+<body class="loading">
 
-  <!-- No preloader on this page: the contact page is usually reached from
-       another page, so the site shell is already cached and a second
-       loading screen just delays the form. script.js handles a missing
-       #preloader on its own. -->
+  <!-- PRELOADER -->
+  <div id="preloader">
+    <div class="sports-loader">
+      <svg viewBox="0 0 100 100">
+        <circle class="outer-ring" cx="50" cy="50" r="42"></circle>
+        <circle class="inner-spinner" cx="50" cy="50" r="42"></circle>
+      </svg>
+      <img src="../assets/stackly_logo.webp" alt="Stackly Athletics" class="preloader-logo">
+    </div>
+    <div class="preloader-text">Connecting You...</div>
+  </div>
 
   <!-- HEADER -->
   <header>
